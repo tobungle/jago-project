@@ -1,18 +1,31 @@
 extends Control
 
-@export var singleplayer_btn : Button
-@export var multiplayer_btn : Button
-@export var settings_btn : Button
-@export var quit_btn : Button
+@export var start_menu : Control
+@export var multiplayer_menu : Control
+@export var host_menu : Control
 
-func _ready() -> void:
-	singleplayer_btn.pressed.connect(on_singleplayer_pressed)
-	multiplayer_btn.pressed.connect(on_multiplayer_pressed)
-	quit_btn.pressed.connect(func() -> void: get_tree().quit())
+func set_menu(which : String) -> void:
+	start_menu.visible = which == "start"
+	multiplayer_menu.visible = which == "mp"
+	host_menu.visible = which == "host"
 
-func on_singleplayer_pressed() -> void:
-	# Go to test scene.
+func _on_singleplayer_pressed() -> void:
 	get_tree().change_scene_to_file("uid://18g6qsau6q1h")
 
-func on_multiplayer_pressed() -> void:
-	pass
+func _on_multiplayer_pressed() -> void:
+	set_menu("mp")
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+
+func _on_to_host_menu_pressed() -> void:
+	set_menu("host")
+
+func _on_to_join_menu_pressed() -> void:
+	set_menu("mp")
+
+func _on_back_pressed() -> void:
+	set_menu("start")
+
+func _on_host_confirm_pressed() -> void:
+	_on_singleplayer_pressed()

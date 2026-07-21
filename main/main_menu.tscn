@@ -41,7 +41,7 @@ _data = {
 &"spin": SubResource("Animation_w2mlq")
 }
 
-[node name="MainMenu" type="Control" unique_id=1020771373 node_paths=PackedStringArray("singleplayer_btn", "multiplayer_btn", "settings_btn", "quit_btn")]
+[node name="MainMenu" type="Control" unique_id=1020771373 node_paths=PackedStringArray("start_menu", "multiplayer_menu", "host_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,10 +49,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dhah8")
-singleplayer_btn = NodePath("Menu1/VBoxContainer/Singleplayer")
-multiplayer_btn = NodePath("Menu1/VBoxContainer/Multiplayer")
-settings_btn = NodePath("Menu1/VBoxContainer/Settings")
-quit_btn = NodePath("Menu1/VBoxContainer/Quit")
+start_menu = NodePath("StartMenu")
+multiplayer_menu = NodePath("MultiplayerMenu")
+host_menu = NodePath("HostMenu")
 
 [node name="Label" type="Label" parent="." unique_id=1071010560]
 layout_mode = 1
@@ -70,7 +69,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Jago-Project"
 
-[node name="Menu1" type="Control" parent="." unique_id=222471476]
+[node name="StartMenu" type="Control" parent="." unique_id=222471476]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +77,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu1" unique_id=2018325212]
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu" unique_id=2018325212]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -92,25 +91,24 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Singleplayer" type="Button" parent="Menu1/VBoxContainer" unique_id=1796122048]
+[node name="Singleplayer" type="Button" parent="StartMenu/VBoxContainer" unique_id=1796122048]
 layout_mode = 2
 text = "Singleplayer"
 
-[node name="Multiplayer" type="Button" parent="Menu1/VBoxContainer" unique_id=621660101]
+[node name="Multiplayer" type="Button" parent="StartMenu/VBoxContainer" unique_id=621660101]
 layout_mode = 2
-disabled = true
 text = "Multiplayer"
 
-[node name="Settings" type="Button" parent="Menu1/VBoxContainer" unique_id=1840055638]
+[node name="Settings" type="Button" parent="StartMenu/VBoxContainer" unique_id=1840055638]
 layout_mode = 2
 disabled = true
 text = "Settings"
 
-[node name="Quit" type="Button" parent="Menu1/VBoxContainer" unique_id=394778527]
+[node name="Quit" type="Button" parent="StartMenu/VBoxContainer" unique_id=394778527]
 layout_mode = 2
 text = "Quit"
 
-[node name="Menu2" type="Control" parent="." unique_id=2114314072]
+[node name="MultiplayerMenu" type="Control" parent="." unique_id=2114314072]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -120,7 +118,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu2" unique_id=2118377966]
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerMenu" unique_id=2118377966]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,13 +132,53 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Host" type="Button" parent="Menu2/VBoxContainer" unique_id=1895243967]
+[node name="ToHostMenu" type="Button" parent="MultiplayerMenu/VBoxContainer" unique_id=1895243967]
 layout_mode = 2
 text = "Host Lobby"
 
-[node name="Join" type="Button" parent="Menu2/VBoxContainer" unique_id=2004244149]
+[node name="ToJoinMenu" type="Button" parent="MultiplayerMenu/VBoxContainer" unique_id=2004244149]
 layout_mode = 2
 text = "Join Lobby"
+
+[node name="Back" type="Button" parent="MultiplayerMenu/VBoxContainer" unique_id=399993959]
+layout_mode = 2
+text = "Back"
+
+[node name="HostMenu" type="Control" parent="." unique_id=1545724601]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HostMenu" unique_id=626903194]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -16.0
+offset_right = 83.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="HostMenu/VBoxContainer" unique_id=951482633]
+layout_mode = 2
+placeholder_text = "Lobby name..."
+
+[node name="HostConfirm" type="Button" parent="HostMenu/VBoxContainer" unique_id=2114432582]
+layout_mode = 2
+text = "Host"
+
+[node name="Back" type="Button" parent="HostMenu/VBoxContainer" unique_id=158423061]
+layout_mode = 2
+text = "Go Back"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=670712460]
 layout_mode = 0
@@ -172,3 +210,12 @@ transform = Transform3D(0.85489637, 0, -1.422938, 0, 1.6600001, 0, 1.422938, 0, 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial/My Boy_LowPoly_Rigged" unique_id=1668733084]
 libraries/ = SubResource("AnimationLibrary_4u0aa")
 autoplay = &"spin"
+
+[connection signal="pressed" from="StartMenu/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="StartMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MultiplayerMenu/VBoxContainer/ToHostMenu" to="." method="_on_to_host_menu_pressed"]
+[connection signal="pressed" from="MultiplayerMenu/VBoxContainer/ToJoinMenu" to="." method="_on_to_join_menu_pressed"]
+[connection signal="pressed" from="MultiplayerMenu/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="HostMenu/VBoxContainer/HostConfirm" to="." method="_on_host_confirm_pressed"]
+[connection signal="pressed" from="HostMenu/VBoxContainer/Back" to="." method="_on_back_pressed"]
