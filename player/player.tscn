@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c4sy76pemg4w2" path="res://player/Player.cs" id="1_oul6g"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
+radius = 0.1
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhohb"]
 size = Vector3(1, 2, 1)
 
@@ -22,8 +25,13 @@ graphics_base = NodePath("GraphicsBase")
 
 [node name="CameraBase" type="Node3D" parent="." unique_id=1598287418]
 
-[node name="Camera3D" type="Camera3D" parent="CameraBase" unique_id=1323855011]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 6, 12)
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraBase" unique_id=857952165]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0, 0)
+shape = SubResource("SphereShape3D_oul6g")
+spring_length = 13.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraBase/SpringArm3D" unique_id=1323855011]
+transform = Transform3D(1, 0, 0, 0, 0.9878142, -0.15563849, 0, 0.15563849, 0.9878141, 0, 0, 0)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715722046]
