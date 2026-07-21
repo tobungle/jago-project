@@ -110,6 +110,38 @@ text = "Settings"
 layout_mode = 2
 text = "Quit"
 
+[node name="Menu2" type="Control" parent="." unique_id=2114314072]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu2" unique_id=2118377966]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -16.0
+offset_right = 83.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="Menu2/VBoxContainer" unique_id=1895243967]
+layout_mode = 2
+text = "Host Lobby"
+
+[node name="Join" type="Button" parent="Menu2/VBoxContainer" unique_id=2004244149]
+layout_mode = 2
+text = "Join Lobby"
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=670712460]
 layout_mode = 0
 offset_left = 392.00003

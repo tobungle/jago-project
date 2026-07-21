@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SteamGlobal="*uid://co38i47roo856"
+Network="*uid://x5ynx6sl4uxg"
 
 [debug]
 
