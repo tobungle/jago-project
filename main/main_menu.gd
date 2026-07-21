@@ -29,3 +29,4 @@ func _on_back_pressed() -> void:
 
 func _on_host_confirm_pressed() -> void:
 	_on_singleplayer_pressed()
+	Network.steam_host($HostMenu/VBoxContainer/LineEdit.text)
