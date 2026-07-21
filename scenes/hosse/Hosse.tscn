@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b0ibbenuamw82"]
+
+[ext_resource type="PackedScene" uid="uid://blu1r2rpb4gce" path="res://assets/glb/Hosse/Hosse.glb" id="1_jmkmx"]
+[ext_resource type="Material" uid="uid://ctxa3sb6chlag" path="res://assets/temp_materials/HosseTemp.tres" id="2_iqcnl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rl7g"]
+size = Vector3(0.93115234, 2.119812, 2.751587)
+
+[node name="HosseVehicleBody" type="VehicleBody3D" unique_id=2047205030]
+mass = 300.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1612681759]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008544922, -0.39071655, 0.33172607)
+shape = SubResource("BoxShape3D_5rl7g")
+
+[node name="Hosse2" parent="." unique_id=96164854 instance=ExtResource("1_jmkmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010881424, 0.01666665, -0.0066297054)
+
+[node name="Hosse" parent="Hosse2" index="0" unique_id=1496321736]
+material_override = ExtResource("2_iqcnl")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="." unique_id=796735418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3683244, -0.9421318, -0.53322816)
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="." unique_id=153648824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35776442, -0.9421318, -0.53322816)
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="." unique_id=1778958198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3683244, -0.9421318, 1.198571)
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="." unique_id=1722957848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35776442, -0.9421318, 1.198571)
+
+[editable path="Hosse2"]
