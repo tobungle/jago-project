@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c4sy76pemg4w2" path="res://player/Player.cs" id="1_oul6g"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vhohb"]
+size = Vector3(1, 2, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
 albedo_color = Color(1, 0, 0, 1)
 
@@ -9,15 +12,13 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_oul6g")
 size = Vector3(1, 2, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vhohb"]
-size = Vector3(1, 2, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhohb"]
+albedo_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("camera_base")]
+[node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("camera_base", "graphics_base")]
 script = ExtResource("1_oul6g")
 camera_base = NodePath("CameraBase")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=371463532]
-mesh = SubResource("BoxMesh_vhohb")
+graphics_base = NodePath("GraphicsBase")
 
 [node name="CameraBase" type="Node3D" parent="." unique_id=1598287418]
 
@@ -49,3 +50,30 @@ text = "Controls:
 Move [WASD]
 Jump [Spacebar]
 Rotate Camera [Right Mouse Button]"
+
+[node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
+pixel_size = 0.01
+billboard = 1
+texture_filter = 0
+text = "coom_killer98"
+
+[node name="GraphicsBase" type="Node3D" parent="." unique_id=63454316]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GraphicsBase" unique_id=371463532]
+mesh = SubResource("BoxMesh_vhohb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=1422805347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27004075, 0.7737314, -0.45181966)
+size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_vhohb")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=462024826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27314925, 0.7737314, -0.45181966)
+size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_vhohb")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=563176348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043023586, 0.23737168, -0.45181966)
+size = Vector3(0.7363281, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_vhohb")

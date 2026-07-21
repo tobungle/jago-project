@@ -4,10 +4,12 @@ using Godot;
 public partial class Player : CharacterBody3D
 {
 	[Export] Node3D camera_base;	// Node that the camera is attached to
+	[Export] Node3D graphics_base;	// Node that graphics are attached to
 	float speed = 8.0f;
 	float jump_force = 15.0f;
 	float gravity = 0.5f;
 	float cam_rot_sensitivity = 0.5f;
+	Vector2 input_vector;
 	Vector2 mouse_relative;	// Where is mouse, relative to last frame. Basically how much it's moving
 	public override void _Ready()
 	{
@@ -27,6 +29,7 @@ public partial class Player : CharacterBody3D
 	{
 		DoCamera();
 		DoMovement();
+		DoGraphics();
 		// Reset the mouse movement at the end of each frame. Without this, camera will just keep moving based on last input
 		// - regardless if the player is moving their mouse or not. I'm gay
 		mouse_relative = Vector2.Zero;
@@ -75,11 +78,23 @@ public partial class Player : CharacterBody3D
 			}
 		}
 		// Get input vector from mouse keys then modify based on camera rotation
-		var input = Input.GetVector("left", "right", "forward", "backward").Rotated(-camera_base.Rotation.Y);
+		input_vector = Input.GetVector("left", "right", "forward", "backward");
+		Vector2 direction = input_vector.Rotated(-camera_base.Rotation.Y);
 		// Apply velocity
-		Velocity = new Vector3(input.X * speed, y_vel, input.Y * speed);
+		Velocity = new Vector3(direction.X * speed, y_vel, direction.Y * speed);
 		// Tell engine to do movement shit based on velocity
 		MoveAndSlide();
+	}
+
+	// Update the player graphcs (rotation, animations etc.)
+	void DoGraphics()
+	{
+		Vector2 direction = input_vector.Rotated(-camera_base.Rotation.Y);
+		if (GlobalPosition + new Vector3(direction.X, 0f, direction.Y) != GlobalPosition)
+		{
+			graphics_base.LookAt(GlobalPosition + new Vector3(direction.X, 0f, direction.Y));
+		}
+		
 	}
 
 }
