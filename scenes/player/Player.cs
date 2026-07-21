@@ -3,6 +3,8 @@ using Godot;
 
 public partial class Player : CharacterBody3D
 {
+	Node network;
+	[Export] Label3D name_label;
 	[Export] Node3D camera_base;	// Node that the camera is attached to
 	[Export] Node3D graphics_base;	// Node that graphics are attached to
 	float speed = 8.0f;
@@ -13,7 +15,11 @@ public partial class Player : CharacterBody3D
 	Vector2 mouse_relative;	// Where is mouse, relative to last frame. Basically how much it's moving
 	public override void _Ready()
 	{
-		
+		// Get reference to the Network node
+		network = GetNode("/root/Network");
+		// Set the player's in-game name to their Steam name
+		// Because network is a GDscript class, properties need to be retrieved with the Get() method
+		name_label.Text = (string)network.Get("persona_name");
 	}
 
     public override void _Input(InputEvent input_event)

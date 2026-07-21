@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rs5ljookuhiy"]
 
 [ext_resource type="Texture2D" uid="uid://cwbm77b1l7fp7" path="res://assets/jpg/IMG_20260610_193454_866.jpg" id="1_4l7av"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui_themes/black_and_white_theme/black_and_white.tres" id="1_4u0aa"]
 [ext_resource type="Script" uid="uid://bqcf6w4rvbcu5" path="res://main/main_menu.gd" id="1_dhah8"]
 [ext_resource type="PackedScene" uid="uid://pvymn1s18032" path="res://assets/glb/my_boy/My Boy_LowPoly_Rigged.glb" id="3_w2mlq"]
 
@@ -48,6 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4u0aa")
 script = ExtResource("1_dhah8")
 start_menu = NodePath("StartMenu")
 multiplayer_menu = NodePath("MultiplayerMenu")
@@ -92,19 +94,23 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Singleplayer" type="Button" parent="StartMenu/VBoxContainer" unique_id=1796122048]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Singleplayer"
 
 [node name="Multiplayer" type="Button" parent="StartMenu/VBoxContainer" unique_id=621660101]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Multiplayer"
 
 [node name="Settings" type="Button" parent="StartMenu/VBoxContainer" unique_id=1840055638]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 disabled = true
 text = "Settings"
 
 [node name="Quit" type="Button" parent="StartMenu/VBoxContainer" unique_id=394778527]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Quit"
 
@@ -133,14 +139,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ToHostMenu" type="Button" parent="MultiplayerMenu/VBoxContainer" unique_id=1895243967]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Host Lobby"
 
 [node name="ToJoinMenu" type="Button" parent="MultiplayerMenu/VBoxContainer" unique_id=2004244149]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Join Lobby"
 
 [node name="Back" type="Button" parent="MultiplayerMenu/VBoxContainer" unique_id=399993959]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Back"
 
@@ -169,14 +178,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LineEdit" type="LineEdit" parent="HostMenu/VBoxContainer" unique_id=951482633]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 placeholder_text = "Lobby name..."
 
 [node name="HostConfirm" type="Button" parent="HostMenu/VBoxContainer" unique_id=2114432582]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Host"
 
 [node name="Back" type="Button" parent="HostMenu/VBoxContainer" unique_id=158423061]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "Go Back"
 

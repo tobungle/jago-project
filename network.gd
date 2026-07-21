@@ -3,6 +3,10 @@ extends Node
 var lobby_id : int
 var steam_peer : SteamMultiplayerPeer
 var lobby_name : String
+var persona_name : String
+
+func _ready() -> void:
+	persona_name = Steam.getPersonaName()
 
 # Request a lobby be created with steam networking
 func steam_host(_lobby_name : String) -> void:
@@ -10,7 +14,7 @@ func steam_host(_lobby_name : String) -> void:
 	# - set to a default value if there is no given name
 	lobby_name = _lobby_name
 	if _lobby_name == "":
-		lobby_name = "%s's lobby" % Steam.getPersonaName()
+		lobby_name = "%s's lobby" % persona_name
 	# Parameters are visbility and max members, make this customizeable later
 	Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, 2)
 
