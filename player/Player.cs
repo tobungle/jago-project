@@ -54,7 +54,7 @@ public partial class Player : CharacterBody3D
 		cam_rot.Y -= mouse_relative.X * cam_rot_sensitivity;
 		cam_rot.X -= mouse_relative.Y * cam_rot_sensitivity;
 		// Clamp mouse angle to prevent going upside down
-		cam_rot.X = Math.Clamp(cam_rot.X, -80f, 80f);
+		cam_rot.X = Math.Clamp(cam_rot.X, -50f, 30f);
 		camera_base.RotationDegrees = cam_rot;
 	}
 	
