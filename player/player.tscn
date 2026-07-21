@@ -12,8 +12,9 @@ size = Vector3(1, 2, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vhohb"]
 size = Vector3(1, 2, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=340174165]
+[node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("camera_base")]
 script = ExtResource("1_oul6g")
+camera_base = NodePath("CameraBase")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=371463532]
 mesh = SubResource("BoxMesh_vhohb")
@@ -21,8 +22,30 @@ mesh = SubResource("BoxMesh_vhohb")
 [node name="CameraBase" type="Node3D" parent="." unique_id=1598287418]
 
 [node name="Camera3D" type="Camera3D" parent="CameraBase" unique_id=1323855011]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3, 7)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 6, 12)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715722046]
 shape = SubResource("BoxShape3D_vhohb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=592100888]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=364240581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=870196523]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 144.0
+text = "Controls:
+Move [WASD]
+Jump [Spacebar]
+Rotate Camera [Right Mouse Button]"

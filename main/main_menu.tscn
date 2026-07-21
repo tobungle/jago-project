@@ -2,9 +2,44 @@
 
 [ext_resource type="Texture2D" uid="uid://cwbm77b1l7fp7" path="res://assets/jpg/IMG_20260610_193454_866.jpg" id="1_4l7av"]
 [ext_resource type="Script" uid="uid://bqcf6w4rvbcu5" path="res://main/main_menu.gd" id="1_dhah8"]
+[ext_resource type="PackedScene" uid="uid://pvymn1s18032" path="res://assets/glb/my_boy/My Boy_LowPoly_Rigged.glb" id="3_w2mlq"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4l7av"]
-blend_mode = 2
+[sub_resource type="Animation" id="Animation_4u0aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.0297912, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w2mlq"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.0297912, 0), Vector3(0, -7.1645765, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4u0aa"]
+_data = {
+&"RESET": SubResource("Animation_4u0aa"),
+&"spin": SubResource("Animation_w2mlq")
+}
 
 [node name="MainMenu" type="Control" unique_id=1020771373 node_paths=PackedStringArray("singleplayer_btn", "multiplayer_btn", "settings_btn", "quit_btn")]
 layout_mode = 3
@@ -86,23 +121,22 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_4l7av")
 expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=799924523]
-layout_mode = 0
-offset_left = 885.0
-offset_top = 224.0
-offset_right = 1192.0
-offset_bottom = 632.0
-color = Color(1, 0, 1, 1)
+[node name="Spatial" type="Node3D" parent="." unique_id=93531125]
 
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1661073313]
-material = SubResource("CanvasItemMaterial_4l7av")
-layout_mode = 0
-offset_left = 1192.0
-offset_top = 224.0
-offset_right = 5272.0
-offset_bottom = 3296.0
-rotation = 1.5707964
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_4l7av")
-expand_mode = 1
-flip_v = true
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Spatial" unique_id=1753352808]
+transform = Transform3D(-0.27971205, -0.4632713, 0.84091675, -0.32788914, 0.86931044, 0.36984873, -0.9023578, -0.1722763, -0.39505818, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Spatial" unique_id=338331802]
+transform = Transform3D(0.97697407, 0, -0.2133581, 0, 1, 0, 0.2133581, 0, 0.97697407, 3.2553446, 0, -2.6222878)
+size = Vector3(5.9904785, 1, 6.0612793)
+
+[node name="Camera3D" type="Camera3D" parent="Spatial" unique_id=331013926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8671777, 4)
+
+[node name="My Boy_LowPoly_Rigged" parent="Spatial" unique_id=400546254 instance=ExtResource("3_w2mlq")]
+transform = Transform3D(0.85489637, 0, -1.422938, 0, 1.6600001, 0, 1.422938, 0, 0.85489637, 3.5988288, 0.94954777, -1.4122314)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial/My Boy_LowPoly_Rigged" unique_id=1668733084]
+libraries/ = SubResource("AnimationLibrary_4u0aa")
+autoplay = &"spin"

@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func on_singleplayer_pressed() -> void:
 	# Go to test scene.
-	get_tree().change_scene_to_file("uid://drfds222jc8io")
+	get_tree().change_scene_to_file("uid://18g6qsau6q1h")
 
 func on_multiplayer_pressed() -> void:
 	pass
