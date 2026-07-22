@@ -190,7 +190,7 @@ text = "Host"
 [node name="Back" type="Button" parent="HostMenu/VBoxContainer" unique_id=158423061]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "Go Back"
+text = "Back"
 
 [node name="JoinMenu" type="Control" parent="." unique_id=104970399]
 visible = false
