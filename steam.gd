@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func initialize_steam() -> void:
 	var initialize_response: Dictionary = Steam.steamInitEx()
-	print("Did Steam initialize?: %s " % initialize_response)
+	print("Did Steam initialize?: %s " % "yes" if initialize_response["status"] == 0 else "no")
 
 func _process(_delta: float) -> void:
 	Steam.run_callbacks()
