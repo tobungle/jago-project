@@ -1,3 +1,5 @@
+# This is referred to as SteamGlobal as an autoload becos the GodotSteam library
+# - already contains a class called Steam
 extends Node
 
 func _init() -> void:
