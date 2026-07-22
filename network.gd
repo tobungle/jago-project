@@ -11,7 +11,7 @@ var lobby_players : Dictionary = {}
 
 func _ready() -> void:
 	Steam.lobby_match_list.connect(on_got_lobbies)
-	Steam.lobby_joined.connect(on_lobby_joined)
+	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.join_requested.connect(_on_lobby_join_requested)
 	persona_name = Steam.getPersonaName()
 
@@ -42,19 +42,23 @@ func _on_lobby_created(connected : int, _this_lobby_id : int) -> void:
 		lobby_id = _this_lobby_id
 		Steam.setLobbyData(_this_lobby_id, "lobby_name", lobby_name)
 
-# Called when a lobby is joined, do setup here
-func _on_lobby_joined(this_lobby_id : int, _permissions : int, _locked : bool, response : int) -> void:
-	if response == Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
-		# Do other lobby initialization here
-		var id = Steam.getLobbyOwner(this_lobby_id)
-		# Only create a client if this player is not the host.
-		if id != Steam.getSteamID():
-			# Create a client peer and connect to the host
-			setup_steam_peer()
-			var server_steam_id : int = Steam.getLobbyOwner(this_lobby_id)
-			steam_peer.create_client(server_steam_id, 0)
-			steam_peer.server_relay = true
-			multiplayer.set_multiplayer_peer(steam_peer)
+# Called once Steam gives a response regarding lobby joining, erm unimplemented right now
+func _on_lobby_joined(lobby : int, permissions : int, locked : bool, response : int) -> void:
+	if response != 1:
+		print_debug("Fucked!")
+		get_tree().quit()
+		return
+	print("Joined lobby: %s" % lobby)
+	# Do other lobby initialization here
+	var id = Steam.getLobbyOwner(lobby)
+	# Only create a client if this player is not the host.
+	if id != Steam.getSteamID():
+		# Create a client peer and connect to the host
+		setup_steam_peer()
+		var server_steam_id : int = Steam.getLobbyOwner(lobby)
+		steam_peer.create_client(server_steam_id, 0)
+		steam_peer.server_relay = true
+		multiplayer.set_multiplayer_peer(steam_peer)
 
 # Ask Steam for lobbies, will call Steam.lobby_match_list eventually
 func request_lobbies() -> void:
@@ -77,14 +81,6 @@ func _on_lobby_join_requested(lobby : int, friend_id : int) -> void:
 	Steam.joinLobby(lobby)
 	lobby_id = lobby
 
-# Called once Steam gives a response regarding lobby joining, erm unimplemented right now
-func on_lobby_joined(lobby : int, permissions : int, locked : bool, response : int) -> void:
-	# I think 1 is success but idk
-	if response != 1:
-		print_debug("Fucked!")
-		get_tree().quit()
-		return
-
 func on_peer_connected(peer_id : int) -> void:
 	# Peers that have connected have two ids
 	# A randomly generated 'peer id' that Godot uses; is only relevant for this session
@@ -98,6 +94,8 @@ func on_peer_connected(peer_id : int) -> void:
 	}
 	# To get someone's Steam id from their session only peer id, you'd do
 	# var steam_id = lobby_players[peer_id]["steam_id"]
+	print("Peer connected: %s" % lobby_players[peer_id])
 
 func on_peer_disconnected(peer_id : int) -> void:
+	print("Peer disconnected: %s" % lobby_players[peer_id])
 	lobby_players.erase(peer_id)
