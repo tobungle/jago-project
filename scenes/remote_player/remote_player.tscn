@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://nboxp8ygkgh1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mx47x"]
+material = SubResource("StandardMaterial3D_oul6g")
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyg2u"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="RemotePlayer" type="Node3D" unique_id=1892906324]
+
+[node name="GraphicsBase" type="Node3D" parent="." unique_id=1495357633]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GraphicsBase" unique_id=691332095]
+mesh = SubResource("BoxMesh_mx47x")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=1178659292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27004075, 0.7737314, -0.45181966)
+size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_oyg2u")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=688053199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27314925, 0.7737314, -0.45181966)
+size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_oyg2u")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=271749166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043023586, 0.23737168, -0.45181966)
+size = Vector3(0.7363281, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_oyg2u")
+
+[node name="PlayerName" type="Label3D" parent="." unique_id=335980107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
+pixel_size = 0.01
+billboard = 1
+texture_filter = 0
+text = "coom_killer98"

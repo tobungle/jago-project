@@ -1,11 +1,14 @@
 extends Node
 
+signal got_lobbies(lobbies : Array)
+
 var lobby_id : int
 var steam_peer : SteamMultiplayerPeer
 var lobby_name : String
 var persona_name : String
 
 func _ready() -> void:
+	Steam.lobby_match_list.connect(on_got_lobbies)
 	persona_name = Steam.getPersonaName()
 
 # Request a lobby be created with steam networking
@@ -41,3 +44,13 @@ func _on_lobby_joined(this_lobby_id : int, _permissions : int, _locked : bool, r
 			steam_peer.create_client(server_steam_id, 0)
 			steam_peer.server_relay = true
 			multiplayer.set_multiplayer_peer(steam_peer)
+
+# Ask Steam for lobbies, will call Steam.lobby_match_list eventually
+func request_lobbies() -> void:
+    # Apply filters here
+	Steam.addRequestLobbyListFilterSlotsAvailable(1)
+	Steam.requestLobbyList()
+
+# Triggered upon Steam.lobby_match_list
+func on_got_lobbies(lobbies : Array) -> void:
+	got_lobbies.emit(lobbies)
