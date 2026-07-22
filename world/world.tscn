@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://18g6qsau6q1h"]
 
 [ext_resource type="PackedScene" uid="uid://0tuaa5gy23yy" path="res://scenes/player/player.tscn" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://b8hxg6fmwgv2t" path="res://world/World.cs" id="1_tcf2h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcf2h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,6 +16,7 @@ sky = SubResource("Sky_mjrkt")
 glow_enabled = true
 
 [node name="World" type="Node3D" unique_id=1850297244]
+script = ExtResource("1_tcf2h")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=147025805]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)

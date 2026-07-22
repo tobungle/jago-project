@@ -53,3 +53,8 @@ func _spawn_lobby_buttons(lobbies : Array) -> void:
 		var lobby_btn : Button = Button.new()
 		lobby_btn.text = lobby_name
 		lobby_button_container.add_child(lobby_btn)
+		lobby_btn.pressed.connect(func() -> void: _on_lobby_btn_pressed(lobby_id))
+
+func _on_lobby_btn_pressed(lobby_id : int) -> void:
+	Network.join_lobby(lobby_id)
+	_on_singleplayer_pressed()

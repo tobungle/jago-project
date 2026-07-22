@@ -9,6 +9,8 @@ var persona_name : String
 
 func _ready() -> void:
 	Steam.lobby_match_list.connect(on_got_lobbies)
+	Steam.lobby_joined.connect(on_lobby_joined)
+	Steam.join_requested.connect(_on_lobby_join_requested)
 	persona_name = Steam.getPersonaName()
 
 # Request a lobby be created with steam networking
@@ -54,3 +56,19 @@ func request_lobbies() -> void:
 # Triggered upon Steam.lobby_match_list
 func on_got_lobbies(lobbies : Array) -> void:
 	got_lobbies.emit(lobbies)
+
+# Connect to a lobby manually (thru entering a lobby id or clicking on a lobby button)
+func join_lobby(lobby : int) -> void:
+	Steam.joinLobby(lobby)
+
+# Connect to a lobby thru invite, clicking 'join game' on profile, etc.
+func _on_lobby_join_requested(lobby : int, friend_id : int) -> void:
+	var friend_joining: String = Steam.getFriendPersonaName(friend_id)
+	print("Joining lobby with..." % friend_joining)
+	Steam.joinLobby(lobby)
+	lobby_id = lobby
+
+# Called once Steam gives a response regarding lobby joining, erm unimplemented right now
+func on_lobby_joined(lobby : int, permissions : int, locked : bool, response : int) -> void:
+	pass
+
