@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Godot;
 
 public partial class Player : CharacterBody3D
@@ -35,6 +36,7 @@ public partial class Player : CharacterBody3D
 	{
 		DoCamera();
 		DoMovement();
+		Sync();
 		DoGraphics();
 		// Reset the mouse movement at the end of each frame. Without this, camera will just keep moving based on last input
 		// - regardless if the player is moving their mouse or not. I'm gay
@@ -101,6 +103,11 @@ public partial class Player : CharacterBody3D
 			graphics_base.LookAt(GlobalPosition + new Vector3(direction.X, 0f, direction.Y));
 		}
 		
+	}
+
+	void Sync()
+	{
+		network.Call("_sync_my_player", GlobalPosition);
 	}
 
 }

@@ -2,12 +2,29 @@ extends Node
 
 signal got_lobbies(lobbies : Array)
 
+# Sync signals go here
+signal on_player_synced(id : int, position : Vector3)
+
 var lobby_id : int
 var steam_peer : SteamMultiplayerPeer
 var lobby_name : String
 var persona_name : String
-
 var lobby_players : Dictionary = {}
+
+#
+#	Multiplayer shit goes here
+#
+
+func _sync_my_player(position : Vector3) -> void:
+	rpc("player_synced", position)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func player_synced(position : Vector3) -> void:
+	on_player_synced.emit(multiplayer.get_remote_sender_id(), position)
+
+#
+#
+#
 
 func _ready() -> void:
 	Steam.lobby_match_list.connect(on_got_lobbies)
@@ -19,6 +36,7 @@ func setup_steam_peer() -> void:
 	steam_peer = SteamMultiplayerPeer.new()
 	steam_peer.peer_connected.connect(on_peer_connected)
 	steam_peer.peer_disconnected.connect(on_peer_disconnected)
+	multiplayer.set_multiplayer_peer(steam_peer)
 
 # Request a lobby be created with steam networking
 func steam_host(_lobby_name : String) -> void:
@@ -37,7 +55,6 @@ func _on_lobby_created(connected : int, _this_lobby_id : int) -> void:
 		setup_steam_peer()
 		steam_peer.create_host(0)
 		steam_peer.server_relay = true
-		multiplayer.set_multiplayer_peer(steam_peer)
 		# Steam lobby setup
 		lobby_id = _this_lobby_id
 		Steam.setLobbyData(_this_lobby_id, "lobby_name", lobby_name)
@@ -54,15 +71,17 @@ func _on_lobby_joined(lobby : int, permissions : int, locked : bool, response : 
 	# Only create a client if this player is not the host.
 	if id != Steam.getSteamID():
 		# Create a client peer and connect to the host
+		print("Is client, creating new SteamMultiplayerPeer...")
 		setup_steam_peer()
 		var server_steam_id : int = Steam.getLobbyOwner(lobby)
 		steam_peer.create_client(server_steam_id, 0)
 		steam_peer.server_relay = true
-		multiplayer.set_multiplayer_peer(steam_peer)
+	else:
+		print("Is server!")
 
 # Ask Steam for lobbies, will call Steam.lobby_match_list eventually
 func request_lobbies() -> void:
-    # Apply filters here
+	# Apply filters here
 	Steam.addRequestLobbyListFilterSlotsAvailable(1)
 	Steam.requestLobbyList()
 
@@ -99,3 +118,6 @@ func on_peer_connected(peer_id : int) -> void:
 func on_peer_disconnected(peer_id : int) -> void:
 	print("Peer disconnected: %s" % lobby_players[peer_id])
 	lobby_players.erase(peer_id)
+
+func get_player_ids() -> Array[int]:
+	return lobby_players.keys()
