@@ -39,7 +39,6 @@ func setup_steam_peer() -> void:
 	steam_peer = SteamMultiplayerPeer.new()
 	steam_peer.peer_connected.connect(on_peer_connected)
 	steam_peer.peer_disconnected.connect(on_peer_disconnected)
-	multiplayer.set_multiplayer_peer(steam_peer)
 
 # Request a lobby be created with steam networking
 func steam_host(_lobby_name : String) -> void:
@@ -61,6 +60,7 @@ func _on_lobby_created(connected : int, _this_lobby_id : int) -> void:
 		# Steam lobby setup
 		lobby_id = _this_lobby_id
 		Steam.setLobbyData(_this_lobby_id, "lobby_name", lobby_name)
+		multiplayer.set_multiplayer_peer(steam_peer)
 
 # Called once Steam gives a response regarding lobby joining, erm unimplemented right now
 func _on_lobby_joined(lobby : int, _permissions : int, _locked : bool, response : int) -> void:
@@ -79,6 +79,7 @@ func _on_lobby_joined(lobby : int, _permissions : int, _locked : bool, response 
 		var server_steam_id : int = Steam.getLobbyOwner(lobby)
 		steam_peer.create_client(server_steam_id, 0)
 		steam_peer.server_relay = true
+		multiplayer.set_multiplayer_peer(steam_peer)
 	else:
 		print("Is server!")
 
