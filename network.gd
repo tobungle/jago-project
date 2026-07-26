@@ -62,6 +62,7 @@ func _on_lobby_created(connected : int, _this_lobby_id : int) -> void:
 		lobby_id = _this_lobby_id
 		Steam.setLobbyData(_this_lobby_id, "lobby_name", lobby_name)
 		multiplayer.set_multiplayer_peer(steam_peer)
+		to_world()
 
 # Called once Steam gives a response regarding lobby joining, erm unimplemented right now
 func _on_lobby_joined(lobby : int, _permissions : int, _locked : bool, response : int) -> void:
