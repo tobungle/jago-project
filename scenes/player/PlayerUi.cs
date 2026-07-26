@@ -21,8 +21,9 @@ public partial class PlayerUi : CanvasLayer
 		}
 		else
 		{
-			hover_prompt.Position = player_camera.UnprojectPosition(globals.hovered_interactable.GlobalPosition) + hover_prompt_offset;
-			hover_prompt.Text = globals.hovered_interactable.interact_prompt;
+			Node3D interactable_node = globals.hovered_interactable as Node3D;
+			hover_prompt.Position = player_camera.UnprojectPosition(interactable_node.GlobalPosition) + hover_prompt_offset;
+			hover_prompt.Text = globals.hovered_interactable.GetInteractPrompt();
 		}
 	}
 }

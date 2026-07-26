@@ -2,50 +2,37 @@ using Godot;
 
 public partial class InteractArea : Area3D
 {
-	enum InteractType
-	{
-		Normal,
-		ItemPickup
-	}
-	[Export] InteractType interact_type;
-	[Export] string default_prompt;
-	public string interact_prompt;
+	public Interactable interactable;
 	Globals globals;
 	public override void _Ready()
 	{
 		globals = GetNode<Globals>("/root/Globals");
 		MouseEntered += OnMouseEntered;
 		MouseExited += OnMouseExited;
-		SetInteractPrompt();
+
+		// This bit of code will break if parent is not an interactable
+		Node parent = GetParent<Node>();
+		// Cleanup if parent is deleted
+		parent.TreeExiting += () =>
+		{
+			if (globals.hovered_interactable == parent)
+			{
+				globals.hovered_interactable = null;
+			}
+		};
+		interactable = parent as Interactable;
 	}
 
 	void OnMouseEntered()
 	{
-		globals.hovered_interactable = this;
+		globals.hovered_interactable = interactable;
 	}
 
 	void OnMouseExited()
 	{
-		if (globals.hovered_interactable == this)
+		if (globals.hovered_interactable == interactable)
 		{
 			globals.hovered_interactable = null;
-		}
-	}
-
-	void SetInteractPrompt()
-	{
-		switch (interact_type)
-		{
-			case InteractType.ItemPickup:
-			interact_prompt = $"Pickup item [LMB]";
-			break;
-
-			default:
-			if (default_prompt == "")
-			{
-				interact_prompt = $"Interact with {Name} [LMB]";
-			}
-			break;
 		}
 	}
 }

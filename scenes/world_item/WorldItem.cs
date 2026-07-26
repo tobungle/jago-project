@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class WorldItem : RigidBody3D
+public partial class WorldItem : RigidBody3D, Interactable
 {
 	Node3D item_mesh;
 	Globals globals;
@@ -25,6 +25,21 @@ public partial class WorldItem : RigidBody3D
 		pos.Y += (float)Math.Sin(globals.world_item_spin_timer) * bob_distance;
 		item_mesh.Position = pos;
     }
+
+	public Interactable.InteractableType GetInteractableType()
+	{
+		return Interactable.InteractableType.Item;
+	}
+
+	public void Interact()
+	{
+		QueueFree();
+	}
+
+	public string GetInteractPrompt()
+	{
+		return "Pickup [E]";
+	}
 
 }
 

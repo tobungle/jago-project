@@ -6,7 +6,7 @@ using Godot;
 public partial class Globals : Node
 {
 	public double world_item_spin_timer = 0.0;
-	public InteractArea hovered_interactable;
+	public Interactable hovered_interactable;
 
 	public override void _PhysicsProcess(double delta)
 	{
