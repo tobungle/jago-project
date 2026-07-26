@@ -12,7 +12,6 @@ public partial class World : Node3D
 		network = GetNode<Node>("/root/Network");
 		foreach (int player_id in (Godot.Collections.Array<int>) network.Call("get_player_ids"))
 		{
-			GD.Print($"Spawning remote player {player_id}...");
 			SpawnRemotePlayer(player_id);
 		}
 		network.Connect("player_joined", Callable.From((int player_id) => SpawnRemotePlayer(player_id)));
@@ -20,6 +19,12 @@ public partial class World : Node3D
 
 	void SpawnRemotePlayer(int id)
 	{
+		if (spawned_remote.Keys.Contains(id))
+		{
+			GD.Print($"Not spawning remote player {id} because they've already been spawned.");
+			return;
+		}
+		GD.Print($"Spawning remote player {id}...");
 		RemotePlayer inst = remote_player_packed.Instantiate<RemotePlayer>();
 		inst.GlobalPosition = new Vector3(0f, 1f, 0f);
 		inst.Name = id.ToString();
