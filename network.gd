@@ -2,6 +2,8 @@ extends Node
 
 signal got_lobbies(lobbies : Array)
 
+signal player_joined(id : int)
+
 # Sync signals go here
 signal on_player_synced(id : int, position : Vector3)
 
@@ -113,6 +115,7 @@ func on_peer_connected(peer_id : int) -> void:
 	}
 	# To get someone's Steam id from their session only peer id, you'd do
 	# var steam_id = lobby_players[peer_id]["steam_id"]
+	player_joined.emit(peer_id)
 	print("Peer connected: %s" % lobby_players[peer_id])
 
 func on_peer_disconnected(peer_id : int) -> void:

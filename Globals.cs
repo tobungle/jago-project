@@ -1,6 +1,6 @@
 using Godot;
 
-// All purpose global variable, put yer globals here
+// This is an autoload. Access via GetNode<Globals>("/root/Globals")
 // 'Global state is bad' - statements dreamed up by the utterly deranged
 
 public partial class Globals : Node

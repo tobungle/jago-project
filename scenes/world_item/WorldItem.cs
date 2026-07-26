@@ -11,7 +11,7 @@ public partial class WorldItem : RigidBody3D
 	{
 		// Get reference to globals autoload
 		globals = GetNode<Globals>("/root/Globals");
-
+		
 		PackedScene testmesh = GD.Load<PackedScene>("res://assets/glb/testmesh/TestShape.glb");
 		item_mesh = testmesh.Instantiate<Node3D>();
 		AddChild(item_mesh);
