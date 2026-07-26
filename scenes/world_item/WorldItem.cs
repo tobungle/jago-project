@@ -2,7 +2,16 @@ using Godot;
 
 public partial class WorldItem : Node3D
 {
+	[Export] MeshInstance3D worlditem_mesh;
 	[Export] float rotation_speed = 1.5f;
+
+	public override void _Ready()
+	{
+		Mesh testmesh = GD.Load<Mesh>("res://assets/glb/testmesh/TestShape.glb");
+		worlditem_mesh.Mesh = testmesh;
+
+
+	}
 
 }
 
