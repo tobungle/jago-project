@@ -3,6 +3,7 @@ extends Node
 signal got_lobbies(lobbies : Array)
 
 signal player_joined(id : int)
+signal player_left(id : int)
 
 # Sync signals go here
 signal on_player_synced(id : int, position : Vector3)
@@ -120,6 +121,7 @@ func on_peer_connected(peer_id : int) -> void:
 
 func on_peer_disconnected(peer_id : int) -> void:
 	print("Peer disconnected: %s" % lobby_players[peer_id])
+	player_left.emit(peer_id)
 	lobby_players.erase(peer_id)
 
 func get_player_ids() -> Array[int]:

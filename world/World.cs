@@ -15,6 +15,7 @@ public partial class World : Node3D
 			SpawnRemotePlayer(player_id);
 		}
 		network.Connect("player_joined", Callable.From((int player_id) => SpawnRemotePlayer(player_id)));
+		network.Connect("player_left", Callable.From((int player_id) => RemoveRemotePlayer(player_id)));
 	}
 
 	void SpawnRemotePlayer(int id)
@@ -30,5 +31,16 @@ public partial class World : Node3D
 		inst.Name = id.ToString();
 		AddChild(inst, true);
 		spawned_remote[id] = inst;
+	}
+
+	void RemoveRemotePlayer(int id)
+	{
+		if (!spawned_remote.Keys.Contains(id))
+		{
+			GD.Print($"Not removing remote player {id} because they've already been removed.");
+			return;
+		}
+		GetNode(id.ToString()).QueueFree();
+		spawned_remote.Remove(id);
 	}
 }
