@@ -68,6 +68,13 @@ rotate_camera={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="WORLD"
+3d_physics/layer_2="PLAYER"
+3d_physics/layer_3="WORLD_ITEM"
+3d_physics/layer_4="MOUSE_DETECT"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
