@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SteamGlobal="*uid://co38i47roo856"
 Network="*uid://x5ynx6sl4uxg"
+Globals="*uid://bwl5y0ov7gfus"
 
 [debug]
 

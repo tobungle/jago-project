@@ -4,9 +4,14 @@ using Godot;
 public partial class WorldItem : RigidBody3D
 {
 	Node3D item_mesh;
-	double time;
+	Globals globals;
+	public static double spin_rate = 1.5;
+	const float bob_distance = 0.01f;
 	public override void _Ready()
 	{
+		// Get reference to globals autoload
+		globals = GetNode<Globals>("/root/Globals");
+
 		PackedScene testmesh = GD.Load<PackedScene>("res://assets/glb/testmesh/TestShape.glb");
 		item_mesh = testmesh.Instantiate<Node3D>();
 		AddChild(item_mesh);
@@ -17,8 +22,7 @@ public partial class WorldItem : RigidBody3D
     {
 		item_mesh.RotateY(0.05f);
 		Vector3 pos = item_mesh.Position;
-		time += delta * 1.5;
-		pos.Y += (float)Math.Sin(time) * 0.01f;
+		pos.Y += (float)Math.Sin(globals.world_item_spin_timer) * bob_distance;
 		item_mesh.Position = pos;
     }
 

@@ -70,3 +70,9 @@ size = Vector3(3.7871094, 5.4471436, 1)
 
 [node name="world_item" parent="." unique_id=1331212151 instance=ExtResource("4_h5o24")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9951048, 1.45787, -10.495223)
+
+[node name="world_item2" parent="." unique_id=944967800 instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62245, 1.45787, -11.949249)
+
+[node name="world_item3" parent="." unique_id=1013626273 instance=ExtResource("4_h5o24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.076518, 1.45787, -14.210036)
