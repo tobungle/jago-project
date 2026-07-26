@@ -1,17 +1,26 @@
+using System;
 using Godot;
 
-public partial class WorldItem : Node3D
+public partial class WorldItem : RigidBody3D
 {
-	[Export] MeshInstance3D worlditem_mesh;
-	[Export] float rotation_speed = 1.5f;
-
+	Node3D item_mesh;
+	double time;
 	public override void _Ready()
 	{
-		Mesh testmesh = GD.Load<Mesh>("res://assets/glb/testmesh/TestShape.glb");
-		worlditem_mesh.Mesh = testmesh;
-
+		PackedScene testmesh = GD.Load<PackedScene>("res://assets/glb/testmesh/TestShape.glb");
+		item_mesh = testmesh.Instantiate<Node3D>();
+		AddChild(item_mesh);
 
 	}
+
+    public override void _PhysicsProcess(double delta)
+    {
+		item_mesh.RotateY(0.05f);
+		Vector3 pos = item_mesh.Position;
+		time += delta * 1.5;
+		pos.Y += (float)Math.Sin(time) * 0.01f;
+		item_mesh.Position = pos;
+    }
 
 }
 
