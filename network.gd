@@ -101,6 +101,7 @@ func _on_lobby_join_requested(lobby : int, friend_id : int) -> void:
 	var friend_joining: String = Steam.getFriendPersonaName(friend_id)
 	print("Joining lobby with..." % friend_joining)
 	Steam.joinLobby(lobby)
+	get_tree().change_scene_to_file("uid://18g6qsau6q1h")
 	lobby_id = lobby
 
 func on_peer_connected(peer_id : int) -> void:
