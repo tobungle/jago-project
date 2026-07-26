@@ -33,6 +33,7 @@ func _ready() -> void:
 	Steam.lobby_match_list.connect(on_got_lobbies)
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.join_requested.connect(_on_lobby_join_requested)
+	Steam.lobby_created.connect(_on_lobby_created)
 	persona_name = Steam.getPersonaName()
 
 func setup_steam_peer() -> void:
@@ -82,7 +83,8 @@ func _on_lobby_joined(lobby : int, _permissions : int, _locked : bool, response 
 		multiplayer.set_multiplayer_peer(steam_peer)
 	else:
 		print("Is server!")
-	get_tree().change_scene_to_file("uid://18g6qsau6q1h")
+	await multiplayer.connected_to_server
+	to_world()
 
 # Ask Steam for lobbies, will call Steam.lobby_match_list eventually
 func request_lobbies() -> void:
@@ -128,3 +130,6 @@ func on_peer_disconnected(peer_id : int) -> void:
 
 func get_player_ids() -> Array[int]:
 	return lobby_players.keys()
+
+func to_world() -> void:
+	get_tree().change_scene_to_file("uid://18g6qsau6q1h")
