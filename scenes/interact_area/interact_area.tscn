@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://0dpw1pvbun2m" path="res://scenes/interact_area/InteractArea.cs" id="1_ixg7x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_vhohb"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7vda"]
+size = Vector3(1.5, 1.5, 1.5)
 
 [node name="InteractArea" type="Area3D" unique_id=1422881901]
 collision_layer = 8
 collision_mask = 0
+input_capture_on_drag = true
 monitoring = false
 script = ExtResource("1_ixg7x")
+interact_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1290180156]
-shape = SubResource("SphereShape3D_vhohb")
+shape = SubResource("BoxShape3D_b7vda")

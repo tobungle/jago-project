@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://0tuaa5gy23yy"]
 
 [ext_resource type="Script" uid="uid://c4sy76pemg4w2" path="res://scenes/player/Player.cs" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://cl8crkv0b1fn6" path="res://scenes/player/PlayerUi.cs" id="2_dovo2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
@@ -40,9 +41,13 @@ current = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715722046]
 shape = SubResource("BoxShape3D_vhohb")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=592100888]
+[node name="PlayerUi" type="CanvasLayer" parent="." unique_id=592100888 node_paths=PackedStringArray("player_camera", "hover_prompt")]
+script = ExtResource("2_dovo2")
+player_camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
+hover_prompt_offset = Vector2(-100, -50)
+hover_prompt = NodePath("Control/InteractionLabel")
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=364240581]
+[node name="Control" type="Control" parent="PlayerUi" unique_id=364240581]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=870196523]
+[node name="Label" type="Label" parent="PlayerUi/Control" unique_id=870196523]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
@@ -61,6 +66,15 @@ text = "Controls:
 Move [WASD]
 Jump [Spacebar]
 Rotate Camera [Right Mouse Button]"
+
+[node name="InteractionLabel" type="Label" parent="PlayerUi/Control" unique_id=1590608222]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 240.0
+offset_right = 344.0
+offset_bottom = 263.0
+text = "Interact"
+horizontal_alignment = 1
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)

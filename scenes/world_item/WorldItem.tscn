@@ -7,6 +7,7 @@
 
 [node name="world_item" type="RigidBody3D" unique_id=944967800]
 collision_layer = 4
+input_ray_pickable = false
 script = ExtResource("1_dpfrn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=98079954]
