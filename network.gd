@@ -62,7 +62,7 @@ func _on_lobby_created(connected : int, _this_lobby_id : int) -> void:
 		Steam.setLobbyData(_this_lobby_id, "lobby_name", lobby_name)
 
 # Called once Steam gives a response regarding lobby joining, erm unimplemented right now
-func _on_lobby_joined(lobby : int, permissions : int, locked : bool, response : int) -> void:
+func _on_lobby_joined(lobby : int, _permissions : int, _locked : bool, response : int) -> void:
 	if response != 1:
 		print_debug("Fucked!")
 		get_tree().quit()
