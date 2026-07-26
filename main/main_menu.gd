@@ -37,7 +37,6 @@ func _on_back_pressed() -> void:
 	set_menu("start")
 
 func _on_host_confirm_pressed() -> void:
-	_on_singleplayer_pressed()
 	Network.steam_host($HostMenu/VBoxContainer/LineEdit.text)
 
 func populate_lobbies() -> void:
@@ -57,4 +56,3 @@ func _spawn_lobby_buttons(lobbies : Array) -> void:
 
 func _on_lobby_btn_pressed(lobby_id : int) -> void:
 	Network.join_lobby(lobby_id)
-	_on_singleplayer_pressed()
