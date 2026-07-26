@@ -15,10 +15,10 @@ center_of_mass = Vector3(0, -1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008544922, -0.39071655, 0.33172607)
 shape = SubResource("BoxShape3D_5rl7g")
 
-[node name="Hosse2" parent="." unique_id=96164854 instance=ExtResource("1_jmkmx")]
+[node name="Hosse" parent="." unique_id=96164854 instance=ExtResource("1_jmkmx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010881424, 0.01666665, -0.0066297054)
 
-[node name="Hosse" parent="Hosse2" index="0" unique_id=1496321736]
+[node name="Hosse" parent="Hosse" index="0" unique_id=1496321736]
 material_override = ExtResource("2_iqcnl")
 
 [node name="VehicleWheel3D" type="VehicleWheel3D" parent="." unique_id=796735418]
@@ -33,4 +33,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3683244, -0.9421318, 1.198
 [node name="VehicleWheel3D4" type="VehicleWheel3D" parent="." unique_id=1722957848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35776442, -0.9421318, 1.198571)
 
-[editable path="Hosse2"]
+[editable path="Hosse"]
