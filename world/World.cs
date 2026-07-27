@@ -99,6 +99,7 @@ public partial class World : Node3D
 
 	void OnSpawnedItemsRequested(int from)
 	{
+		GD.Print($"Player {from} requested spawned item list...");
 		Godot.Collections.Dictionary<int, Vector3> spawned_items_list = new();
 		foreach (int id in spawned_world_items.Keys)
 		{
@@ -106,6 +107,7 @@ public partial class World : Node3D
 			spawned_items_list[id] = item.GlobalPosition;
 		}
 		network.RpcId(from, "get_spawned_items", spawned_items_list);
+		GD.Print($"Sent over spawned item list {spawned_items_list}");
 	}
 
 	void OnGotSpawnedItemsList(Godot.Collections.Dictionary<int, Vector3> spawned_items_list)
@@ -119,5 +121,6 @@ public partial class World : Node3D
 			},
 			id);
 		}
+		GD.Print($"Got spawned items list {spawned_items_list}");
 	}
 }
