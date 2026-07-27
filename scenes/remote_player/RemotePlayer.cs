@@ -30,6 +30,6 @@ public partial class RemotePlayer : Node3D
 
 	void SetPlayerLabel()
 	{
-		player_label.Text = (string) network.Call("get_player_steam_name");
+		player_label.Text = (string) network.Call("get_player_steam_name", id);
 	}
 }
