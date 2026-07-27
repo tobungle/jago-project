@@ -31,6 +31,18 @@ public partial class World : Node3D
 			{
 				{"global_position", new Vector3(0f, 1f, -7f)}
 			});
+			SpawnItemServer(new()
+			{
+				{"global_position", new Vector3(0f, 1f, -8f)}
+			});
+			SpawnItemServer(new()
+			{
+				{"global_position", new Vector3(1f, 1f, -7f)}
+			});
+			SpawnItemServer(new()
+			{
+				{"global_position", new Vector3(2f, 1f, -7f)}
+			});
 		}
 		else
 		// Client setup
@@ -83,7 +95,12 @@ public partial class World : Node3D
 			inst.Set(property, properties[property]);
 		}
 		GD.Print($"Spawned thing {id}");
+		inst.server_id = id;
 		spawned_world_items[id] = inst;
+		inst.PickedUp += () =>
+		{
+			DespawnItemServer(inst.server_id);
+		};
 	}
 
 	void DespawnItemServer(int id)

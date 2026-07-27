@@ -34,7 +34,7 @@ func item_spawned(scene_path : String, properties : Dictionary[String, Variant],
 	on_item_spawned.emit(scene_path, properties, id)
 	print_debug()
 
-@rpc("authority", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "reliable")
 func item_despawned(id : int) -> void:
 	on_item_despawned.emit(id)
 	print_debug()

@@ -1,13 +1,27 @@
 using System;
 using Godot;
 
-public partial class WorldItem : RigidBody3D, Interactable
+public partial class WorldItem : RigidBody3D, Interactable, Syncable
 {
+	[Signal] public delegate void PickedUpEventHandler();
 	Node3D item_mesh;
 	Globals globals;
 	public static double spin_rate = 1.5;
 	const float bob_distance = 0.01f;
-	public override void _Ready()
+	int _server_id;
+    public int server_id
+	{
+	get
+		{
+			return _server_id;
+		}
+	set
+		{
+			_server_id = value;
+		}
+	}
+
+    public override void _Ready()
 	{
 		// Get reference to globals autoload
 		globals = GetNode<Globals>("/root/Globals");
@@ -33,7 +47,7 @@ public partial class WorldItem : RigidBody3D, Interactable
 
 	public void Interact()
 	{
-		QueueFree();
+		EmitSignal(SignalName.PickedUp);
 	}
 
 	public string GetInteractPrompt()
