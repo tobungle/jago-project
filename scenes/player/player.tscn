@@ -33,12 +33,12 @@ graphics_base = NodePath("GraphicsBase")
 visible = false
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraBase" unique_id=857952165]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 1, 0.5, 0)
 shape = SubResource("SphereShape3D_oul6g")
-spring_length = 13.0
+spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraBase/SpringArm3D" unique_id=1323855011]
-transform = Transform3D(1, 0, 0, 0, 0.9878142, -0.15563849, 0, 0.15563849, 0.9878141, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.98781425, -0.15563849, 0, 0.1556385, 0.9878142, 0, 0, 0)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715722046]
@@ -70,7 +70,7 @@ offset_bottom = 263.0
 text = "Interact"
 horizontal_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PlayerUi/Control" unique_id=52669028]
+[node name="HandsContainer" type="CenterContainer" parent="PlayerUi/Control" unique_id=52669028]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -83,14 +83,14 @@ offset_right = 128.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUi/Control/CenterContainer" unique_id=951864628]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUi/Control/HandsContainer" unique_id=951864628]
 layout_mode = 2
 
-[node name="LeftHand" type="Panel" parent="PlayerUi/Control/CenterContainer/HBoxContainer" unique_id=1061859879]
+[node name="LeftHand" type="Panel" parent="PlayerUi/Control/HandsContainer/HBoxContainer" unique_id=1061859879]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PlayerUi/Control/CenterContainer/HBoxContainer/LeftHand" unique_id=703406938]
+[node name="Label" type="Label" parent="PlayerUi/Control/HandsContainer/HBoxContainer/LeftHand" unique_id=703406938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,11 +102,11 @@ text = "Left Hand"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RightHand" type="Panel" parent="PlayerUi/Control/CenterContainer/HBoxContainer" unique_id=35054753]
+[node name="RightHand" type="Panel" parent="PlayerUi/Control/HandsContainer/HBoxContainer" unique_id=35054753]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PlayerUi/Control/CenterContainer/HBoxContainer/RightHand" unique_id=131926029]
+[node name="Label" type="Label" parent="PlayerUi/Control/HandsContainer/HBoxContainer/RightHand" unique_id=131926029]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -191,6 +191,18 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ItemIcon20" parent="PlayerUi/Control/InvGrid" unique_id=622057596 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="CrossHair" type="CenterContainer" parent="PlayerUi/Control" unique_id=208413479]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PlayerUi/Control/CrossHair" unique_id=1203988451]
+custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]

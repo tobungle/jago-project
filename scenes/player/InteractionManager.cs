@@ -9,13 +9,13 @@ public partial class InteractionManager : Node
 		globals = GetNode<Globals>("/root/Globals");
 	}
 
-    public override void _Input(InputEvent input)
-    {
-        if (input.IsActionPressed("get_item"))
+	public override void _Input(InputEvent input)
+	{
+		if (input.IsActionPressed("get_item"))
 		{
 			OnGetItemPressed();
 		}
-    }
+	}
 
 	void OnGetItemPressed()
 	{
