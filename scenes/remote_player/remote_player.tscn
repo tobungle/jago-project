@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nboxp8ygkgh1"]
 
 [ext_resource type="Script" uid="uid://bcu045mp4w8ge" path="res://scenes/remote_player/RemotePlayer.cs" id="1_oyg2u"]
+[ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_jxyu8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
 albedo_color = Color(1, 0, 0, 1)
@@ -36,9 +37,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043023586, 0.23737168, -0.4
 size = Vector3(0.7363281, 0.2, 0.2)
 material = SubResource("StandardMaterial3D_oyg2u")
 
-[node name="PlayerName" type="Label3D" parent="." unique_id=335980107]
+[node name="PlayerName" type="Label3D" parent="." unique_id=1019514986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
-pixel_size = 0.01
+pixel_size = 0.008
 billboard = 1
 texture_filter = 0
+modulate = Color(0, 0, 0, 0.78431374)
+outline_modulate = Color(1, 1, 1, 1)
 text = "coom_killer98"
+font = ExtResource("2_jxyu8")
+outline_size = 0

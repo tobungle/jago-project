@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cno1vs1kn53x3" path="res://scenes/player/InteractionManager.cs" id="3_gmlin"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui_themes/black_and_white_theme/black_and_white.tres" id="3_p47bc"]
 [ext_resource type="PackedScene" uid="uid://s3mhrum4caxm" path="res://scenes/player/ui/item_icon.tscn" id="4_lvxji"]
+[ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="5_75vfm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
@@ -67,6 +68,9 @@ offset_left = 152.0
 offset_top = 240.0
 offset_right = 344.0
 offset_bottom = 263.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 text = "Interact"
 horizontal_alignment = 1
 
@@ -207,10 +211,14 @@ layout_mode = 2
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
-pixel_size = 0.01
+pixel_size = 0.008
 billboard = 1
 texture_filter = 0
+modulate = Color(0, 0, 0, 0.78431374)
+outline_modulate = Color(1, 1, 1, 1)
 text = "coom_killer98"
+font = ExtResource("5_75vfm")
+outline_size = 0
 
 [node name="GraphicsBase" type="Node3D" parent="." unique_id=63454316]
 

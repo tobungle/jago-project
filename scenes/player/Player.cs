@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using Godot;
 
 public partial class Player : CharacterBody3D
