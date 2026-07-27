@@ -22,18 +22,11 @@ public partial class PlayerUi : CanvasLayer
 		}
     }
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		if (globals.hovered_interactable == null)
-		{
-			hover_prompt.Text = "";
-		}
-		else
-		{
-			Node3D interactable_node = globals.hovered_interactable as Node3D;
-			hover_prompt.Position = player_camera.UnprojectPosition(interactable_node.GlobalPosition) + hover_prompt_offset;
-			hover_prompt.Text = globals.hovered_interactable.GetInteractPrompt();
-		}
+		// Delay this by one frame else it throws disposed object errors
+		// I have no idea why and cant be bothered to find out why
+		CallDeferred("UpdateHoverPrompt");
 	}
 
 	void ToggleInv()
@@ -46,6 +39,20 @@ public partial class PlayerUi : CanvasLayer
 		else
 		{
 			Input.MouseMode = Input.MouseModeEnum.Captured;
+		}
+	}
+
+	void UpdateHoverPrompt()
+	{
+		if (globals.hovered_interactable == null)
+		{
+			hover_prompt.Text = "";
+		}
+		else
+		{
+			Node3D interactable_node = globals.hovered_interactable as Node3D;
+			hover_prompt.Position = player_camera.UnprojectPosition(interactable_node.GlobalPosition) + hover_prompt_offset;
+			hover_prompt.Text = globals.hovered_interactable.GetInteractPrompt();
 		}
 	}
 }

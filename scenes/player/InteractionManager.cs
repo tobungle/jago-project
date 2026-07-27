@@ -26,6 +26,12 @@ public partial class InteractionManager : Node3D
 	void OnGetItemPressed()
 	{
 		globals.hovered_interactable?.Interact();
+		// Check if is queued for deletion after interaction and handle
+		Node3D interactable_node = globals.hovered_interactable as Node3D;
+		if (interactable_node.IsQueuedForDeletion())
+		{
+			globals.hovered_interactable = null;
+		}
 	}
 
 	void RaycastFromCamera()
