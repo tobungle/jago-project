@@ -45,18 +45,7 @@ public partial class Player : CharacterBody3D
 
 	void DoCamera()
 	{
-		bool rotating = Input.IsActionPressed("rotate_camera");
-		// Update mouse visibility & lock based on whether we're rotating or not
-		if (rotating)
-		{
-			Input.MouseMode = Input.MouseModeEnum.Captured;
-		}
-		else
-		{
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
-		// Escape from function if not holding down rotate button or if the mouse isn't moving
-		if (!rotating || mouse_relative == Vector2.Zero)
+		if (Input.MouseMode == Input.MouseModeEnum.Visible)
 		{
 			return;
 		}

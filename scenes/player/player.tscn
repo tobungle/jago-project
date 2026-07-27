@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c4sy76pemg4w2" path="res://scenes/player/Player.cs" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://cl8crkv0b1fn6" path="res://scenes/player/PlayerUi.cs" id="2_dovo2"]
 [ext_resource type="Script" uid="uid://cno1vs1kn53x3" path="res://scenes/player/InteractionManager.cs" id="3_gmlin"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui_themes/black_and_white_theme/black_and_white.tres" id="3_p47bc"]
+[ext_resource type="PackedScene" uid="uid://s3mhrum4caxm" path="res://scenes/player/ui/item_icon.tscn" id="4_lvxji"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
@@ -42,8 +44,9 @@ current = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715722046]
 shape = SubResource("BoxShape3D_vhohb")
 
-[node name="PlayerUi" type="CanvasLayer" parent="." unique_id=592100888 node_paths=PackedStringArray("player_camera", "hover_prompt")]
+[node name="PlayerUi" type="CanvasLayer" parent="." unique_id=592100888 node_paths=PackedStringArray("inv_grid", "player_camera", "hover_prompt")]
 script = ExtResource("2_dovo2")
+inv_grid = NodePath("Control/InvGrid")
 player_camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
 hover_prompt_offset = Vector2(-100, -50)
 hover_prompt = NodePath("Control/InteractionLabel")
@@ -56,17 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Label" type="Label" parent="PlayerUi/Control" unique_id=870196523]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 376.0
-offset_bottom = 144.0
-text = "Controls:
-Move [WASD]
-Jump [Spacebar]
-Rotate Camera [Right Mouse Button]"
+theme = ExtResource("3_p47bc")
 
 [node name="InteractionLabel" type="Label" parent="PlayerUi/Control" unique_id=1590608222]
 layout_mode = 0
@@ -76,6 +69,129 @@ offset_right = 344.0
 offset_bottom = 263.0
 text = "Interact"
 horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayerUi/Control" unique_id=52669028]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -88.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUi/Control/CenterContainer" unique_id=951864628]
+layout_mode = 2
+
+[node name="LeftHand" type="Panel" parent="PlayerUi/Control/CenterContainer/HBoxContainer" unique_id=1061859879]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerUi/Control/CenterContainer/HBoxContainer/LeftHand" unique_id=703406938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "Left Hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightHand" type="Panel" parent="PlayerUi/Control/CenterContainer/HBoxContainer" unique_id=35054753]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerUi/Control/CenterContainer/HBoxContainer/RightHand" unique_id=131926029]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "Right Hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvGrid" type="GridContainer" parent="PlayerUi/Control" unique_id=1254600693]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -102.0
+offset_right = 128.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="ItemIcon" parent="PlayerUi/Control/InvGrid" unique_id=391912117 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon2" parent="PlayerUi/Control/InvGrid" unique_id=1989730631 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon3" parent="PlayerUi/Control/InvGrid" unique_id=1436843201 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon4" parent="PlayerUi/Control/InvGrid" unique_id=1208611831 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon5" parent="PlayerUi/Control/InvGrid" unique_id=1222482865 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon6" parent="PlayerUi/Control/InvGrid" unique_id=901677707 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon7" parent="PlayerUi/Control/InvGrid" unique_id=1995484204 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon8" parent="PlayerUi/Control/InvGrid" unique_id=351380220 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon9" parent="PlayerUi/Control/InvGrid" unique_id=2066842643 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon10" parent="PlayerUi/Control/InvGrid" unique_id=440211283 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon11" parent="PlayerUi/Control/InvGrid" unique_id=701586957 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon12" parent="PlayerUi/Control/InvGrid" unique_id=1899415850 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon13" parent="PlayerUi/Control/InvGrid" unique_id=982415679 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon14" parent="PlayerUi/Control/InvGrid" unique_id=2038629952 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon15" parent="PlayerUi/Control/InvGrid" unique_id=743516420 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon16" parent="PlayerUi/Control/InvGrid" unique_id=748146027 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon17" parent="PlayerUi/Control/InvGrid" unique_id=1391424615 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon18" parent="PlayerUi/Control/InvGrid" unique_id=1414597069 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon19" parent="PlayerUi/Control/InvGrid" unique_id=1222166459 instance=ExtResource("4_lvxji")]
+layout_mode = 2
+
+[node name="ItemIcon20" parent="PlayerUi/Control/InvGrid" unique_id=622057596 instance=ExtResource("4_lvxji")]
+layout_mode = 2
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
