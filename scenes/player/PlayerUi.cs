@@ -6,13 +6,11 @@ public partial class PlayerUi : CanvasLayer
 	[Export] Vector2 hover_prompt_offset;
 	[Export] Label hover_prompt;
 	Globals globals;
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		globals = GetNode<Globals>("/root/Globals");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if (globals.hovered_interactable == null)

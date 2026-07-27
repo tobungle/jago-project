@@ -5,7 +5,10 @@ public partial class World : Node3D
 {
 	[Export] PackedScene remote_player_packed;
 	Node network;
-	Dictionary<int, RemotePlayer> spawned_remote = new();
+
+	Dictionary<int, RemotePlayer> spawned_remote_players = new();
+	Dictionary<int, WorldItem> spawned_world_items = new();
+	int server_entity_counter = 0;
 	public override void _Ready()
 	{
 		GD.Print("Setting up world...");
@@ -14,13 +17,32 @@ public partial class World : Node3D
 		{
 			SpawnRemotePlayer(player_id);
 		}
+
 		network.Connect("player_joined", Callable.From((int player_id) => SpawnRemotePlayer(player_id)));
 		network.Connect("player_left", Callable.From((int player_id) => RemoveRemotePlayer(player_id)));
+		network.Connect("on_item_spawned", Callable.From((Godot.Collections.Dictionary<string, Variant> properties, int id) => SpawnItemLocal(properties, id)));
+		network.Connect("on_item_despawned", Callable.From((int id) => DespawnItemLocal(id)));
+		
+		if (Multiplayer.IsServer())
+		// Server setup
+		{
+			network.Connect("spawned_items_requested", Callable.From((int from) => OnSpawnedItemsRequested(from)));
+			SpawnItemServer(new()
+			{
+				{"global_position", new Vector3(0f, 1f, -7f)}
+			});
+		}
+		else
+		// Client setup
+		{
+			network.Connect("on_got_spawned_list", Callable.From((Godot.Collections.Dictionary<int, Vector3> spawned_items_list) => OnGotSpawnedItemsList(spawned_items_list)));
+			network.RpcId(1, "request_spawned_list");
+		}
 	}
 
 	void SpawnRemotePlayer(int id)
 	{
-		if (spawned_remote.Keys.Contains(id))
+		if (spawned_remote_players.Keys.Contains(id))
 		{
 			GD.Print($"Not spawning remote player {id} because they've already been spawned.");
 			return;
@@ -30,17 +52,72 @@ public partial class World : Node3D
 		inst.GlobalPosition = new Vector3(0f, 1f, 0f);
 		inst.Name = id.ToString();
 		AddChild(inst, true);
-		spawned_remote[id] = inst;
+		spawned_remote_players[id] = inst;
 	}
 
 	void RemoveRemotePlayer(int id)
 	{
-		if (!spawned_remote.Keys.Contains(id))
+		if (!spawned_remote_players.Keys.Contains(id))
 		{
 			GD.Print($"Not removing remote player {id} because they've already been removed.");
 			return;
 		}
 		GetNode(id.ToString()).QueueFree();
-		spawned_remote.Remove(id);
+		spawned_remote_players.Remove(id);
+	}
+
+	void SpawnItemServer(Godot.Collections.Dictionary<string, Variant> properties)
+	{
+		server_entity_counter ++;
+		SpawnItemLocal(properties, server_entity_counter);
+		network.Rpc("item_spawned", properties, server_entity_counter);
+	}
+
+	void SpawnItemLocal(Godot.Collections.Dictionary<string, Variant> properties, int id)
+	{
+		Node3D inst = GD.Load<PackedScene>("res://scenes/world_item/WorldItem.tscn").Instantiate<Node3D>();
+		inst.Name = id.ToString();
+		AddChild(inst, true);
+		foreach (string property in properties.Keys)
+		{
+			inst.Set(property, properties[property]);
+		}
+		GD.Print($"Spawned thing {id}");
+	}
+
+	void DespawnItemServer(int id)
+	{
+		network.Rpc("item_despawned", id);
+		DespawnItemLocal(id);
+	}
+	void DespawnItemLocal(int id)
+	{
+		spawned_world_items[id].QueueFree();
+		spawned_world_items.Remove(id);
+		GD.Print($"Despawned thing {id}");
+	}
+
+	void OnSpawnedItemsRequested(int from)
+	{
+		Godot.Collections.Dictionary<int, Vector3> spawned_items_list = new();
+		foreach (int id in spawned_world_items.Keys)
+		{
+			WorldItem item = spawned_world_items[id];
+			spawned_items_list[id] = item.GlobalPosition;
+		}
+		network.RpcId(from, "get_spawned_items", spawned_items_list);
+	}
+
+	void OnGotSpawnedItemsList(Godot.Collections.Dictionary<int, Vector3> spawned_items_list)
+	{
+		// This will need to include more properties later but uhhh fuck it for now just fuck it.
+		foreach (int id in spawned_items_list.Keys)
+		{
+			SpawnItemLocal(new()
+			{
+				{"global_position", spawned_items_list[id]}
+			},
+			id);
+		}
 	}
 }

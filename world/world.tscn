@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://0tuaa5gy23yy" path="res://scenes/player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Script" uid="uid://b8hxg6fmwgv2t" path="res://world/World.cs" id="1_tcf2h"]
 [ext_resource type="PackedScene" uid="uid://nboxp8ygkgh1" path="res://scenes/remote_player/remote_player.tscn" id="2_4717r"]
-[ext_resource type="PackedScene" uid="uid://cw5hlbqibvoup" path="res://scenes/world_item/WorldItem.tscn" id="4_h5o24"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcf2h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -67,12 +66,3 @@ size = Vector3(3.7871094, 1.3084106, 1)
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.2754035, 2.4076538, 9)
 use_collision = true
 size = Vector3(3.7871094, 5.4471436, 1)
-
-[node name="world_item" parent="." unique_id=1331212151 instance=ExtResource("4_h5o24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9951048, 1.45787, -10.495223)
-
-[node name="world_item2" parent="." unique_id=944967800 instance=ExtResource("4_h5o24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62245, 1.45787, -11.949249)
-
-[node name="world_item3" parent="." unique_id=1013626273 instance=ExtResource("4_h5o24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.076518, 1.45787, -14.210036)

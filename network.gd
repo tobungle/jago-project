@@ -7,6 +7,10 @@ signal player_left(id : int)
 
 # Sync signals go here
 signal on_player_synced(id : int, position : Vector3)
+signal on_item_spawned(properties : Dictionary[String, Variant], id : int)
+signal on_item_despawned(id : int)
+signal spawned_list_requested(from : int)
+signal on_got_spawned_list(spawned : Dictionary[int, Vector3])
 
 var lobby_id : int
 var steam_peer : SteamMultiplayerPeer
@@ -24,6 +28,22 @@ func _sync_my_player(position : Vector3) -> void:
 @rpc("any_peer", "call_remote", "unreliable")
 func player_synced(position : Vector3) -> void:
 	on_player_synced.emit(multiplayer.get_remote_sender_id(), position)
+
+@rpc("authority", "call_remote", "reliable")
+func item_spawned(scene_path : String, properties : Dictionary[String, Variant], id : int) -> void:
+	on_item_spawned.emit(scene_path, properties, id)
+
+@rpc("authority", "call_remote", "reliable")
+func item_despawned(id : int) -> void:
+	on_item_despawned.emit(id)
+
+@rpc("any_peer", "call_remote", "reliable")
+func request_spawned_list() -> void:
+	spawned_list_requested.emit(multiplayer.get_remote_sender_id())
+
+@rpc("authority", "call_remote", "reliable")
+func get_spawned_list(spawned_list : Dictionary[int, Vector3]) -> void:
+	on_got_spawned_list.emit(spawned_list)
 
 #
 #
