@@ -12,8 +12,9 @@ size = Vector3(1, 2, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyg2u"]
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="RemotePlayer" type="Node3D" unique_id=1892906324]
+[node name="RemotePlayer" type="Node3D" unique_id=1892906324 node_paths=PackedStringArray("player_label")]
 script = ExtResource("1_oyg2u")
+player_label = NodePath("PlayerName")
 
 [node name="GraphicsBase" type="Node3D" parent="." unique_id=1495357633]
 
