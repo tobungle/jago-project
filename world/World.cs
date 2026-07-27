@@ -26,7 +26,7 @@ public partial class World : Node3D
 		if (Multiplayer.IsServer())
 		// Server setup
 		{
-			network.Connect("spawned_items_requested", Callable.From((int from) => OnSpawnedItemsRequested(from)));
+			network.Connect("spawned_list_requested", Callable.From((int from) => OnSpawnedItemsRequested(from)));
 			SpawnItemServer(new()
 			{
 				{"global_position", new Vector3(0f, 1f, -7f)}

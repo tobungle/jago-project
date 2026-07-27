@@ -32,18 +32,22 @@ func player_synced(position : Vector3) -> void:
 @rpc("authority", "call_remote", "reliable")
 func item_spawned(scene_path : String, properties : Dictionary[String, Variant], id : int) -> void:
 	on_item_spawned.emit(scene_path, properties, id)
+	print_debug()
 
 @rpc("authority", "call_remote", "reliable")
 func item_despawned(id : int) -> void:
 	on_item_despawned.emit(id)
+	print_debug()
 
 @rpc("any_peer", "call_remote", "reliable")
 func request_spawned_list() -> void:
 	spawned_list_requested.emit(multiplayer.get_remote_sender_id())
+	print_debug()
 
 @rpc("authority", "call_remote", "reliable")
 func get_spawned_list(spawned_list : Dictionary[int, Vector3]) -> void:
 	on_got_spawned_list.emit(spawned_list)
+	print_debug()
 
 #
 #
