@@ -35,7 +35,7 @@ public partial class World : Node3D
 		else
 		// Client setup
 		{
-			network.Connect("on_got_spawned_list", Callable.From((Godot.Collections.Dictionary<int, Vector3> spawned_items_list) => OnGotSpawnedItemsList(spawned_items_list)));
+			network.Connect("on_got_spawned_items", Callable.From((Godot.Collections.Dictionary<int, Vector3> spawned_items_list) => OnGotSpawnedItemsList(spawned_items_list)));
 			network.RpcId(1, "request_spawned_list");
 		}
 	}
@@ -75,7 +75,7 @@ public partial class World : Node3D
 
 	void SpawnItemLocal(Godot.Collections.Dictionary<string, Variant> properties, int id)
 	{
-		Node3D inst = GD.Load<PackedScene>("res://scenes/world_item/WorldItem.tscn").Instantiate<Node3D>();
+		WorldItem inst = GD.Load<PackedScene>("res://scenes/world_item/WorldItem.tscn").Instantiate<WorldItem>();
 		inst.Name = id.ToString();
 		AddChild(inst, true);
 		foreach (string property in properties.Keys)
@@ -83,6 +83,7 @@ public partial class World : Node3D
 			inst.Set(property, properties[property]);
 		}
 		GD.Print($"Spawned thing {id}");
+		spawned_world_items[id] = inst;
 	}
 
 	void DespawnItemServer(int id)

@@ -10,7 +10,7 @@ signal on_player_synced(id : int, position : Vector3)
 signal on_item_spawned(properties : Dictionary[String, Variant], id : int)
 signal on_item_despawned(id : int)
 signal spawned_list_requested(from : int)
-signal on_got_spawned_list(spawned : Dictionary[int, Vector3])
+signal on_got_spawned_items(spawned : Dictionary[int, Vector3])
 
 var lobby_id : int
 var steam_peer : SteamMultiplayerPeer
@@ -45,8 +45,8 @@ func request_spawned_list() -> void:
 	print_debug()
 
 @rpc("authority", "call_remote", "reliable")
-func get_spawned_list(spawned_list : Dictionary[int, Vector3]) -> void:
-	on_got_spawned_list.emit(spawned_list)
+func get_spawned_items(spawned_list : Dictionary[int, Vector3]) -> void:
+	on_got_spawned_items.emit(spawned_list)
 	print_debug()
 
 #
