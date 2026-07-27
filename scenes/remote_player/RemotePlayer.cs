@@ -3,6 +3,7 @@ using System;
 
 public partial class RemotePlayer : Node3D
 {
+	[Export] Label3D player_label;
 	Node network;
 	int id;
 	public override void _Ready()
@@ -14,6 +15,7 @@ public partial class RemotePlayer : Node3D
 		// Connect the signal to a lambda which passes the argument to OnPlayerSync
 		// Why cant i just do this directly? Dont fucking know Fuck you Eat shit
         network.Connect("on_player_synced", Callable.From((int player_id, Vector3 new_position) => OnPlayerSync(player_id, new_position)));
+		SetPlayerLabel();
 	}
 
 	// Function that syncs player on client
@@ -24,5 +26,10 @@ public partial class RemotePlayer : Node3D
 		{
 			GlobalPosition = new_position;
 		}
+	}
+
+	void SetPlayerLabel()
+	{
+		player_label.Text = (string) network.Call("get_player_steam_name");
 	}
 }

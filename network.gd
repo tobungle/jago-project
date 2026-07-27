@@ -158,3 +158,6 @@ func get_player_ids() -> Array[int]:
 
 func to_world() -> void:
 	get_tree().change_scene_to_file("uid://18g6qsau6q1h")
+
+func get_player_steam_name(id : int) -> String:
+	return Steam.getFriendPersonaName(id)
