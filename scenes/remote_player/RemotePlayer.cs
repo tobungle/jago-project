@@ -44,7 +44,9 @@ public partial class RemotePlayer : Node3D
 
 	void SetPlayerLabel()
 	{
-		player_label.Text = (string) network.Call("get_player_steam_name", id);
+		string name = (string) network.Call("get_player_steam_name", id);
+		GD.Print($"Got player name {name}, id {id}");
+		player_label.Text = name == "" ? name : "UNKNOWN";
 	}
 
 	void DoGraphics()
