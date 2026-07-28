@@ -13,7 +13,7 @@ player_label = NodePath("PlayerName")
 [node name="GraphicsBase" type="Node3D" parent="." unique_id=1495357633]
 
 [node name="Humanoid" parent="GraphicsBase" unique_id=964969289 instance=ExtResource("3_gekqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.99276966, 0)
+transform = Transform3D(-1.2, 0, -1.04907336e-07, 0, 1.2, 0, 1.04907336e-07, 0, -1.2, 0, -0.99276966, 0)
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1019514986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)

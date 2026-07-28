@@ -3,6 +3,11 @@ using Godot;
 
 public partial class Player : CharacterBody3D
 {
+	public enum PlayerAnimation
+	{
+		Idle = 0,
+		Moving = 1
+	}
 	Node network;
 	[Export] AnimationPlayer animator;
 	[Export] Label3D name_label;
@@ -104,7 +109,7 @@ public partial class Player : CharacterBody3D
 
 	void Sync()
 	{
-		network.Call("_sync_my_player", GlobalPosition, graphics_base.RotationDegrees.Y);
+		network.Call("_sync_my_player", GlobalPosition, graphics_base.RotationDegrees.Y, input_vector == Vector2.Zero ? 0 : 1);
 	}
 
 }

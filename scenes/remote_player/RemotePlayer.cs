@@ -8,7 +8,7 @@ public partial class RemotePlayer : Node3D
 	[Export] Label3D player_label;
 	Node network;
 	int id;
-	Vector3 last_frame_position;
+	int animation_playing;
 	public override void _Ready()
 	{
 		// When a remote player is spawned, their id is assigned as the node name
@@ -17,19 +17,18 @@ public partial class RemotePlayer : Node3D
 		network = GetNode<Node>("/root/Network");
 		// Connect the signal to a lambda which passes the argument to OnPlayerSync
 		// Why cant i just do this directly? Dont fucking know Fuck you Eat shit
-        network.Connect("on_player_synced", Callable.From((int player_id, Vector3 new_position, float new_y_rot) => OnPlayerSync(player_id, new_position, new_y_rot)));
+        network.Connect("on_player_synced", Callable.From((int player_id, Vector3 new_position, float new_y_rot, int new_animation_playing) => OnPlayerSync(player_id, new_position, new_y_rot, new_animation_playing)));
 		SetPlayerLabel();
 	}
 
     public override void _PhysicsProcess(double delta)
     {
 		DoGraphics();
-		SetDeferred("last_frame_position", GlobalPosition);
     }
 
 	// Function that syncs player on client
 	// Right now just syncs position
-	void OnPlayerSync(int player_id, Vector3 new_position, float new_y_rot)
+	void OnPlayerSync(int player_id, Vector3 new_position, float new_y_rot, int new_animation_playing)
 	{
 		if (player_id == id)
 		{
@@ -38,6 +37,7 @@ public partial class RemotePlayer : Node3D
 		Vector3 rotation = gfx_base.RotationDegrees;
 		rotation.Y = new_y_rot;
 		gfx_base.RotationDegrees = rotation;
+		animation_playing = new_animation_playing;
 	}
 
 	void SetPlayerLabel()
@@ -47,13 +47,14 @@ public partial class RemotePlayer : Node3D
 
 	void DoGraphics()
 	{
-		if (last_frame_position == GlobalPosition)
+		switch (animation_playing)
 		{
+			case (int) Player.PlayerAnimation.Idle:
 			animator.Play("Humanoid Idle");
-		}
-		else
-		{
+			break;
+			case (int) Player.PlayerAnimation.Moving:
 			animator.Play("Humanoid Run");
+			break;
 		}
 	}
 }
