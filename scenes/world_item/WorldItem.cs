@@ -6,8 +6,9 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 	[Signal] public delegate void PickedUpEventHandler();
 	Node3D item_mesh;
 	Globals globals;
+	Node network;
 	public static double spin_rate = 1.5;
-	const float bob_distance = 0.01f;
+	const float bob_distance = 0.0025f;
 	int _server_id;
     public int server_id
 	{
@@ -23,13 +24,18 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 
     public override void _Ready()
 	{
-		// Get reference to globals autoload
-		globals = GetNode<Globals>("/root/Globals");
 		
+		globals = GetNode<Globals>("/root/Globals");
+		network = GetNode<Node>("/root/Network");
+
 		PackedScene testmesh = GD.Load<PackedScene>("res://assets/glb/testmesh/TestShape.glb");
 		item_mesh = testmesh.Instantiate<Node3D>();
 		AddChild(item_mesh);
-
+		SetMultiplayerAuthority(1);
+		if (!Multiplayer.IsServer())
+		{
+			Freeze = true;
+		}
 	}
 
     public override void _PhysicsProcess(double delta)

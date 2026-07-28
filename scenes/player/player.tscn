@@ -26,6 +26,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("animator", "interaction", "player_ui", "name_label", "camera_base", "graphics_base", "camera")]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_oul6g")
 animator = NodePath("GraphicsBase/Humanoid/AnimationPlayer")
 interaction = NodePath("InteractionManager")
@@ -36,7 +37,6 @@ graphics_base = NodePath("GraphicsBase")
 camera = NodePath("CameraBase/SpringArm3D/Camera3D")
 
 [node name="CameraBase" type="Node3D" parent="." unique_id=1598287418]
-visible = false
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraBase" unique_id=857952165]
 transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0.35, 0.5, 0)
@@ -294,7 +294,5 @@ speed_scale = 2.0
 [node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_gmlin")
 camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
-
-[node name="Node" type="Node" parent="." unique_id=99837082]
 
 [editable path="GraphicsBase/Humanoid"]

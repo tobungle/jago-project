@@ -3,14 +3,27 @@
 [ext_resource type="Script" uid="uid://bt8i4jm0j0dy0" path="res://scenes/world_item/WorldItem.cs" id="1_dpfrn"]
 [ext_resource type="PackedScene" uid="uid://bvkx2spiqdbf4" path="res://scenes/interact_area/interact_area.tscn" id="2_b7vda"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_b7vda"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7vda"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b7vda"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
 
 [node name="world_item" type="RigidBody3D" unique_id=944967800]
 collision_layer = 4
+collision_mask = 3
 input_ray_pickable = false
 script = ExtResource("1_dpfrn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=98079954]
-shape = SubResource("SphereShape3D_b7vda")
+shape = SubResource("BoxShape3D_b7vda")
 
 [node name="InteractArea" parent="." unique_id=1422881901 instance=ExtResource("2_b7vda")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1650611857]
+replication_config = SubResource("SceneReplicationConfig_b7vda")
