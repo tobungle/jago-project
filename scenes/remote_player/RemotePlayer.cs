@@ -24,7 +24,7 @@ public partial class RemotePlayer : Node3D
     public override void _PhysicsProcess(double delta)
     {
 		DoGraphics();
-        last_frame_position = GlobalPosition;
+		SetDeferred("last_frame_position", GlobalPosition);
     }
 
 	// Function that syncs player on client
