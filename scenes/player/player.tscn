@@ -6,12 +6,13 @@
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui_themes/black_and_white_theme/black_and_white.tres" id="3_p47bc"]
 [ext_resource type="PackedScene" uid="uid://s3mhrum4caxm" path="res://scenes/player/ui/item_icon.tscn" id="4_lvxji"]
 [ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="5_75vfm"]
+[ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="6_0owmy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vhohb"]
-size = Vector3(1, 2, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmxdo"]
+height = 1.7875977
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
 albedo_color = Color(1, 0, 0, 1)
@@ -43,7 +44,8 @@ transform = Transform3D(1, 0, 0, 0, 0.98781425, -0.15563849, 0, 0.1556385, 0.987
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715722046]
-shape = SubResource("BoxShape3D_vhohb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10620117, 0)
+shape = SubResource("CapsuleShape3D_jmxdo")
 
 [node name="PlayerUi" type="CanvasLayer" parent="." unique_id=592100888 node_paths=PackedStringArray("inv_grid", "player_camera", "hover_prompt")]
 script = ExtResource("2_dovo2")
@@ -223,22 +225,29 @@ outline_size = 0
 [node name="GraphicsBase" type="Node3D" parent="." unique_id=63454316]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GraphicsBase" unique_id=371463532]
+visible = false
 mesh = SubResource("BoxMesh_vhohb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=1422805347]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27004075, 0.7737314, -0.45181966)
+visible = false
 size = Vector3(0.2, 0.2, 0.2)
 material = SubResource("StandardMaterial3D_vhohb")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=462024826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27314925, 0.7737314, -0.45181966)
+visible = false
 size = Vector3(0.2, 0.2, 0.2)
 material = SubResource("StandardMaterial3D_vhohb")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=563176348]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043023586, 0.23737168, -0.45181966)
+visible = false
 size = Vector3(0.7363281, 0.2, 0.2)
 material = SubResource("StandardMaterial3D_vhohb")
+
+[node name="Humanoid" parent="GraphicsBase" unique_id=2121805294 instance=ExtResource("6_0owmy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.99276966, 0)
 
 [node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_gmlin")
