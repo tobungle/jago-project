@@ -4,11 +4,16 @@
 [ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_jxyu8"]
 [ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="3_gekqo"]
 
-[node name="RemotePlayer" type="Node3D" unique_id=1892906324 node_paths=PackedStringArray("player_label")]
+[node name="RemotePlayer" type="Node3D" unique_id=1892906324 node_paths=PackedStringArray("gfx_base", "animator", "player_label")]
 script = ExtResource("1_oyg2u")
+gfx_base = NodePath("GraphicsBase")
+animator = NodePath("GraphicsBase/Humanoid/AnimationPlayer")
 player_label = NodePath("PlayerName")
 
 [node name="GraphicsBase" type="Node3D" parent="." unique_id=1495357633]
+
+[node name="Humanoid" parent="GraphicsBase" unique_id=964969289 instance=ExtResource("3_gekqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.99276966, 0)
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1019514986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
@@ -21,6 +26,4 @@ text = "coom_killer98"
 font = ExtResource("2_jxyu8")
 outline_size = 0
 
-[node name="Humanoid" parent="." unique_id=964969289 instance=ExtResource("3_gekqo")]
-
-[editable path="Humanoid"]
+[editable path="GraphicsBase/Humanoid"]

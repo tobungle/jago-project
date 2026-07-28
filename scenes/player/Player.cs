@@ -104,7 +104,7 @@ public partial class Player : CharacterBody3D
 
 	void Sync()
 	{
-		network.Call("_sync_my_player", GlobalPosition);
+		network.Call("_sync_my_player", GlobalPosition, RotationDegrees.Y);
 	}
 
 }

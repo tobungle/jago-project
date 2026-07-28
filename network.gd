@@ -6,7 +6,7 @@ signal player_joined(id : int)
 signal player_left(id : int)
 
 # Sync signals go here
-signal on_player_synced(id : int, position : Vector3)
+signal on_player_synced(id : int, position : Vector3, new_y_rot)
 signal on_item_spawned(properties : Dictionary[String, Variant], id : int)
 signal on_item_despawned(id : int)
 signal spawned_list_requested(from : int)
@@ -22,12 +22,12 @@ var lobby_players : Dictionary = {}
 #	Multiplayer shit goes here
 #
 
-func _sync_my_player(position : Vector3) -> void:
-	rpc("player_synced", position)
+func _sync_my_player(position : Vector3, new_y_rot : float) -> void:
+	rpc("player_synced", position, new_y_rot)
 
 @rpc("any_peer", "call_remote", "unreliable")
-func player_synced(position : Vector3) -> void:
-	on_player_synced.emit(multiplayer.get_remote_sender_id(), position)
+func player_synced(position : Vector3, new_y_rot : float) -> void:
+	on_player_synced.emit(multiplayer.get_remote_sender_id(), position, new_y_rot)
 
 @rpc("authority", "call_remote", "reliable")
 func item_spawned(scene_path : String, properties : Dictionary[String, Variant], id : int) -> void:
