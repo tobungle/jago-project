@@ -72,7 +72,7 @@ public partial class World : Node3D
 		inst.server_id = id;
 		AddChild(inst, true);
 		spawned_players[id] = inst;
-		GD.Print($"Spawned player {Name}");
+		GD.Print($"Spawned player {inst.Name}");
 	}
 
 	void RemovePlayer(int id)
@@ -108,7 +108,7 @@ public partial class World : Node3D
 		{
 			DespawnItemServer(inst.server_id);
 		};
-		GD.Print($"Spawned item {Name}");
+		GD.Print($"Spawned item {inst.Name}");
 	}
 
 	void DespawnItemServer(int id)

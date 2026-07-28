@@ -71,7 +71,6 @@ public partial class Player : CharacterBody3D, Syncable
 	void DetermineOwnership()
 	{
 		int my_id = Multiplayer.GetUniqueId();
-		GD.Print($"Determining player ownership. My id: {my_id}	Player id: {server_id}");
 		if (my_id == server_id)
 		{
 			ownership = OwnershipMode.Mine;

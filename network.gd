@@ -11,7 +11,7 @@ signal on_item_spawned(properties : Dictionary[String, Variant], id : int)
 signal on_item_despawned(id : int)
 signal spawned_list_requested(from : int)
 signal on_got_spawned_items(spawned : Dictionary[int, Vector3])
-signal on_syncable_property_updated(id : int, property : Variant)
+signal on_worlditem_updated(id : int, pos : Vector3, rot : Vector3)
 
 var lobby_id : int
 var steam_peer : SteamMultiplayerPeer
@@ -53,8 +53,8 @@ func get_spawned_items(spawned_list : Dictionary[int, Vector3]) -> void:
 	print_debug()
 
 @rpc("authority", "call_remote", "unreliable")
-func syncable_property_updated(id : int, property : Variant) -> void:
-	on_syncable_property_updated.emit(id, property)
+func worlditem_updated(id : int, pos : Vector3, rot : Vector3) -> void:
+	on_worlditem_updated.emit(id, pos, rot)
 
 #
 #

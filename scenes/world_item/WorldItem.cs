@@ -35,6 +35,16 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 		if (!Multiplayer.IsServer())
 		{
 			Freeze = true;
+			network.Connect("on_worlditem_updated", Callable.From((int item_id, Vector3 pos, Vector3 rot) => RemoteSync(item_id, pos, rot)));
+		}
+	}
+
+	void RemoteSync(int item_id, Vector3 pos, Vector3 rot)
+	{
+		if (item_id == server_id)
+		{
+			GlobalPosition = GlobalPosition.Lerp(pos, 0.75f);
+			GlobalRotation = rot;
 		}
 	}
 
@@ -44,6 +54,10 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 		Vector3 pos = item_mesh.Position;
 		pos.Y += (float)Math.Sin(globals.world_item_spin_timer) * bob_distance;
 		item_mesh.Position = pos;
+		if (Multiplayer.IsServer())
+		{
+			network.Rpc("worlditem_updated", server_id, GlobalPosition, RotationDegrees);
+		}
     }
 
 	public Interactable.InteractableType GetInteractableType()
