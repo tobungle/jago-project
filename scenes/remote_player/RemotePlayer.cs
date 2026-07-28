@@ -9,6 +9,7 @@ public partial class RemotePlayer : Node3D
 	Node network;
 	int id;
 	int animation_playing;
+	Vector3 intended_position;
 	public override void _Ready()
 	{
 		// When a remote player is spawned, their id is assigned as the node name
@@ -24,6 +25,7 @@ public partial class RemotePlayer : Node3D
     public override void _PhysicsProcess(double delta)
     {
 		DoGraphics();
+		GlobalPosition = GlobalPosition.Lerp(intended_position, 0.75f);
     }
 
 	// Function that syncs player on client
@@ -32,7 +34,7 @@ public partial class RemotePlayer : Node3D
 	{
 		if (player_id == id)
 		{
-			GlobalPosition = new_position;
+			intended_position = new_position;
 		}
 		Vector3 rotation = gfx_base.RotationDegrees;
 		rotation.Y = new_y_rot;
