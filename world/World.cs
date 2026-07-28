@@ -66,13 +66,13 @@ public partial class World : Node3D
 			GD.Print($"Not spawning player {id} because they've already been spawned.");
 			return;
 		}
-		GD.Print($"Spawning player {id}...");
 		Player inst = player_packed.Instantiate<Player>();
 		inst.GlobalPosition = pos;
 		inst.Name = $"player_{id}";
 		inst.server_id = id;
 		AddChild(inst, true);
 		spawned_players[id] = inst;
+		GD.Print($"Spawned player {Name}");
 	}
 
 	void RemovePlayer(int id)
@@ -102,13 +102,13 @@ public partial class World : Node3D
 		{
 			inst.Set(property, properties[property]);
 		}
-		GD.Print($"Spawned thing {id}");
 		inst.server_id = id;
 		spawned_world_items[id] = inst;
 		inst.PickedUp += () =>
 		{
 			DespawnItemServer(inst.server_id);
 		};
+		GD.Print($"Spawned item {Name}");
 	}
 
 	void DespawnItemServer(int id)
