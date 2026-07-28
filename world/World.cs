@@ -3,23 +3,21 @@ using Godot;
 
 public partial class World : Node3D
 {
+	[Export] Vector3 player_start_position;
 	[Export] PackedScene remote_player_packed;
+	[Export] PackedScene player_packed;
 	Node network;
 
-	Dictionary<int, RemotePlayer> spawned_remote_players = new();
+	Dictionary<int, Player> spawned_players = new();
 	Dictionary<int, WorldItem> spawned_world_items = new();
 	int server_entity_counter = 0;
 	public override void _Ready()
 	{
 		GD.Print("Setting up world...");
 		network = GetNode<Node>("/root/Network");
-		foreach (int player_id in (Godot.Collections.Array<int>) network.Call("get_player_ids"))
-		{
-			SpawnRemotePlayer(player_id);
-		}
 
-		network.Connect("player_joined", Callable.From((int player_id) => SpawnRemotePlayer(player_id)));
-		network.Connect("player_left", Callable.From((int player_id) => RemoveRemotePlayer(player_id)));
+		network.Connect("player_joined", Callable.From((int player_id) => SpawnPlayer(player_id, player_start_position)));
+		network.Connect("player_left", Callable.From((int player_id) => RemovePlayer(player_id)));
 		network.Connect("on_item_spawned", Callable.From((Godot.Collections.Dictionary<string, Variant> properties, int id) => SpawnItemLocal(properties, id)));
 		network.Connect("on_item_despawned", Callable.From((int id) => DespawnItemLocal(id)));
 		
@@ -27,6 +25,10 @@ public partial class World : Node3D
 		// Server setup
 		{
 			network.Connect("spawned_list_requested", Callable.From((int from) => OnSpawnedItemsRequested(from)));
+
+			// Spawn a player for the server
+			SpawnPlayer(1, player_start_position);
+
 			SpawnItemServer(new()
 			{
 				{"global_position", new Vector3(0f, 1f, -7f)}
@@ -50,32 +52,39 @@ public partial class World : Node3D
 			network.Connect("on_got_spawned_items", Callable.From((Godot.Collections.Dictionary<int, Vector3> spawned_items_list) => OnGotSpawnedItemsList(spawned_items_list)));
 			network.RpcId(1, "request_spawned_list");
 		}
+		
+		// Spawn a player scene for each lobby member
+		// This will need to be refactored later, basically the server alone should authorise what is spawned
+		foreach (int player_id in (Godot.Collections.Array<int>) network.Call("get_player_ids"))
+		{
+			SpawnPlayer(player_id, player_start_position);
+		}
 	}
 
-	void SpawnRemotePlayer(int id)
+	void SpawnPlayer(int id, Vector3 pos)
 	{
-		if (spawned_remote_players.Keys.Contains(id))
+		if (spawned_players.Keys.Contains(id))
 		{
-			GD.Print($"Not spawning remote player {id} because they've already been spawned.");
+			GD.Print($"Not spawning player {id} because they've already been spawned.");
 			return;
 		}
-		GD.Print($"Spawning remote player {id}...");
-		RemotePlayer inst = remote_player_packed.Instantiate<RemotePlayer>();
-		inst.GlobalPosition = new Vector3(0f, 1f, 0f);
+		GD.Print($"Spawning player {id}...");
+		Player inst = player_packed.Instantiate<Player>();
+		inst.GlobalPosition = player_start_position;
 		inst.Name = id.ToString();
 		AddChild(inst, true);
-		spawned_remote_players[id] = inst;
+		spawned_players[id] = inst;
 	}
 
-	void RemoveRemotePlayer(int id)
+	void RemovePlayer(int id)
 	{
-		if (!spawned_remote_players.Keys.Contains(id))
+		if (!spawned_players.Keys.Contains(id))
 		{
-			GD.Print($"Not removing remote player {id} because they've already been removed.");
+			GD.Print($"Not removing player {id} because they've already been removed.");
 			return;
 		}
 		GetNode(id.ToString()).QueueFree();
-		spawned_remote_players.Remove(id);
+		spawned_players.Remove(id);
 	}
 
 	void SpawnItemServer(Godot.Collections.Dictionary<string, Variant> properties)

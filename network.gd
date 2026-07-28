@@ -18,6 +18,8 @@ var lobby_name : String
 var persona_name : String
 var lobby_players : Dictionary = {}
 
+var my_id : int
+
 #
 #	Multiplayer shit goes here
 #

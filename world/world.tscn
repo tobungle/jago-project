@@ -17,6 +17,9 @@ sky_material = SubResource("ProceduralSkyMaterial_tcf2h")
 [sub_resource type="Environment" id="Environment_4717r"]
 background_mode = 2
 sky = SubResource("Sky_mjrkt")
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 
@@ -28,7 +31,9 @@ albedo_color = Color(0.029999973, 0.36, 0, 1)
 
 [node name="World" type="Node3D" unique_id=1850297244]
 script = ExtResource("1_tcf2h")
+player_start_position = Vector3(0, 2, 0)
 remote_player_packed = ExtResource("2_4717r")
+player_packed = ExtResource("1_6xmxd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=147025805]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -42,9 +47,6 @@ environment = SubResource("Environment_4717r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(1000, 1, 1000)
-
-[node name="Player" parent="." unique_id=340174165 instance=ExtResource("1_6xmxd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CSG_House" type="Node3D" parent="." unique_id=903280610]
 
