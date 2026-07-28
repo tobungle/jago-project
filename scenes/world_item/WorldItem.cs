@@ -44,7 +44,7 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 		if (item_id == server_id)
 		{
 			GlobalPosition = GlobalPosition.Lerp(pos, 0.75f);
-			GlobalRotation = rot;
+			GlobalRotationDegrees = rot;
 		}
 	}
 
