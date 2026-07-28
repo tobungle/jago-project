@@ -20,14 +20,11 @@ public partial class World : Node3D
 		network.Connect("player_left", Callable.From((int player_id) => RemovePlayer(player_id)));
 		network.Connect("on_item_spawned", Callable.From((Godot.Collections.Dictionary<string, Variant> properties, int id) => SpawnItemLocal(properties, id)));
 		network.Connect("on_item_despawned", Callable.From((int id) => DespawnItemLocal(id)));
-		
+
 		if (Multiplayer.IsServer())
 		// Server setup
 		{
 			network.Connect("spawned_list_requested", Callable.From((int from) => OnSpawnedItemsRequested(from)));
-
-			// Spawn a player for the server
-			SpawnPlayer(1, player_start_position);
 
 			SpawnItemServer(new()
 			{
@@ -49,13 +46,14 @@ public partial class World : Node3D
 		else
 		// Client setup
 		{
-			SpawnPlayer(Multiplayer.GetUniqueId(), player_start_position);
 			network.Connect("on_got_spawned_items", Callable.From((Godot.Collections.Dictionary<int, Vector3> spawned_items_list) => OnGotSpawnedItemsList(spawned_items_list)));
 			network.RpcId(1, "request_spawned_list");
 		}
-		
-		// Spawn a player scene for each lobby member
-		// This will need to be refactored later, basically the server alone should authorise what is spawned
+
+		// Spawn a player for the local player
+		SpawnPlayer(Multiplayer.GetUniqueId(), player_start_position);
+
+		// Spawn a player for each connected lobby member
 		foreach (int player_id in (Godot.Collections.Array<int>) network.Call("get_player_ids"))
 		{
 			SpawnPlayer(player_id, player_start_position);
@@ -71,8 +69,9 @@ public partial class World : Node3D
 		}
 		GD.Print($"Spawning player {id}...");
 		Player inst = player_packed.Instantiate<Player>();
-		inst.GlobalPosition = player_start_position;
+		inst.GlobalPosition = pos;
 		inst.Name = id.ToString();
+		inst.id = id;
 		AddChild(inst, true);
 		spawned_players[id] = inst;
 	}

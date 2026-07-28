@@ -16,7 +16,7 @@ public partial class Player : CharacterBody3D
 	[Export] AnimationPlayer animator;
 	OwnershipMode ownership;
 	Node network;
-	int id;
+	public int id;
 
 	// Local player vars
 	[Export] InteractionManager interaction;
@@ -59,8 +59,8 @@ public partial class Player : CharacterBody3D
 
 	void DetermineOwnership()
 	{
-		id = Convert.ToInt32(Name);
 		int my_id = Multiplayer.GetUniqueId();
+		GD.Print($"Determining player ownership. My id: {my_id}	Player id: {id}");
 		if (my_id == id)
 		{
 			ownership = OwnershipMode.Mine;
