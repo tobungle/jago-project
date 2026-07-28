@@ -4,6 +4,7 @@ using Godot;
 public partial class Player : CharacterBody3D
 {
 	Node network;
+	[Export] AnimationPlayer animator;
 	[Export] Label3D name_label;
 	[Export] Node3D camera_base;	// Node that the camera is attached to
 	[Export] Node3D graphics_base;	// Node that graphics are attached to
@@ -89,6 +90,14 @@ public partial class Player : CharacterBody3D
 		if (GlobalPosition + new Vector3(direction.X, 0f, direction.Y) != GlobalPosition)
 		{
 			graphics_base.LookAt(GlobalPosition + new Vector3(direction.X, 0f, direction.Y));
+		}
+		if (input_vector == Vector2.Zero)
+		{
+			animator.Play("Humanoid Idle");
+		}
+		else
+		{
+			animator.Play("Humanoid Run");
 		}
 		
 	}
