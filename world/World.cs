@@ -4,7 +4,6 @@ using Godot;
 public partial class World : Node3D
 {
 	[Export] Vector3 player_start_position;
-	[Export] PackedScene remote_player_packed;
 	[Export] PackedScene player_packed;
 	Node network;
 

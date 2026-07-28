@@ -295,4 +295,6 @@ speed_scale = 2.0
 script = ExtResource("3_gmlin")
 camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
 
+[node name="Node" type="Node" parent="." unique_id=99837082]
+
 [editable path="GraphicsBase/Humanoid"]

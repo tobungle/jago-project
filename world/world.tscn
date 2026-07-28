@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://0tuaa5gy23yy" path="res://scenes/player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Script" uid="uid://b8hxg6fmwgv2t" path="res://world/World.cs" id="1_tcf2h"]
-[ext_resource type="PackedScene" uid="uid://nboxp8ygkgh1" path="res://scenes/remote_player/remote_player.tscn" id="2_4717r"]
 [ext_resource type="PackedScene" uid="uid://didf7rkg2ovxf" path="res://scenes/zombie/zombie.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://blu1r2rpb4gce" path="res://assets/glb/Hosse/Hosse.glb" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://caulaak8man6v" path="res://assets/glb/items/accessories/Cowboy Hat/CowboyHat.glb" id="6_fn3g3"]
@@ -32,7 +31,6 @@ albedo_color = Color(0.029999973, 0.36, 0, 1)
 [node name="World" type="Node3D" unique_id=1850297244]
 script = ExtResource("1_tcf2h")
 player_start_position = Vector3(0, 2, 0)
-remote_player_packed = ExtResource("2_4717r")
 player_packed = ExtResource("1_6xmxd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=147025805]
