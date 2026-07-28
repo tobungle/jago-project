@@ -69,8 +69,8 @@ public partial class World : Node3D
 		GD.Print($"Spawning player {id}...");
 		Player inst = player_packed.Instantiate<Player>();
 		inst.GlobalPosition = pos;
-		inst.Name = id.ToString();
-		inst.id = id;
+		inst.Name = $"player_{id}";
+		inst.server_id = id;
 		AddChild(inst, true);
 		spawned_players[id] = inst;
 	}
@@ -82,7 +82,7 @@ public partial class World : Node3D
 			GD.Print($"Not removing player {id} because they've already been removed.");
 			return;
 		}
-		GetNode(id.ToString()).QueueFree();
+		GetNode($"player_{id}").QueueFree();
 		spawned_players.Remove(id);
 	}
 
@@ -96,7 +96,7 @@ public partial class World : Node3D
 	void SpawnItemLocal(Godot.Collections.Dictionary<string, Variant> properties, int id)
 	{
 		WorldItem inst = GD.Load<PackedScene>("res://scenes/world_item/WorldItem.tscn").Instantiate<WorldItem>();
-		inst.Name = id.ToString();
+		inst.Name = $"item_{id}";
 		AddChild(inst, true);
 		foreach (string property in properties.Keys)
 		{

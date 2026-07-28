@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class Player : CharacterBody3D
+public partial class Player : CharacterBody3D, Syncable
 {
 	public enum PlayerAnimation
 	{
@@ -16,7 +16,18 @@ public partial class Player : CharacterBody3D
 	[Export] AnimationPlayer animator;
 	OwnershipMode ownership;
 	Node network;
-	public int id;
+	int _server_id;
+    public int server_id
+	{
+	get
+		{
+			return _server_id;
+		}
+	set
+		{
+			_server_id = value;
+		}
+	}
 
 	// Local player vars
 	[Export] InteractionManager interaction;
@@ -60,8 +71,8 @@ public partial class Player : CharacterBody3D
 	void DetermineOwnership()
 	{
 		int my_id = Multiplayer.GetUniqueId();
-		GD.Print($"Determining player ownership. My id: {my_id}	Player id: {id}");
-		if (my_id == id)
+		GD.Print($"Determining player ownership. My id: {my_id}	Player id: {server_id}");
+		if (my_id == server_id)
 		{
 			ownership = OwnershipMode.Mine;
 		}
@@ -99,9 +110,9 @@ public partial class Player : CharacterBody3D
 		}
 		else
 		{
-			string name = (string) network.Call("get_player_steam_name", id);
-			GD.Print($"Got player name {name}, id {id}");
-			name_label.Text = name == "" ? name : $"Player {id}";
+			string name = (string) network.Call("get_player_steam_name", server_id);
+			GD.Print($"Got player name {name}, id {server_id}");
+			name_label.Text = name == "" ? name : $"Player {server_id}";
 		}
 	}
 
@@ -195,7 +206,7 @@ public partial class Player : CharacterBody3D
 
 	void RemoteSync(int player_id, Vector3 new_position, float new_y_rot, int new_animation_playing)
 	{
-		if (player_id == id)
+		if (player_id == server_id)
 		{
 			intended__position = new_position;
 		}
