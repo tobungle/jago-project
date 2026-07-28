@@ -35,7 +35,7 @@ graphics_base = NodePath("GraphicsBase")
 visible = false
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraBase" unique_id=857952165]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 1, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0.35, 0.5, 0)
 shape = SubResource("SphereShape3D_oul6g")
 spring_length = 5.0
 
