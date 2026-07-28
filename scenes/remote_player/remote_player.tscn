@@ -15,7 +15,7 @@ player_label = NodePath("PlayerName")
 [node name="Humanoid" parent="GraphicsBase" unique_id=964969289 instance=ExtResource("3_gekqo")]
 transform = Transform3D(-1.2, 0, -1.04907336e-07, 0, 1.2, 0, 1.04907336e-07, 0, -1.2, 0, -0.99276966, 0)
 
-[node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(964969289, 1921091337) index="0" unique_id=491734349]
+[node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(964969289, 589382195) index="0" unique_id=805960211]
 bones/0/position = Vector3(0, 1.7180098, -0.05909467)
 bones/0/rotation = Quaternion(-1.8570168e-07, 0, 0, 1)
 bones/1/rotation = Quaternion(5.7428147e-09, -3.5938516e-08, -0.002974184, 0.9999956)
@@ -66,7 +66,7 @@ bones/45/rotation = Quaternion(-0.7002106, 0.015274801, 0.7137479, -0.005986559)
 bones/46/rotation = Quaternion(-4.3500422e-05, 0.0014866847, -0.045576047, 0.9989598)
 bones/47/rotation = Quaternion(-0.00015748624, -0.00021548707, 0.58962375, 0.80767804)
 
-[node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1930993855]
+[node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1787625661]
 speed_scale = 2.0
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1019514986]
