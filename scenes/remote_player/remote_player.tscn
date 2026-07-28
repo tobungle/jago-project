@@ -2,40 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bcu045mp4w8ge" path="res://scenes/remote_player/RemotePlayer.cs" id="1_oyg2u"]
 [ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_jxyu8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_mx47x"]
-material = SubResource("StandardMaterial3D_oul6g")
-size = Vector3(1, 2, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyg2u"]
-albedo_color = Color(0, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="3_gekqo"]
 
 [node name="RemotePlayer" type="Node3D" unique_id=1892906324 node_paths=PackedStringArray("player_label")]
 script = ExtResource("1_oyg2u")
 player_label = NodePath("PlayerName")
 
 [node name="GraphicsBase" type="Node3D" parent="." unique_id=1495357633]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GraphicsBase" unique_id=691332095]
-mesh = SubResource("BoxMesh_mx47x")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=1178659292]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27004075, 0.7737314, -0.45181966)
-size = Vector3(0.2, 0.2, 0.2)
-material = SubResource("StandardMaterial3D_oyg2u")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=688053199]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27314925, 0.7737314, -0.45181966)
-size = Vector3(0.2, 0.2, 0.2)
-material = SubResource("StandardMaterial3D_oyg2u")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="GraphicsBase/MeshInstance3D" unique_id=271749166]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043023586, 0.23737168, -0.45181966)
-size = Vector3(0.7363281, 0.2, 0.2)
-material = SubResource("StandardMaterial3D_oyg2u")
 
 [node name="PlayerName" type="Label3D" parent="." unique_id=1019514986]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
@@ -47,3 +20,7 @@ outline_modulate = Color(1, 1, 1, 1)
 text = "coom_killer98"
 font = ExtResource("2_jxyu8")
 outline_size = 0
+
+[node name="Humanoid" parent="." unique_id=964969289 instance=ExtResource("3_gekqo")]
+
+[editable path="Humanoid"]

@@ -3,9 +3,11 @@ using System;
 
 public partial class RemotePlayer : Node3D
 {
+	[Export] AnimationPlayer animator;
 	[Export] Label3D player_label;
 	Node network;
 	int id;
+	Vector3 last_frame_position;
 	public override void _Ready()
 	{
 		// When a remote player is spawned, their id is assigned as the node name
@@ -17,6 +19,12 @@ public partial class RemotePlayer : Node3D
         network.Connect("on_player_synced", Callable.From((int player_id, Vector3 new_position) => OnPlayerSync(player_id, new_position)));
 		SetPlayerLabel();
 	}
+
+    public override void _PhysicsProcess(double delta)
+    {
+		DoGraphics();
+        last_frame_position = GlobalPosition;
+    }
 
 	// Function that syncs player on client
 	// Right now just syncs position
@@ -31,5 +39,17 @@ public partial class RemotePlayer : Node3D
 	void SetPlayerLabel()
 	{
 		player_label.Text = (string) network.Call("get_player_steam_name", id);
+	}
+
+	void DoGraphics()
+	{
+		if (last_frame_position == GlobalPosition)
+		{
+			animator.Play("Humanoid Idle");
+		}
+		else
+		{
+			animator.Play("Humanoid Run");
+		}
 	}
 }
