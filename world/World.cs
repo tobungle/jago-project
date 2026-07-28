@@ -49,6 +49,7 @@ public partial class World : Node3D
 		else
 		// Client setup
 		{
+			SpawnPlayer(Multiplayer.GetUniqueId(), player_start_position);
 			network.Connect("on_got_spawned_items", Callable.From((Godot.Collections.Dictionary<int, Vector3> spawned_items_list) => OnGotSpawnedItemsList(spawned_items_list)));
 			network.RpcId(1, "request_spawned_list");
 		}
