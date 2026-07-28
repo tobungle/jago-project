@@ -212,6 +212,42 @@ grow_vertical = 2
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 2
 
+[node name="HealthBar" type="ProgressBar" parent="PlayerUi/Control" unique_id=1685585321]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 640.0
+offset_right = 208.0
+offset_bottom = 666.0
+value = 100.0
+
+[node name="StaminaBar" type="ProgressBar" parent="PlayerUi/Control" unique_id=1581912442]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 688.0
+offset_right = 208.0
+offset_bottom = 714.0
+value = 20.0
+
+[node name="Label" type="Label" parent="PlayerUi/Control" unique_id=1269054604]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 616.0
+offset_right = 66.0
+offset_bottom = 638.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Health"
+
+[node name="Label2" type="Label" parent="PlayerUi/Control" unique_id=285181677]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 664.0
+offset_right = 76.0
+offset_bottom = 686.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Stamina"
+
 [node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
 pixel_size = 0.008

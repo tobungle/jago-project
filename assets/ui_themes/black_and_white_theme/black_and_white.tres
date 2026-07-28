@@ -281,18 +281,14 @@ anti_aliasing = false
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_c1q06"]
 color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjle8"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
+[sub_resource type="Gradient" id="Gradient_6654n"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qek5x"]
+gradient = SubResource("Gradient_6654n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0owmy"]
+texture = SubResource("GradientTexture1D_qek5x")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwsdg"]
 bg_color = Color(0, 0, 0, 1)
@@ -495,7 +491,7 @@ PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_pb87x")
 PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_0bndt")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_0pyuf")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_c1q06")
-ProgressBar/styles/background = SubResource("StyleBoxFlat_fjle8")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_0owmy")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_iwsdg")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
 RichTextLabel/colors/selection_color = Color(1, 1, 1, 1)
