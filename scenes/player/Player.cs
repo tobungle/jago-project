@@ -13,6 +13,7 @@ public partial class Player : CharacterBody3D, Syncable
 		Mine,
 		Remote
 	}
+	[Export] AnimationTree anim_tree;
 	[Export] AnimationPlayer animator;
 	OwnershipMode ownership;
 	Node network;
@@ -166,17 +167,11 @@ public partial class Player : CharacterBody3D, Syncable
 		MoveAndSlide();
 	}
 
+
 	// Update the player graphcs (rotation, animations etc.)
 	void DoGraphics()
 	{
 		Vector2 direction = input_vector.Rotated(-camera_base.Rotation.Y);
-
-		/* Old rotation code
-		if (GlobalPosition + new Vector3(direction.X, 0f, direction.Y) != GlobalPosition)
-		{
-			graphics_base.LookAt(GlobalPosition + new Vector3(direction.X, 0f, direction.Y));
-		}
-		*/
 
 		// idk what an arc tangent is  but internet tells me this is how you get angle to direction
 		if (input_vector != Vector2.Zero)
@@ -190,12 +185,32 @@ public partial class Player : CharacterBody3D, Syncable
 
 		if (input_vector == Vector2.Zero)
 		{
-			animator.Play("Idle");
+			AnimateRunning();
+
 		}
 		else
 		{
-			animator.Play("Run");
+			AnimateIdle();
 		}
+	}
+
+	void AnimateRunning()
+	{
+		AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
+		state_machine.Travel("IdleRunBlend");
+		// Could use an actual value here but tweening is easier
+		Tween tween = CreateTween();
+		tween.SetTrans(Tween.TransitionType.Linear);
+		tween.SetEase(Tween.EaseType.InOut);
+		tween.TweenProperty(anim_tree, "parameters/IdleRunBlend/blend_position", 0.0f, 0.2f);
+	}
+
+	void AnimateIdle()
+	{
+		Tween tween = CreateTween();
+		tween.SetTrans(Tween.TransitionType.Linear);
+		tween.SetEase(Tween.EaseType.InOut);
+		tween.TweenProperty(anim_tree, "parameters/IdleRunBlend/blend_position", 1.0f, 0.2f);
 	}
 
 	// Update graphics for the remote player (player we do not own)
@@ -210,10 +225,12 @@ public partial class Player : CharacterBody3D, Syncable
 		switch (animation_playing)
 		{
 			case (int) PlayerAnimation.Idle:
-			animator.Play("Idle");
+			// animator.Play("Idle");
+			AnimateIdle();
 			break;
 			case (int) PlayerAnimation.Moving:
-			animator.Play("Run");
+			// animator.Play("Run");
+			AnimateRunning();
 			break;
 		}
 	}
