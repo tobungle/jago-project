@@ -27,6 +27,12 @@ size = Vector3(1, 2, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhohb"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h17s1"]
+albedo_color = Color(0.9000001, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_je7p5"]
+albedo_color = Color(0.9499998, 0, 1, 1)
+
 [node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("animator", "interaction", "player_ui", "name_label", "camera_base", "graphics_base", "camera")]
 collision_layer = 2
 collision_mask = 3
@@ -358,6 +364,26 @@ transform = Transform3D(0.56218296, -0.11967111, -0.8183078, -0.012150645, 0.988
 
 [node name="Rock2" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D2/Stick2" unique_id=1534696496 instance=ExtResource("9_h17s1")]
 transform = Transform3D(0.0018855454, -0.032998957, 0.56376237, -0.0032799619, 0.55326253, 0.034390703, -0.06488984, -0.028924484, 0.014642991, 0.1975616, 0.07611001, -0.012170374)
+
+[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="3" unique_id=297548524]
+transform = Transform3D(1, 0, 0, 0, 1, -1.3435884e-07, 0, 1.3435884e-07, 1, 0, 0.89807373, -0.030891193)
+bone_name = "Body"
+bone_idx = 0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D3" unique_id=1381449947]
+transform = Transform3D(0.99999976, -3.3881318e-21, -1.4210855e-14, 1.6940659e-21, 0.99999976, 2.842171e-14, 1.4210855e-14, -2.842171e-14, 0.99999976, 0.07601582, -0.04452181, 0.09789649)
+radius = 0.1
+material = SubResource("StandardMaterial3D_h17s1")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D3" unique_id=1541649934]
+transform = Transform3D(0.99999976, -1.6940659e-21, -2.842171e-14, 3.3881318e-21, 0.99999976, 4.2632564e-14, 2.842171e-14, -4.2632564e-14, 0.99999976, -0.05102464, -0.0445218, 0.09789646)
+radius = 0.1
+material = SubResource("StandardMaterial3D_h17s1")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D3" unique_id=2102165503]
+transform = Transform3D(0.10999998, -2.1589653e-08, 1.1511704e-08, -6.6649495e-09, -0.076238595, -0.079294525, 2.3541704e-08, 0.079294525, -0.076238595, -1.4999341e-07, -0.08349543, 0.26282024)
+height = 4.281006
+material = SubResource("StandardMaterial3D_je7p5")
 
 [node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1206940177]
 speed_scale = 1.5
