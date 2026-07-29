@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="5_75vfm"]
 [ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="6_0owmy"]
 [ext_resource type="PackedScene" uid="uid://cobcqysv28nis" path="res://assets/glb/testmesh/Stick.glb" id="8_5gtgg"]
+[ext_resource type="PackedScene" uid="uid://domvv20347ak7" path="res://assets/glb/testmesh/Rock.glb" id="9_h17s1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
@@ -353,7 +354,10 @@ bone_name = "Hand.R"
 bone_idx = 26
 
 [node name="Stick2" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D2" unique_id=1373527567 instance=ExtResource("8_5gtgg")]
-transform = Transform3D(0.6183531, -0.108568385, -0.77836406, -0.00634104, 0.9896906, -0.14308204, 0.78587395, 0.093411006, 0.6112902, 0.08338468, 0.13175118, 0.15087539)
+transform = Transform3D(0.56218296, -0.11967111, -0.8183078, -0.012150645, 0.98817354, -0.15285978, 0.82692283, 0.09587837, 0.5540806, 0.06880841, 0.08424068, 0.1635778)
+
+[node name="Rock2" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D2/Stick2" unique_id=1534696496 instance=ExtResource("9_h17s1")]
+transform = Transform3D(0.0018855454, -0.032998957, 0.56376237, -0.0032799619, 0.55326253, 0.034390703, -0.06488984, -0.028924484, 0.014642991, 0.1975616, 0.07611001, -0.012170374)
 
 [node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1206940177]
 speed_scale = 1.5
