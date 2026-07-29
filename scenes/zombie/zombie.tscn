@@ -7,7 +7,7 @@
 [node name="Humanoid" parent="." unique_id=2132255535 instance=ExtResource("1_nlave")]
 transform = Transform3D(-1.2, 0, 1.04907336e-07, 0, 1.2, 0, -1.04907336e-07, 0, -1.2, 0, -0.99276966, 0)
 
-[node name="Skeleton3D" parent="Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2132255535, 589382195) index="0" unique_id=805960211]
+[node name="Skeleton3D" parent="Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2132255535, 1980869428) index="0" unique_id=755292257]
 bones/0/position = Vector3(-0.019510923, 1.4340214, -0.07035925)
 bones/0/rotation = Quaternion(0.11009951, 0.0056589204, -0.026876787, 0.99354106)
 bones/1/rotation = Quaternion(0.177285, 0.010892483, 0.038469624, 0.9833471)
@@ -59,7 +59,7 @@ bones/45/rotation = Quaternion(-0.68268067, -0.15812835, 0.69052917, 0.17919846)
 bones/46/rotation = Quaternion(-0.0006210178, 0.0011300462, -0.65071225, 0.7593233)
 bones/47/rotation = Quaternion(-0.00015748602, -0.00021548742, 0.58962375, 0.80767804)
 
-[node name="AnimationPlayer" parent="Humanoid" index="1" unique_id=1787625661]
+[node name="AnimationPlayer" parent="Humanoid" index="1" unique_id=2066051341]
 autoplay = &"Humanoid Sprint"
 
 [editable path="Humanoid"]

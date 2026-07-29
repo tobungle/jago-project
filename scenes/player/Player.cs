@@ -190,11 +190,11 @@ public partial class Player : CharacterBody3D, Syncable
 
 		if (input_vector == Vector2.Zero)
 		{
-			animator.Play("Humanoid Idle");
+			animator.Play("Idle");
 		}
 		else
 		{
-			animator.Play("Humanoid Run");
+			animator.Play("Run");
 		}
 	}
 
@@ -210,10 +210,10 @@ public partial class Player : CharacterBody3D, Syncable
 		switch (animation_playing)
 		{
 			case (int) PlayerAnimation.Idle:
-			animator.Play("Humanoid Idle");
+			animator.Play("Idle");
 			break;
 			case (int) PlayerAnimation.Moving:
-			animator.Play("Humanoid Run");
+			animator.Play("Run");
 			break;
 		}
 	}
