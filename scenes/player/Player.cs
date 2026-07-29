@@ -8,6 +8,7 @@ public partial class Player : CharacterBody3D, Syncable
 		Idle = 0,
 		Moving = 1
 	}
+	string animation = "NONE";
 	public enum OwnershipMode
 	{
 		Mine,
@@ -55,6 +56,17 @@ public partial class Player : CharacterBody3D, Syncable
 		network = GetNode("/root/Network");
 		DetermineOwnership();
 		UpdateOwnership();
+		ChangeAnimation("Idle");
+		// QUICK FIX TO GET FUCKING SHITTY STATE MACHINE WORKING FUCK YOU
+		// clean this UP TOMORROW IS MY CAPS LOCK EVEN FUCKING ON RAAGGGHH
+		anim_tree.AnimationFinished += (StringName anim) =>
+		{
+			if (anim == new StringName("SwingAttack"))
+			{
+				AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
+				state_machine.Travel(input_vector == Vector2.Zero ? "Idle" : "Run");
+			}
+		};
 	}
 
     public override void _Input(InputEvent input_event)
@@ -67,6 +79,10 @@ public partial class Player : CharacterBody3D, Syncable
         if (input_event is InputEventMouseMotion mm)
 		{
 			mouse_relative = mm.Relative;
+		}
+		if (input_event.IsActionPressed("melee_atk"))
+		{
+			DoMeleeAttack();
 		}
     }
 
@@ -185,32 +201,19 @@ public partial class Player : CharacterBody3D, Syncable
 
 		if (input_vector == Vector2.Zero)
 		{
-			AnimateRunning();
-
+			ChangeAnimation("Idle");
 		}
 		else
 		{
-			AnimateIdle();
+			ChangeAnimation("Run");
 		}
 	}
 
-	void AnimateRunning()
+	void DoMeleeAttack()
 	{
 		AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
-		state_machine.Travel("IdleRunBlend");
-		// Could use an actual value here but tweening is easier
-		Tween tween = CreateTween();
-		tween.SetTrans(Tween.TransitionType.Linear);
-		tween.SetEase(Tween.EaseType.InOut);
-		tween.TweenProperty(anim_tree, "parameters/IdleRunBlend/blend_position", 0.0f, 0.2f);
-	}
-
-	void AnimateIdle()
-	{
-		Tween tween = CreateTween();
-		tween.SetTrans(Tween.TransitionType.Linear);
-		tween.SetEase(Tween.EaseType.InOut);
-		tween.TweenProperty(anim_tree, "parameters/IdleRunBlend/blend_position", 1.0f, 0.2f);
+		state_machine.Travel("Idle");
+		state_machine.Travel("Swing");
 	}
 
 	// Update graphics for the remote player (player we do not own)
@@ -225,12 +228,10 @@ public partial class Player : CharacterBody3D, Syncable
 		switch (animation_playing)
 		{
 			case (int) PlayerAnimation.Idle:
-			// animator.Play("Idle");
-			AnimateIdle();
+			ChangeAnimation("Idle");
 			break;
 			case (int) PlayerAnimation.Moving:
-			// animator.Play("Run");
-			AnimateRunning();
+			ChangeAnimation("Run");
 			break;
 		}
 	}
@@ -248,6 +249,18 @@ public partial class Player : CharacterBody3D, Syncable
 			intended_angle = new_y_rot;
 		}
 		animation_playing = new_animation_playing;
+	}
+
+	// This is safe to call in _PhysicsProcess cos it only calls it once
+	void ChangeAnimation(string new_anim)
+	{
+		if (new_anim == animation)
+		{
+			return;
+		}
+		AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
+		state_machine.Travel(new_anim);
+		animation = new_anim;
 	}
 
 }
