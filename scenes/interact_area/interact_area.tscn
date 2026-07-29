@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0dpw1pvbun2m" path="res://scenes/interact_area/InteractArea.cs" id="1_ixg7x"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b7vda"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ixg7x"]
 
 [node name="InteractArea" type="Area3D" unique_id=1422881901]
 collision_layer = 8
@@ -12,4 +12,4 @@ monitoring = false
 script = ExtResource("1_ixg7x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1290180156]
-shape = SubResource("BoxShape3D_b7vda")
+shape = SubResource("SphereShape3D_ixg7x")
