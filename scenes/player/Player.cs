@@ -202,7 +202,12 @@ public partial class Player : CharacterBody3D, Syncable
 		if (input_vector == Vector2.Zero)
 		{
 			anim_tree.Set("parameters/RunSwingBlend/Blend2/blend_amount", 0f);
-			ChangeAnimation("Idle");
+			AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
+			StringName state = state_machine.GetCurrentNode();
+			if (state != "RunSwingBlend")
+			{
+				ChangeAnimation("Idle");
+			}
 		}
 		else
 		{

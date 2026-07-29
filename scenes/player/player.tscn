@@ -351,12 +351,12 @@ transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1
 
 [node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 628992194) index="0" unique_id=555787885]
 bones/0/rotation = Quaternion(6.717942e-08, 0, 0, 1)
-bones/1/rotation = Quaternion(0.004342539, 1.2879599e-05, -0.0029741572, 0.9999862)
+bones/1/rotation = Quaternion(0.012219285, 3.6306617e-05, -0.002973962, 0.99992096)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.1277725, -1.1845924e-07, -1.5055736e-08, 0.9918036)
+bones/3/rotation = Quaternion(-0.13803354, -1.18463305e-07, -1.7644187e-08, 0.9904276)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.033278547, 0.35685617, -0.37114602, 0.8566194)
-bones/6/rotation = Quaternion(0.26614457, 9.953968e-05, 0.00011746926, 0.9639331)
+bones/5/rotation = Quaternion(0.037152443, 0.34776816, -0.3675742, 0.8617228)
+bones/6/rotation = Quaternion(0.2730474, 9.933819e-05, 0.000120484336, 0.9620006)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -374,8 +374,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.207049e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.033278953, -0.35685596, 0.37114623, 0.8566195)
-bones/25/rotation = Quaternion(0.26614356, -9.958236e-05, -0.00011738164, 0.9639334)
+bones/24/rotation = Quaternion(0.037152376, -0.3477683, 0.36757413, 0.8617229)
+bones/25/rotation = Quaternion(0.27304763, -9.9358316e-05, -0.00012040467, 0.9620005)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -402,7 +402,7 @@ bones/46/rotation = Quaternion(-4.3477463e-05, 0.0014867212, -0.04557188, 0.9989
 bones/47/rotation = Quaternion(-0.00015755814, -0.00021558028, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, -1.0577139e-10, -1.5663204e-10, -2.8414604e-11, 0.99999595, 0.0028536469, 8.498091e-11, -0.002853632, 0.99999595, 0.0019802048, 1.5859892, -0.008329501)
+transform = Transform3D(1, -1.1970371e-09, -1.6919444e-10, 7.0097883e-10, 0.99996954, 0.007805258, 8.6231466e-11, -0.007805258, 0.99996954, 0.0019802032, 1.5855832, -0.0018916186)
 bone_name = "Head"
 bone_idx = 3
 
@@ -410,7 +410,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.71388817, -0.059806015, 0.69770116, 0.15350094, -0.9854786, 0.072588146, 0.68322843, 0.15891771, 0.71270204, -0.2873956, 0.89503694, -0.0075351447)
+transform = Transform3D(-0.7175208, -0.05621841, 0.6942644, 0.16131909, -0.9830492, 0.08711997, 0.67759854, 0.17450863, 0.71442777, -0.28743622, 0.8961194, 0.001898557)
 bone_name = "Hand.R"
 bone_idx = 26
 
