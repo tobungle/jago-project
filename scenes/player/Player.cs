@@ -201,11 +201,18 @@ public partial class Player : CharacterBody3D, Syncable
 
 		if (input_vector == Vector2.Zero)
 		{
+			anim_tree.Set("parameters/RunSwingBlend/Blend2/blend_amount", 0f);
 			ChangeAnimation("Idle");
 		}
 		else
 		{
-			ChangeAnimation("Run");
+			anim_tree.Set("parameters/RunSwingBlend/Blend2/blend_amount", 1f);
+			AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
+			StringName state = state_machine.GetCurrentNode();
+			if (state != "RunSwingBlend")
+			{
+				ChangeAnimation("Run");
+			}
 		}
 	}
 
@@ -213,7 +220,7 @@ public partial class Player : CharacterBody3D, Syncable
 	{
 		AnimationNodeStateMachinePlayback state_machine = (AnimationNodeStateMachinePlayback) anim_tree.Get("parameters/playback");
 		state_machine.Travel("Idle");
-		state_machine.Travel("Swing");
+		state_machine.Travel("RunSwingBlend");
 	}
 
 	// Update graphics for the remote player (player we do not own)

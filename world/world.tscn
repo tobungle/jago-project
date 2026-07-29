@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://didf7rkg2ovxf" path="res://scenes/zombie/zombie.tscn" id="4_h5o24"]
 [ext_resource type="PackedScene" uid="uid://blu1r2rpb4gce" path="res://assets/glb/Hosse/Hosse.glb" id="5_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://caulaak8man6v" path="res://assets/glb/items/accessories/Cowboy Hat/CowboyHat.glb" id="6_fn3g3"]
-[ext_resource type="PackedScene" uid="uid://cneltw4ntbiig" path="res://scenes/ragdoll_test/ragdoll_test.tscn" id="7_sc4t8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcf2h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -589,9 +588,3 @@ size = Vector3(10.422852, 1.4452515, 13.077148)
 transform = Transform3D(0.5295298, 0.58300626, 0.6161996, 2.9802322e-08, 0.7264009, -0.6872713, -0.84829146, 0.3639306, 0.38465095, 32.391808, 4.5562067, 7.978176)
 use_collision = true
 size = Vector3(10.422852, 1.4452515, 16.547485)
-
-[node name="RagdollTest" parent="." unique_id=191952103 instance=ExtResource("7_sc4t8")]
-transform = Transform3D(1, 0, 0, 0, 0.99480236, 0.10182509, 0, -0.10182509, 0.99480236, 0, 0.045373917, -6.4663925)
-
-[node name="RagdollTest2" parent="." unique_id=1898388447 instance=ExtResource("7_sc4t8")]
-transform = Transform3D(-0.3185624, -0.34594497, -0.8825191, 0, 0.9310237, -0.3649586, 0.9479019, -0.116262086, -0.29658914, -2.9971514, 3.9338536, -8.132025)

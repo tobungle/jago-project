@@ -33,8 +33,26 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ugbui"]
 animation = &"Run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcs02"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_je7p5"]
 animation = &"SwingAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fm80t"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_h17s1"]
+filter_enabled = true
+filters = ["Humanoid Armature/Skeleton3D:Foot.L", "Humanoid Armature/Skeleton3D:Foot.R", "Humanoid Armature/Skeleton3D:LowerLeg.L", "Humanoid Armature/Skeleton3D:LowerLeg.R", "Humanoid Armature/Skeleton3D:UpperLeg.L", "Humanoid Armature/Skeleton3D:UpperLeg.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gx1jg"]
+graph_offset = Vector2(38.571167, -24.862518)
+nodes/output/position = Vector2(760, 180)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_fm80t")
+nodes/Animation/position = Vector2(260, 260)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_je7p5")
+"nodes/Animation 2/position" = Vector2(260, 80)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_h17s1")
+nodes/Blend2/position = Vector2(460, 120)
+node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_myrg7"]
 xfade_time = 0.1
@@ -42,30 +60,29 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kvlxm"]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uf5tr"]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_je7p5"]
-xfade_time = 0.1
-switch_mode = 2
-advance_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h17s1"]
+xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fm80t"]
-xfade_time = 0.1
+xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h17s1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gx1jg"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ugbui"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_je7p5"]
-states/End/position = Vector2(928, 93)
+states/End/position = Vector2(1093, 96)
 states/Idle/node = SubResource("AnimationNodeAnimation_gx1jg")
 states/Idle/position = Vector2(407, 76)
 states/Run/node = SubResource("AnimationNodeAnimation_ugbui")
 states/Run/position = Vector2(636, -17)
-states/Start/position = Vector2(225, 76)
-states/Swing/node = SubResource("AnimationNodeAnimation_fcs02")
-states/Swing/position = Vector2(796, 165)
-transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_myrg7"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_kvlxm"), "Run", "Swing", SubResource("AnimationNodeStateMachineTransition_uf5tr"), "Swing", "Idle", SubResource("AnimationNodeStateMachineTransition_je7p5"), "Idle", "Swing", SubResource("AnimationNodeStateMachineTransition_fm80t"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_h17s1")]
-graph_offset = Vector2(121, -76)
+states/RunSwingBlend/node = SubResource("AnimationNodeBlendTree_gx1jg")
+states/RunSwingBlend/position = Vector2(679, 150)
+states/Start/position = Vector2(182, 58)
+transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_myrg7"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_kvlxm"), "Run", "RunSwingBlend", SubResource("AnimationNodeStateMachineTransition_h17s1"), "RunSwingBlend", "Idle", SubResource("AnimationNodeStateMachineTransition_fm80t"), "Idle", "RunSwingBlend", SubResource("AnimationNodeStateMachineTransition_gx1jg"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ugbui")]
+graph_offset = Vector2(61, -139)
 
 [node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("anim_tree", "animator", "interaction", "player_ui", "name_label", "camera_base", "graphics_base", "camera")]
 collision_layer = 2
@@ -332,13 +349,14 @@ material = SubResource("StandardMaterial3D_vhohb")
 [node name="Humanoid" parent="GraphicsBase" unique_id=2121805294 instance=ExtResource("6_0owmy")]
 transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1.2, 0, -0.99276966, 0)
 
-[node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 829069517) index="0" unique_id=267749347]
+[node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 628992194) index="0" unique_id=555787885]
 bones/0/rotation = Quaternion(6.717942e-08, 0, 0, 1)
+bones/1/rotation = Quaternion(0.004342539, 1.2879599e-05, -0.0029741572, 0.9999862)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.122048244, -1.1859937e-07, -1.4824611e-08, 0.99252415)
+bones/3/rotation = Quaternion(-0.1277725, -1.1845924e-07, -1.5055736e-08, 0.9918036)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.031187285, 0.36184043, -0.3731275, 0.8537416)
-bones/6/rotation = Quaternion(0.26225415, 9.964483e-05, 0.000115704184, 0.9649989)
+bones/5/rotation = Quaternion(0.033278547, 0.35685617, -0.37114602, 0.8566194)
+bones/6/rotation = Quaternion(0.26614457, 9.953968e-05, 0.00011746926, 0.9639331)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -356,8 +374,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.207049e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.031187471, -0.36184043, 0.3731273, 0.85374165)
-bones/25/rotation = Quaternion(0.2622536, -9.964778e-05, -0.000115676485, 0.96499896)
+bones/24/rotation = Quaternion(0.033278953, -0.35685596, 0.37114623, 0.8566195)
+bones/25/rotation = Quaternion(0.26614356, -9.958236e-05, -0.00011738164, 0.9639334)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -384,7 +402,7 @@ bones/46/rotation = Quaternion(-4.3477463e-05, 0.0014867212, -0.04557188, 0.9989
 bones/47/rotation = Quaternion(-0.00015755814, -0.00021558028, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, -1.5571544e-10, -1.5072033e-10, 2.9609026e-10, 0.99999994, -1.0430813e-07, 7.8543394e-11, 1.1920929e-07, 1, 0.0019802044, 1.5861697, -0.011881148)
+transform = Transform3D(1, -1.0577139e-10, -1.5663204e-10, -2.8414604e-11, 0.99999595, 0.0028536469, 8.498091e-11, -0.002853632, 0.99999595, 0.0019802048, 1.5859892, -0.008329501)
 bone_name = "Head"
 bone_idx = 3
 
@@ -392,7 +410,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.71181417, -0.061894067, 0.6996352, 0.14917733, -0.9867054, 0.06448397, 0.68634266, 0.15027043, 0.71158457, -0.287395, 0.89443886, -0.012738887)
+transform = Transform3D(-0.71388817, -0.059806015, 0.69770116, 0.15350094, -0.9854786, 0.072588146, 0.68322843, 0.15891771, 0.71270204, -0.2873956, 0.89503694, -0.0075351447)
 bone_name = "Hand.R"
 bone_idx = 26
 
@@ -402,7 +420,7 @@ transform = Transform3D(0.56218296, -0.11967111, -0.8183078, -0.012150645, 0.988
 [node name="Rock2" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D2/Stick2" unique_id=1534696496 instance=ExtResource("9_h17s1")]
 transform = Transform3D(0.0018855454, -0.032998957, 0.56376237, -0.0032799619, 0.55326253, 0.034390703, -0.06488984, -0.028924484, 0.014642991, 0.1975616, 0.07611001, -0.012170374)
 
-[node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1597880176]
+[node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1020107464]
 speed_scale = 1.5
 
 [node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("camera")]
@@ -413,5 +431,6 @@ camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
 root_node = NodePath("../GraphicsBase/Humanoid")
 tree_root = SubResource("AnimationNodeStateMachine_je7p5")
 anim_player = NodePath("../GraphicsBase/Humanoid/AnimationPlayer")
+parameters/RunSwingBlend/Blend2/blend_amount = 1.0
 
 [editable path="GraphicsBase/Humanoid"]
