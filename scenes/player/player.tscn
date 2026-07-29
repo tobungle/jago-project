@@ -288,7 +288,7 @@ material = SubResource("StandardMaterial3D_vhohb")
 [node name="Humanoid" parent="GraphicsBase" unique_id=2121805294 instance=ExtResource("6_0owmy")]
 transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1.2, 0, -0.99276966, 0)
 
-[node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 1980869428) index="0" unique_id=755292257]
+[node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 327739296) index="0" unique_id=2091549894]
 bones/0/rotation = Quaternion(6.717942e-08, 0, 0, 1)
 bones/3/rotation = Quaternion(-0.12204823, -1.1839537e-07, -1.4700543e-08, 0.99252415)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
@@ -328,17 +328,16 @@ bones/38/rotation = Quaternion(-0.017467182, -0.00053852936, 0.22157423, 0.97498
 bones/39/rotation = Quaternion(0.45121503, -0.26207763, -0.03305692, 0.85242456)
 bones/40/rotation = Quaternion(-0.103927456, 0.0081046205, 0.081821345, 0.99118054)
 bones/41/rotation = Quaternion(-0.0044418266, 0.007965321, 0.064099185, 0.99790186)
-bones/43/rotation = Quaternion(-0.49938902, 0.50061023, 0.5006103, -0.49938908)
-bones/44/position = Vector3(0.10713606, 0.9356976, -0.017029755)
-bones/44/rotation = Quaternion(0.7038326, 0.01540952, 0.7101742, 0.005895837)
-bones/45/rotation = Quaternion(-4.3465017e-05, -0.0014866852, 0.045568623, 0.99896014)
-bones/46/rotation = Quaternion(-0.000157559, 0.0002155794, -0.58962375, 0.80767804)
-bones/47/position = Vector3(-0.10713605, 0.9356976, -0.017029755)
-bones/47/rotation = Quaternion(-0.70383257, 0.015410596, 0.71017426, -0.0058970586)
-bones/48/rotation = Quaternion(-4.3477463e-05, 0.0014867212, -0.04557188, 0.99896)
-bones/49/rotation = Quaternion(-0.00015755814, -0.00021558028, 0.58962375, 0.80767804)
+bones/42/position = Vector3(0.10713606, 0.9356976, -0.017029755)
+bones/42/rotation = Quaternion(0.7038326, 0.01540952, 0.7101742, 0.005895837)
+bones/43/rotation = Quaternion(-4.3465017e-05, -0.0014866852, 0.045568623, 0.99896014)
+bones/44/rotation = Quaternion(-0.000157559, 0.0002155794, -0.58962375, 0.80767804)
+bones/45/position = Vector3(-0.10713605, 0.9356976, -0.017029755)
+bones/45/rotation = Quaternion(-0.70383257, 0.015410596, 0.71017426, -0.0058970586)
+bones/46/rotation = Quaternion(-4.3477463e-05, 0.0014867212, -0.04557188, 0.99896)
+bones/47/rotation = Quaternion(-0.00015755814, -0.00021558028, 0.58962375, 0.80767804)
 
-[node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=2066051341]
+[node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1206940177]
 speed_scale = 1.5
 
 [node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("camera")]
