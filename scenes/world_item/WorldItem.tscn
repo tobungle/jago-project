@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvkx2spiqdbf4" path="res://scenes/interact_area/interact_area.tscn" id="2_b7vda"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b7vda"]
-size = Vector3(0.6, 0.6, 0.6)
+size = Vector3(0.4, 0.4, 0.4)
 
 [node name="world_item" type="RigidBody3D" unique_id=944967800]
 collision_layer = 4

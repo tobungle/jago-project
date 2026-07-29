@@ -3,6 +3,7 @@ using Godot;
 
 public partial class WorldItem : RigidBody3D, Interactable, Syncable
 {
+	[Export] bool spin = false;
 	[Signal] public delegate void PickedUpEventHandler();
 	Node3D item_mesh;
 	Globals globals;
@@ -28,7 +29,7 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 		globals = GetNode<Globals>("/root/Globals");
 		network = GetNode<Node>("/root/Network");
 
-		PackedScene testmesh = GD.Load<PackedScene>("res://assets/glb/testmesh/TestShape.glb");
+		PackedScene testmesh = GD.Load<PackedScene>("res://assets/glb/testmesh/Rock.glb");
 		item_mesh = testmesh.Instantiate<Node3D>();
 		AddChild(item_mesh);
 		SetMultiplayerAuthority(1);
@@ -50,10 +51,13 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 
     public override void _PhysicsProcess(double delta)
     {
-		item_mesh.RotateY(0.05f);
-		Vector3 pos = item_mesh.Position;
-		pos.Y += (float)Math.Sin(globals.world_item_spin_timer) * bob_distance;
-		item_mesh.Position = pos;
+		if (spin)
+		{
+			item_mesh.RotateY(0.05f);
+			Vector3 pos = item_mesh.Position;
+			pos.Y += (float)Math.Sin(globals.world_item_spin_timer) * bob_distance;
+			item_mesh.Position = pos;
+		}
 		if (Multiplayer.IsServer())
 		{
 			network.Rpc("worlditem_updated", server_id, GlobalPosition, RotationDegrees);
