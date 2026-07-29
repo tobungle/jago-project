@@ -46,6 +46,7 @@ public partial class Player : CharacterBody3D, Syncable
 
 	// Remote player vars
 	Vector3 intended__position;
+	float intended_angle;
 	int animation_playing;
 	
 	public override void _Ready()
@@ -169,10 +170,24 @@ public partial class Player : CharacterBody3D, Syncable
 	void DoGraphics()
 	{
 		Vector2 direction = input_vector.Rotated(-camera_base.Rotation.Y);
+
+		/* Old rotation code
 		if (GlobalPosition + new Vector3(direction.X, 0f, direction.Y) != GlobalPosition)
 		{
 			graphics_base.LookAt(GlobalPosition + new Vector3(direction.X, 0f, direction.Y));
 		}
+		*/
+
+		// idk what an arc tangent is  but internet tells me this is how you get angle to direction
+		if (input_vector != Vector2.Zero)
+		{
+			float angle = Mathf.Atan2(-direction.X, -direction.Y);
+			Vector3 g_rot = graphics_base.Rotation;
+			g_rot.Y = Mathf.LerpAngle(graphics_base.Rotation.Y, angle, 0.25f);
+			graphics_base.Rotation = g_rot;
+		}
+
+
 		if (input_vector == Vector2.Zero)
 		{
 			animator.Play("Humanoid Idle");
@@ -187,6 +202,11 @@ public partial class Player : CharacterBody3D, Syncable
 	void DoGraphicsRemote()
 	{
 		GlobalPosition = GlobalPosition.Lerp(intended__position, 0.75f);
+		
+		Vector3 g_rot = graphics_base.Rotation;
+		g_rot.Y = Mathf.LerpAngle(graphics_base.Rotation.Y, intended_angle, 0.25f);
+		graphics_base.Rotation = g_rot;
+		
 		switch (animation_playing)
 		{
 			case (int) PlayerAnimation.Idle:
@@ -200,7 +220,7 @@ public partial class Player : CharacterBody3D, Syncable
 
 	void Sync()
 	{
-		network.Call("_sync_my_player", GlobalPosition, graphics_base.RotationDegrees.Y, input_vector == Vector2.Zero ? 0 : 1);
+		network.Call("_sync_my_player", GlobalPosition, graphics_base.Rotation.Y, input_vector == Vector2.Zero ? 0 : 1);
 	}
 
 	void RemoteSync(int player_id, Vector3 new_position, float new_y_rot, int new_animation_playing)
@@ -208,10 +228,8 @@ public partial class Player : CharacterBody3D, Syncable
 		if (player_id == server_id)
 		{
 			intended__position = new_position;
+			intended_angle = new_y_rot;
 		}
-		Vector3 rotation = graphics_base.RotationDegrees;
-		rotation.Y = new_y_rot;
-		graphics_base.RotationDegrees = rotation;
 		animation_playing = new_animation_playing;
 	}
 
