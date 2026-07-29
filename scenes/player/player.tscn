@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://s3mhrum4caxm" path="res://scenes/player/ui/item_icon.tscn" id="4_lvxji"]
 [ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="5_75vfm"]
 [ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="6_0owmy"]
+[ext_resource type="PackedScene" uid="uid://cobcqysv28nis" path="res://assets/glb/testmesh/Stick.glb" id="8_5gtgg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
@@ -345,6 +346,14 @@ bone_idx = 3
 
 [node name="CowboyHat" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D" unique_id=1288923392 instance=ExtResource("2_qek5x")]
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
+transform = Transform3D(-0.7118142, -0.06189411, 0.69963515, 0.14917733, -0.9867054, 0.064483896, 0.68634266, 0.1502704, 0.7115845, -0.28739503, 0.8944389, -0.012738895)
+bone_name = "Hand.R"
+bone_idx = 26
+
+[node name="Stick2" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D/BoneAttachment3D2" unique_id=1373527567 instance=ExtResource("8_5gtgg")]
+transform = Transform3D(0.6183531, -0.108568385, -0.77836406, -0.00634104, 0.9896906, -0.14308204, 0.78587395, 0.093411006, 0.6112902, 0.08338468, 0.13175118, 0.15087539)
 
 [node name="AnimationPlayer" parent="GraphicsBase/Humanoid" index="1" unique_id=1206940177]
 speed_scale = 1.5
