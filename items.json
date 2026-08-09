@@ -1,9 +1,16 @@
 {
     "stick" : {
         "display_name" : "Stick",
-        "description" : "It's a stick, um, off the floor. Perhaps you could, um... put it somewhere innapropriate?",
-        "craftable_type" : ["small_handle", "medium_handle", "tinder", "fuel"],
-        "value" : 0,
-        "melee_damage" : 1
+        "description" : "It's a stick, um, off the floor.",
+        "craft_tags" : ["small_handle", "medium_handle", "tinder", "fuel"],
+        "value" : "0",
+        "melee_damage" : "1"
+    },
+    "stone" : {
+        "display_name" : "Stone",
+        "description" : "It's a stone. You can craft with this...",
+        "craft_tags" : ["knappable"],
+        "value" : "0",
+        "melee_damage" : "2"
     }
 }

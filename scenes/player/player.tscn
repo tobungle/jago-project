@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://caulaak8man6v" path="res://assets/glb/items/accessories/Cowboy Hat/CowboyHat.glb" id="2_qek5x"]
 [ext_resource type="Script" uid="uid://cno1vs1kn53x3" path="res://scenes/player/InteractionManager.cs" id="3_gmlin"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui_themes/black_and_white_theme/black_and_white.tres" id="3_p47bc"]
-[ext_resource type="PackedScene" uid="uid://s3mhrum4caxm" path="res://scenes/player/ui/item_icon.tscn" id="4_lvxji"]
 [ext_resource type="FontFile" uid="uid://cr2b7dumh04qx" path="res://assets/fonts/RobotoMono-Regular.ttf" id="5_75vfm"]
 [ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="6_0owmy"]
 [ext_resource type="PackedScene" uid="uid://cobcqysv28nis" path="res://assets/glb/testmesh/Stick.glb" id="8_5gtgg"]
@@ -111,9 +110,9 @@ transform = Transform3D(1, 0, 0, 0, 0.98781425, -0.15563849, 0, 0.1556385, 0.987
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10620117, 0)
 shape = SubResource("CapsuleShape3D_jmxdo")
 
-[node name="PlayerUi" type="CanvasLayer" parent="." unique_id=592100888 node_paths=PackedStringArray("inv_grid", "player_camera", "hover_prompt")]
+[node name="PlayerUi" type="CanvasLayer" parent="." unique_id=592100888 node_paths=PackedStringArray("inv_control", "player_camera", "hover_prompt")]
 script = ExtResource("2_dovo2")
-inv_grid = NodePath("Control/InvGrid")
+inv_control = NodePath("Control/Inventory")
 player_camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
 hover_prompt_offset = Vector2(-100, -50)
 hover_prompt = NodePath("Control/InteractionLabel")
@@ -188,81 +187,6 @@ text = "Right Hand"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvGrid" type="GridContainer" parent="PlayerUi/Control" unique_id=1254600693]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -102.0
-offset_right = 128.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 5
-
-[node name="ItemIcon" parent="PlayerUi/Control/InvGrid" unique_id=391912117 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon2" parent="PlayerUi/Control/InvGrid" unique_id=1989730631 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon3" parent="PlayerUi/Control/InvGrid" unique_id=1436843201 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon4" parent="PlayerUi/Control/InvGrid" unique_id=1208611831 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon5" parent="PlayerUi/Control/InvGrid" unique_id=1222482865 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon6" parent="PlayerUi/Control/InvGrid" unique_id=901677707 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon7" parent="PlayerUi/Control/InvGrid" unique_id=1995484204 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon8" parent="PlayerUi/Control/InvGrid" unique_id=351380220 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon9" parent="PlayerUi/Control/InvGrid" unique_id=2066842643 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon10" parent="PlayerUi/Control/InvGrid" unique_id=440211283 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon11" parent="PlayerUi/Control/InvGrid" unique_id=701586957 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon12" parent="PlayerUi/Control/InvGrid" unique_id=1899415850 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon13" parent="PlayerUi/Control/InvGrid" unique_id=982415679 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon14" parent="PlayerUi/Control/InvGrid" unique_id=2038629952 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon15" parent="PlayerUi/Control/InvGrid" unique_id=743516420 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon16" parent="PlayerUi/Control/InvGrid" unique_id=748146027 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon17" parent="PlayerUi/Control/InvGrid" unique_id=1391424615 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon18" parent="PlayerUi/Control/InvGrid" unique_id=1414597069 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon19" parent="PlayerUi/Control/InvGrid" unique_id=1222166459 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
-[node name="ItemIcon20" parent="PlayerUi/Control/InvGrid" unique_id=622057596 instance=ExtResource("4_lvxji")]
-layout_mode = 2
-
 [node name="CrossHair" type="CenterContainer" parent="PlayerUi/Control" unique_id=208413479]
 layout_mode = 1
 anchors_preset = 15
@@ -311,6 +235,32 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "Stamina"
 
+[node name="Inventory" type="Control" parent="PlayerUi/Control" unique_id=99059083]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -184.0
+offset_right = 272.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerUi/Control/Inventory" unique_id=259165149]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUi/Control/Inventory/ScrollContainer" unique_id=1764384187]
+custom_minimum_size = Vector2(544, 432)
+layout_mode = 2
+
 [node name="PlayerName" type="Label3D" parent="." unique_id=1605969248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7489674, 0)
 pixel_size = 0.008
@@ -351,12 +301,12 @@ transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1
 
 [node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 1194160616) index="0" unique_id=1554437886]
 bones/0/rotation = Quaternion(6.717942e-08, -3.3881318e-21, -3.3881318e-21, 1)
-bones/1/rotation = Quaternion(0.00044043583, 1.2739737e-06, -0.0029741852, 0.9999955)
+bones/1/rotation = Quaternion(0.0009405466, 2.7614008e-06, -0.002974184, 0.99999523)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.122575045, -1.1848831e-07, -1.4059028e-08, 0.99245936)
+bones/3/rotation = Quaternion(-0.12328827, -1.1858459e-07, -1.5006412e-08, 0.9923709)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.031397548, 0.36133566, -0.37292567, 0.85403585)
-bones/6/rotation = Quaternion(0.26265153, 9.965857e-05, 0.000115884526, 0.96489084)
+bones/5/rotation = Quaternion(0.031518713, 0.36104476, -0.37280923, 0.8542052)
+bones/6/rotation = Quaternion(0.263099, 9.9615245e-05, 0.00011609397, 0.9647689)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -374,8 +324,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.2070843e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.03139798, -0.3613355, 0.3729256, 0.8540359)
-bones/25/rotation = Quaternion(0.26265043, -9.963465e-05, -0.00011582871, 0.96489114)
+bones/24/rotation = Quaternion(0.031519327, -0.36104456, 0.37280956, 0.85420513)
+bones/25/rotation = Quaternion(0.2630983, -9.9630146e-05, -0.000116056646, 0.9647691)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -400,7 +350,7 @@ bones/46/rotation = Quaternion(-4.347262e-05, 0.0014867327, -0.045571897, 0.9989
 bones/47/rotation = Quaternion(-0.0001575583, -0.00021558016, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, -8.6543395e-10, -1.4658497e-10, 6.3229777e-10, 1, 0.00018058717, 7.3754336e-11, -0.00018057227, 0.99999994, 0.0019802048, 1.5861529, -0.011520868)
+transform = Transform3D(1, 3.9234394e-10, -1.506919e-10, -1.01980646e-10, 0.9999999, 0.00061774254, 7.732126e-11, -0.00061772764, 0.9999998, 0.0019802046, 1.5861332, -0.011111781)
 bone_name = "Head"
 bone_idx = 3
 
@@ -408,7 +358,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.71202713, -0.06168032, 0.6994373, 0.14961724, -0.9865846, 0.06530762, 0.68602616, 0.15114877, 0.7117038, -0.2873951, 0.89449966, -0.012211055)
+transform = Transform3D(-0.7121383, -0.061239384, 0.69936293, 0.14953348, -0.9865594, 0.06587726, 0.6859289, 0.15149197, 0.71172446, -0.2873009, 0.89453983, -0.011952043)
 bone_name = "Hand.R"
 bone_idx = 26
 

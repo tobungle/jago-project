@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bwlsjc6ii5si5"]
+
+[ext_resource type="Script" uid="uid://7rjlltgxcsba" path="res://scenes/player/ui/ItemListing.cs" id="1_1r6w6"]
+
+[node name="ItemListing" type="Control" unique_id=709648719 node_paths=PackedStringArray("item_name_label", "drop_1_btn", "drop_all_btn")]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1r6w6")
+item_name_label = NodePath("ItemNameLabel")
+drop_1_btn = NodePath("Drop1Btn")
+drop_all_btn = NodePath("DropAllBtn")
+
+[node name="Panel" type="Panel" parent="." unique_id=1174195450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemNameLabel" type="Label" parent="." unique_id=1219939327]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015000001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.15999985
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stick x1"
+vertical_alignment = 1
+
+[node name="Drop1Btn" type="Button" parent="." unique_id=211722256]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 3.0
+offset_right = 444.0
+offset_bottom = 29.0
+text = "Drop 1"
+
+[node name="DropAllBtn" type="Button" parent="." unique_id=506995734]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 3.0
+offset_right = 535.0
+offset_bottom = 29.0
+text = "Drop All"

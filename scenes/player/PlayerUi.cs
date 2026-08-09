@@ -2,7 +2,7 @@ using Godot;
 
 public partial class PlayerUi : CanvasLayer
 {
-	[Export] GridContainer inv_grid;
+	[Export] Control inv_control;
 	[Export] Camera3D player_camera;	// Needed for unprojecting postiions
 	[Export] Vector2 hover_prompt_offset;
 	[Export] Label hover_prompt;
@@ -10,7 +10,7 @@ public partial class PlayerUi : CanvasLayer
 	public override void _Ready()
 	{
 		globals = GetNode<Globals>("/root/Globals");
-		inv_grid.Visible = false;
+		inv_control.Visible = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -31,8 +31,8 @@ public partial class PlayerUi : CanvasLayer
 
 	void ToggleInv()
 	{
-		inv_grid.Visible = !inv_grid.Visible;
-		if (inv_grid.Visible)
+		inv_control.Visible = !inv_control.Visible;
+		if (inv_control.Visible)
 		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
