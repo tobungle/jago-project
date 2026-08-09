@@ -1,0 +1,9 @@
+{
+    "stick" : {
+        "display_name" : "Stick",
+        "description" : "It's a stick, um, off the floor. Perhaps you could, um... put it somewhere innapropriate?",
+        "craftable_type" : ["small_handle", "medium_handle", "tinder", "fuel"],
+        "value" : 0,
+        "melee_damage" : 1
+    }
+}
