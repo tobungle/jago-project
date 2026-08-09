@@ -39,6 +39,14 @@ public partial class Inventory : Node
             }
         );
 
+        AddItem(
+            new Item()
+            {
+                type = "stick",
+                quantity = 2
+            }
+        );
+
     }
 
     public void AddItem(Item item)
@@ -48,7 +56,7 @@ public partial class Inventory : Node
             Item other_item = items[i];
             if (items[i].type == item.type)
             {
-                other_item.quantity ++;
+                other_item.quantity += item.quantity;
                 items[i] = other_item;
                 EmitSignal(SignalName.ItemQuantityChanged, i, items[i].quantity);
                 return;

@@ -19,6 +19,9 @@ public partial class PlayerUi : CanvasLayer
 		player_inventory.ItemAdded += (int index) => {
 			CallDeferred("OnInventoryItemAdded", index);
 		};
+		player_inventory.ItemQuantityChanged += (int[] index_quantity) => {
+			CallDeferred("OnInventoryItemQuantityChanged", index_quantity[0], index_quantity[1]);
+		};
 	}
 
     public override void _Input(InputEvent input)
@@ -69,5 +72,12 @@ public partial class PlayerUi : CanvasLayer
 		ItemListing listing = GD.Load<PackedScene>("uid://bwlsjc6ii5si5").Instantiate<ItemListing>();
 		inv_container.AddChild(listing);
 		listing.SetItem(item);
+	}
+	// Wait a minute the second arg is useless
+	// idk maybe itll be useful later haha.
+	void OnInventoryItemQuantityChanged(int item_index, int item_quantity)
+	{
+		ItemListing listing = inv_container.GetChild<ItemListing>(item_index);
+		listing.SetItem(player_inventory.items[item_index]);
 	}
 }
