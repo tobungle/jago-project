@@ -10,9 +10,9 @@ public struct Item
 
 public partial class Inventory : Node
 {
-    [Signal] public delegate int ItemAddedEventHandler();
-    [Signal] public delegate int ItemRemovedEventHandler();
-    [Signal] public delegate int[] ItemQuantityChangedEventHandler();
+    [Signal] public delegate void ItemAddedEventHandler(int item_index);
+    [Signal] public delegate void ItemRemovedEventHandler(int item_index);
+    [Signal] public delegate void ItemQuantityChangedEventHandler(int[] index_quantity);
 
     public readonly List<Item> items = new();
     Globals globals;
@@ -20,6 +20,25 @@ public partial class Inventory : Node
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");    // For item db access
+
+        // Add some items for testing :)
+
+        AddItem(
+            new Item()
+            {
+                type = "stone",
+                quantity = 1
+            }
+        );
+
+        AddItem(
+            new Item()
+            {
+                type = "stick",
+                quantity = 8
+            }
+        );
+
     }
 
     public void AddItem(Item item)
@@ -36,7 +55,7 @@ public partial class Inventory : Node
             }
         }
         items.Add(item);
-        EmitSignal(SignalName.ItemAdded, items.Count);
+        EmitSignal(SignalName.ItemAdded, items.Count - 1);
     }
 
     public void DecrementItemAt(int index)

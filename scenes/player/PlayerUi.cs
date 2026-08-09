@@ -2,7 +2,9 @@ using Godot;
 
 public partial class PlayerUi : CanvasLayer
 {
-	[Export] Control inv_control;
+	[Export] Inventory player_inventory;
+	[Export] Control inv_control;	// Parent of all inventory ui, used for visibility toggling
+	[Export] VBoxContainer inv_container;	// Node that inventory listing are instanced under
 	[Export] Camera3D player_camera;	// Needed for unprojecting postiions
 	[Export] Vector2 hover_prompt_offset;
 	[Export] Label hover_prompt;
@@ -12,6 +14,11 @@ public partial class PlayerUi : CanvasLayer
 		globals = GetNode<Globals>("/root/Globals");
 		inv_control.Visible = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		// Delay all ui signals by 1 frame just incase items are added before this scene is ready
+		// This can be removed l8r when um. When items are not initilialised in _ready anymore. im gay
+		player_inventory.ItemAdded += (int index) => {
+			CallDeferred("OnInventoryItemAdded", index);
+		};
 	}
 
     public override void _Input(InputEvent input)
@@ -54,5 +61,13 @@ public partial class PlayerUi : CanvasLayer
 			hover_prompt.Position = player_camera.UnprojectPosition(interactable_node.GlobalPosition) + hover_prompt_offset;
 			hover_prompt.Text = globals.hovered_interactable.GetInteractPrompt();
 		}
+	}
+
+	void OnInventoryItemAdded(int item_index)
+	{
+		Item item = player_inventory.items[item_index];
+		ItemListing listing = GD.Load<PackedScene>("uid://bwlsjc6ii5si5").Instantiate<ItemListing>();
+		inv_container.AddChild(listing);
+		listing.SetItem(item);
 	}
 }
