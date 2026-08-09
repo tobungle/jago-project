@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://p757xqvksdls" path="res://assets/glb/humanoid/Humanoid.glb" id="6_0owmy"]
 [ext_resource type="PackedScene" uid="uid://cobcqysv28nis" path="res://assets/glb/testmesh/Stick.glb" id="8_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://domvv20347ak7" path="res://assets/glb/testmesh/Rock.glb" id="9_h17s1"]
+[ext_resource type="Script" uid="uid://d13wrp5qepcll" path="res://scenes/player/Inventory.cs" id="10_h17s1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul6g"]
 radius = 0.1
@@ -301,12 +302,12 @@ transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1
 
 [node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 1194160616) index="0" unique_id=1554437886]
 bones/0/rotation = Quaternion(6.717942e-08, -3.3881318e-21, -3.3881318e-21, 1)
-bones/1/rotation = Quaternion(0.0009405466, 2.7614008e-06, -0.002974184, 0.99999523)
+bones/1/rotation = Quaternion(0.0081410855, 2.4177234e-05, -0.0029740867, 0.99996245)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.12328827, -1.1858459e-07, -1.5006412e-08, 0.9923709)
+bones/3/rotation = Quaternion(-0.13277632, -1.1840475e-07, -1.5910517e-08, 0.991146)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.031518713, 0.36104476, -0.37280923, 0.8542052)
-bones/6/rotation = Quaternion(0.263099, 9.9615245e-05, 0.00011609397, 0.9647689)
+bones/5/rotation = Quaternion(0.03513043, 0.3524901, -0.36942446, 0.8590939)
+bones/6/rotation = Quaternion(0.26952198, 9.945626e-05, 0.000118912285, 0.96299434)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -324,8 +325,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.2070843e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.031519327, -0.36104456, 0.37280956, 0.85420513)
-bones/25/rotation = Quaternion(0.2630983, -9.9630146e-05, -0.000116056646, 0.9647691)
+bones/24/rotation = Quaternion(0.035131034, -0.35248798, 0.36942315, 0.8590953)
+bones/25/rotation = Quaternion(0.26949656, -9.9463046e-05, -0.0001188442, 0.96300143)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -350,7 +351,7 @@ bones/46/rotation = Quaternion(-4.347262e-05, 0.0014867327, -0.045571897, 0.9989
 bones/47/rotation = Quaternion(-0.0001575583, -0.00021558016, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, 3.9234394e-10, -1.506919e-10, -1.01980646e-10, 0.9999999, 0.00061774254, 7.732126e-11, -0.00061772764, 0.9999998, 0.0019802046, 1.5861332, -0.011111781)
+transform = Transform3D(1, -6.849632e-11, -1.3436363e-10, 7.013057e-12, 0.99998564, 0.005350068, 6.8240524e-11, -0.0053500384, 0.99998564, 0.0019802046, 1.585806, -0.0052240975)
 bone_name = "Head"
 bone_idx = 3
 
@@ -358,7 +359,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.7121383, -0.061239384, 0.69936293, 0.14953348, -0.9865594, 0.06587726, 0.6859289, 0.15149197, 0.71172446, -0.2873009, 0.89453983, -0.011952043)
+transform = Transform3D(-0.71565753, -0.058040105, 0.69603556, 0.15726042, -0.98434263, 0.07961254, 0.68051696, 0.16643418, 0.71358, -0.28740677, 0.89555854, -0.0029937848)
 bone_name = "Hand.R"
 bone_idx = 26
 
@@ -379,5 +380,8 @@ parameters/RunSwingBlend/Blend2/blend_amount = 1.0
 [node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("camera")]
 script = ExtResource("3_gmlin")
 camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
+
+[node name="Inventory" type="Node" parent="." unique_id=1201136496]
+script = ExtResource("10_h17s1")
 
 [editable path="GraphicsBase/Humanoid"]

@@ -1,24 +1,6 @@
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Godot;
-
-public struct ItemDef
-{
-    [JsonPropertyName("display_name")]
-    public string DisplayName { get; init; }
-
-    [JsonPropertyName("description")]
-    public string Description { get; init; }
-
-    [JsonPropertyName("craft_tags")]
-    public string[] CraftTags { get; init; }
-
-    [JsonPropertyName("value")]
-    public int Value { get; init; }
-
-    [JsonPropertyName("melee_damage")]
-    public int MeleeDamage { get; init; }
-}
 
 public struct Item
 {
@@ -28,7 +10,11 @@ public struct Item
 
 public partial class Inventory : Node
 {
-    List<Item> items = new();
+    [Signal] public delegate int ItemAddedEventHandler();
+    [Signal] public delegate int ItemRemovedEventHandler();
+    [Signal] public delegate int[] ItemQuantityChangedEventHandler();
+
+    public readonly List<Item> items = new();
     Globals globals;
 
     public override void _Ready()
@@ -38,16 +24,32 @@ public partial class Inventory : Node
 
     public void AddItem(Item item)
     {
+        for (int i = 0; i < items.Count; i ++)
+        {
+            Item other_item = items[i];
+            if (items[i].type == item.type)
+            {
+                other_item.quantity ++;
+                items[i] = other_item;
+                EmitSignal(SignalName.ItemQuantityChanged, i, items[i].quantity);
+                return;
+            }
+        }
         items.Add(item);
+        EmitSignal(SignalName.ItemAdded, items.Count);
     }
 
-    public void RemoveItem(Item item)
+    public void DecrementItemAt(int index)
     {
-        items.Remove(item);
-    }
-
-    public void RemoveItemAt(int index)
-    {
-        items.RemoveAt(index);
+        Item item = items[index];
+        if (item.quantity - 1 <= 0)
+        {
+            items.RemoveAt(index);
+            EmitSignal(SignalName.ItemRemoved, index);
+            return;
+        }
+        item.quantity --;
+        items[index] = item;
+        EmitSignal(SignalName.ItemQuantityChanged, index, items[index].quantity);
     }
 }

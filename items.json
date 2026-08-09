@@ -1,4 +1,5 @@
 {
+
     "stick" : {
         "display_name" : "Stick",
         "description" : "It's a stick, um, off the floor.",
@@ -6,6 +7,7 @@
         "value" : "0",
         "melee_damage" : "1"
     },
+
     "stone" : {
         "display_name" : "Stone",
         "description" : "It's a stone. You can craft with this...",
@@ -13,4 +15,5 @@
         "value" : "0",
         "melee_damage" : "2"
     }
+
 }
