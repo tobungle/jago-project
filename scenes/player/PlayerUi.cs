@@ -87,7 +87,12 @@ public partial class PlayerUi : CanvasLayer
 
 	void OnDropAllRequested(int at)
 	{
-		
+		// Kind of a shit way to do this but whomst cares.
+		int quantity = player_inventory.items[at].quantity;
+		for (int i = 0; i < quantity; i ++)
+		{
+			player_inventory.DecrementItemAt(at, true);
+		}
 	}
 
 	void OnItemRemoved(int at)
