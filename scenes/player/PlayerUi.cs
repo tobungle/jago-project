@@ -16,12 +16,8 @@ public partial class PlayerUi : CanvasLayer
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		// Delay all ui signals by 1 frame just incase items are added before this scene is ready
 		// This can be removed l8r when um. When items are not initilialised in _ready anymore. im gay
-		player_inventory.ItemAdded += (int index) => {
-			CallDeferred("OnInventoryItemAdded", index);
-		};
-		player_inventory.ItemQuantityChanged += (int[] index_quantity) => {
-			CallDeferred("OnInventoryItemQuantityChanged", index_quantity[0], index_quantity[1]);
-		};
+		player_inventory.ItemAdded += OnInventoryItemAdded;
+		player_inventory.ItemQuantityChanged += OnInventoryItemQuantityChanged;
 	}
 
     public override void _Input(InputEvent input)
@@ -72,12 +68,12 @@ public partial class PlayerUi : CanvasLayer
 		ItemListing listing = GD.Load<PackedScene>("uid://bwlsjc6ii5si5").Instantiate<ItemListing>();
 		inv_container.AddChild(listing);
 		listing.SetItem(item);
+		GD.Print($"PlayerUi.cs: ItemAdded {player_inventory.items[item_index].type} (x{item.quantity})");
 	}
-	// Wait a minute the second arg is useless
-	// idk maybe itll be useful later haha.
-	void OnInventoryItemQuantityChanged(int item_index, int item_quantity)
+	void OnInventoryItemQuantityChanged(int index, int quantity)
 	{
-		ItemListing listing = inv_container.GetChild<ItemListing>(item_index);
-		listing.SetItem(player_inventory.items[item_index]);
+		ItemListing listing = inv_container.GetChild<ItemListing>(index);
+		listing.SetItem(player_inventory.items[index]);
+		GD.Print($"PlayerUi.cs: ItemQuantityChanged {player_inventory.items[index].type} -> {quantity}");
 	}
 }

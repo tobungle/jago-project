@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using Godot;
 
 public struct Item
@@ -12,7 +11,7 @@ public partial class Inventory : Node
 {
     [Signal] public delegate void ItemAddedEventHandler(int item_index);
     [Signal] public delegate void ItemRemovedEventHandler(int item_index);
-    [Signal] public delegate void ItemQuantityChangedEventHandler(int[] index_quantity);
+    [Signal] public delegate void ItemQuantityChangedEventHandler(int index, int quantity);
 
     public readonly List<Item> items = new();
     Globals globals;
@@ -22,14 +21,6 @@ public partial class Inventory : Node
         globals = GetNode<Globals>("/root/Globals");    // For item db access
 
         // Add some items for testing :)
-
-        AddItem(
-            new Item()
-            {
-                type = "stone",
-                quantity = 1
-            }
-        );
 
         AddItem(
             new Item()
@@ -54,11 +45,11 @@ public partial class Inventory : Node
         for (int i = 0; i < items.Count; i ++)
         {
             Item other_item = items[i];
-            if (items[i].type == item.type)
+            if (other_item.type == item.type)
             {
                 other_item.quantity += item.quantity;
                 items[i] = other_item;
-                EmitSignal(SignalName.ItemQuantityChanged, i, items[i].quantity);
+                EmitSignal(SignalName.ItemQuantityChanged, i, other_item.quantity);
                 return;
             }
         }

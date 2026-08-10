@@ -35,7 +35,6 @@ public partial class Globals : Node
     public override void _Ready()
     {
 		LoadItemData();
-		GD.Print(item_defs["stone"].description);
     }
 
 	public override void _PhysicsProcess(double delta)

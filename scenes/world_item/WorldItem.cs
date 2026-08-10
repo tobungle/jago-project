@@ -11,6 +11,7 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 	public static double spin_rate = 1.5;
 	const float bob_distance = 0.0025f;
 	int _server_id;
+	public Item item_data;
     public int server_id
 	{
 	get
@@ -25,7 +26,14 @@ public partial class WorldItem : RigidBody3D, Interactable, Syncable
 
     public override void _Ready()
 	{
-		
+
+		// Default item data to stone for now. Proper worlditem spawning will be handled later
+		item_data = new Item()
+		{
+			type = "stone",
+			quantity = 1
+		};
+
 		globals = GetNode<Globals>("/root/Globals");
 		network = GetNode<Node>("/root/Network");
 

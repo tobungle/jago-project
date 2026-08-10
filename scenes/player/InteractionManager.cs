@@ -2,6 +2,7 @@ using Godot;
 
 public partial class InteractionManager : Node3D
 {
+	[Export] Inventory player_inventory;
 	[Export] Camera3D camera;	// Needed for camera raycast
 	Globals globals;
 	const float ray_length = 300f;
@@ -50,6 +51,12 @@ public partial class InteractionManager : Node3D
 	void OnGetItemPressed()
 	{
 		globals.hovered_interactable?.Interact();
+
+		if (globals.hovered_interactable is WorldItem world_item)
+		{
+			HandleWorldItemPickup(world_item);
+		}
+
 		// Check if is queued for deletion after interaction and handle
 		Node3D interactable_node = globals.hovered_interactable as Node3D;
 		if (interactable_node == null || interactable_node.IsQueuedForDeletion())
@@ -100,5 +107,10 @@ public partial class InteractionManager : Node3D
 			Node3D interactable_node = globals.hovered_interactable as Node3D;
 			interactable_node.GlobalPosition = position_in_front;
 		}
+	}
+
+	void HandleWorldItemPickup(WorldItem world_item)
+	{
+		player_inventory.AddItem(world_item.item_data);
 	}
 }

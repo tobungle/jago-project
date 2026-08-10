@@ -304,12 +304,12 @@ transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1
 
 [node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 1194160616) index="0" unique_id=1554437886]
 bones/0/rotation = Quaternion(6.717942e-08, -3.3881318e-21, -3.3881318e-21, 1)
-bones/1/rotation = Quaternion(0.0006131144, 1.787554e-06, -0.0029741852, 0.99999547)
+bones/1/rotation = Quaternion(0.009223286, 2.7395912e-05, -0.002974058, 0.99995303)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.123002626, -1.1848325e-07, -1.4088672e-08, 0.9924064)
+bones/3/rotation = Quaternion(-0.13420136, -1.1849509e-07, -1.7006437e-08, 0.99095416)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.03147999, 0.36113766, -0.37284657, 0.8541512)
-bones/6/rotation = Quaternion(0.2628074, 9.966397e-05, 0.00011595525, 0.9648484)
+bones/5/rotation = Quaternion(0.035662394, 0.35124213, -0.36893377, 0.8597936)
+bones/6/rotation = Quaternion(0.27047974, 9.941472e-05, 0.00011934387, 0.96272576)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -327,8 +327,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.2070843e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.031480502, -0.36113748, 0.3728466, 0.8541512)
-bones/25/rotation = Quaternion(0.262806, -9.962948e-05, -0.00011588837, 0.9648487)
+bones/24/rotation = Quaternion(0.035662536, -0.3512422, 0.36893383, 0.85979354)
+bones/25/rotation = Quaternion(0.27046856, -9.946084e-05, -0.000119302116, 0.96272886)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -353,7 +353,7 @@ bones/46/rotation = Quaternion(-4.347262e-05, 0.0014867327, -0.045571897, 0.9989
 bones/47/rotation = Quaternion(-0.0001575583, -0.00021558016, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, -3.9913672e-10, -2.669367e-10, 6.9936945e-10, 0.9999997, 0.0006969422, 8.191137e-11, -0.0006969422, 0.99999964, 0.0019802053, 1.5861461, -0.0113796145)
+transform = Transform3D(1, 3.5710457e-10, -1.3469048e-10, -3.0343017e-10, 0.9999817, 0.0060613453, 7.119638e-11, -0.0060613453, 0.9999817, 0.0019802041, 1.5857495, -0.0043396186)
 bone_name = "Head"
 bone_idx = 3
 
@@ -361,7 +361,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.71211046, -0.06159654, 0.69935995, 0.14978956, -0.9865371, 0.065630585, 0.68590194, 0.15149312, 0.71175027, -0.2873951, 0.8945235, -0.012004163)
+transform = Transform3D(-0.7161527, -0.057510965, 0.6955699, 0.15832795, -0.9840042, 0.08165376, 0.67974794, 0.16860484, 0.7138034, -0.28740105, 0.8957088, -0.0016908646)
 bone_name = "Hand.R"
 bone_idx = 26
 
@@ -379,8 +379,9 @@ tree_root = SubResource("AnimationNodeStateMachine_je7p5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/RunSwingBlend/Blend2/blend_amount = 1.0
 
-[node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("camera")]
+[node name="InteractionManager" type="Node3D" parent="." unique_id=43934629 node_paths=PackedStringArray("player_inventory", "camera")]
 script = ExtResource("3_gmlin")
+player_inventory = NodePath("../Inventory")
 camera = NodePath("../CameraBase/SpringArm3D/Camera3D")
 
 [node name="Inventory" type="Node" parent="." unique_id=1201136496]

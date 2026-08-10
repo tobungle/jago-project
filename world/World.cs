@@ -12,7 +12,7 @@ public partial class World : Node3D
 	int server_entity_counter = 0;
 	public override void _Ready()
 	{
-		GD.Print("Setting up world...");
+		GD.Print("World.cs: Setting up world...");
 		network = GetNode<Node>("/root/Network");
 
 		network.Connect("player_joined", Callable.From((int player_id) => SpawnPlayer(player_id, player_start_position)));
@@ -25,10 +25,14 @@ public partial class World : Node3D
 		{
 			network.Connect("spawned_list_requested", Callable.From((int from) => OnSpawnedItemsRequested(from)));
 
-			SpawnItemServer(new()
+			for (int y = 0; y < 10; y ++)
 			{
-				{"global_position", new Vector3(0f, 1f, -7f)}
-			});
+				SpawnItemServer(new()
+				{
+					{"global_position", new Vector3(0f, 1f + y, -7f)}
+				});
+			}
+
 			SpawnItemServer(new()
 			{
 				{"global_position", new Vector3(0f, 1f, -8f)}
@@ -63,7 +67,7 @@ public partial class World : Node3D
 	{
 		if (spawned_players.Keys.Contains(id))
 		{
-			GD.Print($"Not spawning player {id} because they've already been spawned.");
+			GD.Print($"World.cs: Not spawning player {id} because they've already been spawned.");
 			return;
 		}
 		Player inst = player_packed.Instantiate<Player>();
@@ -72,14 +76,14 @@ public partial class World : Node3D
 		inst.server_id = id;
 		AddChild(inst, true);
 		spawned_players[id] = inst;
-		GD.Print($"Spawned player {inst.Name}");
+		GD.Print($"World.cs: Spawned player {inst.Name}");
 	}
 
 	void RemovePlayer(int id)
 	{
 		if (!spawned_players.Keys.Contains(id))
 		{
-			GD.Print($"Not removing player {id} because they've already been removed.");
+			GD.Print($"World.cs: Not removing player {id} because they've already been removed.");
 			return;
 		}
 		GetNode($"player_{id}").QueueFree();
@@ -108,7 +112,7 @@ public partial class World : Node3D
 		{
 			DespawnItemServer(inst.server_id);
 		};
-		GD.Print($"Spawned item {inst.Name}");
+		GD.Print($"World.cs: Spawned WorldItem with id [{id}]");
 	}
 
 	void DespawnItemServer(int id)
@@ -120,7 +124,7 @@ public partial class World : Node3D
 	{
 		spawned_world_items[id].QueueFree();
 		spawned_world_items.Remove(id);
-		GD.Print($"Despawned thing {id}");
+		GD.Print($"World.cs: Despawned WorldItem with id [{id}]");
 	}
 
 	void OnSpawnedItemsRequested(int from)
@@ -133,7 +137,7 @@ public partial class World : Node3D
 			spawned_items_list[id] = item.GlobalPosition;
 		}
 		network.RpcId(from, "get_spawned_items", spawned_items_list);
-		GD.Print($"Sent over spawned item list {spawned_items_list}");
+		GD.Print($"World.cs: Sent over spawned item list {spawned_items_list}");
 	}
 
 	void OnGotSpawnedItemsList(Godot.Collections.Dictionary<int, Vector3> spawned_items_list)
@@ -147,6 +151,6 @@ public partial class World : Node3D
 			},
 			id);
 		}
-		GD.Print($"Got spawned items list {spawned_items_list}");
+		GD.Print($"World.cs: Got spawned items list from host:\n{spawned_items_list}");
 	}
 }
