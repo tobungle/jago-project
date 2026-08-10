@@ -82,8 +82,7 @@ public partial class PlayerUi : CanvasLayer
 
 	void OnDropOneRequested(int at)
 	{
-		player_inventory.DecrementItemAt(at);
-		// TODO: Spawn WorldItem somehow. Maybe global signal?
+		player_inventory.DecrementItemAt(at, true);
 	}
 
 	void OnDropAllRequested(int at)

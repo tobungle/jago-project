@@ -58,7 +58,7 @@ public partial class Inventory : Node
         EmitSignal(SignalName.ItemAdded, items.Count - 1);
     }
 
-    public void DecrementItemAt(int index, bool spawn = true)
+    public void DecrementItemAt(int index, bool spawn = false)
     {
         if (spawn)
         {
