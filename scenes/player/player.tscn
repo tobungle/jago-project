@@ -41,10 +41,10 @@ animation = &"Run"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_h17s1"]
 filter_enabled = true
-filters = ["Humanoid Armature/Skeleton3D:Foot.L", "Humanoid Armature/Skeleton3D:Foot.R", "Humanoid Armature/Skeleton3D:LowerLeg.L", "Humanoid Armature/Skeleton3D:LowerLeg.R", "Humanoid Armature/Skeleton3D:Thorax", "Humanoid Armature/Skeleton3D:UpperLeg.L", "Humanoid Armature/Skeleton3D:UpperLeg.R"]
+filters = ["Humanoid Armature/Skeleton3D:Body", "Humanoid Armature/Skeleton3D:Foot.L", "Humanoid Armature/Skeleton3D:Foot.R", "Humanoid Armature/Skeleton3D:LowerLeg.L", "Humanoid Armature/Skeleton3D:LowerLeg.R", "Humanoid Armature/Skeleton3D:UpperLeg.L", "Humanoid Armature/Skeleton3D:UpperLeg.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gx1jg"]
-graph_offset = Vector2(-7.900879, 33.776855)
+graph_offset = Vector2(-1, 49)
 nodes/output/position = Vector2(760, 180)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fm80t")
 nodes/Animation/position = Vector2(260, 260)
@@ -82,7 +82,7 @@ states/RunSwingBlend/node = SubResource("AnimationNodeBlendTree_gx1jg")
 states/RunSwingBlend/position = Vector2(682, 150)
 states/Start/position = Vector2(182, 58)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_myrg7"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_kvlxm"), "Run", "RunSwingBlend", SubResource("AnimationNodeStateMachineTransition_h17s1"), "RunSwingBlend", "Idle", SubResource("AnimationNodeStateMachineTransition_fm80t"), "Idle", "RunSwingBlend", SubResource("AnimationNodeStateMachineTransition_gx1jg"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ugbui")]
-graph_offset = Vector2(-19, -102)
+graph_offset = Vector2(5, -45)
 
 [node name="Player" type="CharacterBody3D" unique_id=340174165 node_paths=PackedStringArray("anim_tree", "animator", "interaction", "player_ui", "name_label", "camera_base", "graphics_base", "camera")]
 collision_layer = 2
@@ -304,12 +304,12 @@ transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1
 
 [node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 1194160616) index="0" unique_id=1554437886]
 bones/0/rotation = Quaternion(6.717942e-08, -3.3881318e-21, -3.3881318e-21, 1)
-bones/1/rotation = Quaternion(0.009223286, 2.7395912e-05, -0.002974058, 0.99995303)
+bones/1/rotation = Quaternion(0.006562571, 1.9482413e-05, -0.0029741207, 0.9999741)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.13420136, -1.1849509e-07, -1.7006437e-08, 0.99095416)
+bones/3/rotation = Quaternion(-0.13069728, -1.1851784e-07, -1.626828e-08, 0.9914223)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.035662394, 0.35124213, -0.36893377, 0.8597936)
-bones/6/rotation = Quaternion(0.27047974, 9.941472e-05, 0.00011934387, 0.96272576)
+bones/5/rotation = Quaternion(0.034360748, 0.35430542, -0.37014085, 0.85806924)
+bones/6/rotation = Quaternion(0.26812536, 9.9486955e-05, 0.00011830528, 0.96338403)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -327,8 +327,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.2070843e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.035662536, -0.3512422, 0.36893383, 0.85979354)
-bones/25/rotation = Quaternion(0.27046856, -9.946084e-05, -0.000119302116, 0.96272886)
+bones/24/rotation = Quaternion(0.034358792, -0.35430408, 0.37013814, 0.858071)
+bones/25/rotation = Quaternion(0.26812065, -9.95166e-05, -0.000118246375, 0.9633854)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -353,7 +353,7 @@ bones/46/rotation = Quaternion(-4.347262e-05, 0.0014867327, -0.045571897, 0.9989
 bones/47/rotation = Quaternion(-0.0001575583, -0.00021558016, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, 3.5710457e-10, -1.3469048e-10, -3.0343017e-10, 0.9999817, 0.0060613453, 7.119638e-11, -0.0060613453, 0.9999817, 0.0019802041, 1.5857495, -0.0043396186)
+transform = Transform3D(1, 6.7392136e-10, -1.497682e-10, -5.140066e-10, 0.9999907, 0.00431256, 8.6032514e-11, -0.004312545, 0.9999907, 0.0019802044, 1.585885, -0.0065144096)
 bone_name = "Head"
 bone_idx = 3
 
@@ -361,7 +361,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.7161527, -0.057510965, 0.6955699, 0.15832795, -0.9840042, 0.08165376, 0.67974794, 0.16860484, 0.7138034, -0.28740105, 0.8957088, -0.0016908646)
+transform = Transform3D(-0.7149265, -0.058749963, 0.69672686, 0.15570053, -0.9848199, 0.07672481, 0.68164295, 0.16333339, 0.7132217, -0.28739583, 0.89534277, -0.004874788)
 bone_name = "Hand.R"
 bone_idx = 26
 
