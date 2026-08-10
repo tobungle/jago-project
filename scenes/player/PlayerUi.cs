@@ -18,6 +18,7 @@ public partial class PlayerUi : CanvasLayer
 		// This can be removed l8r when um. When items are not initilialised in _ready anymore. im gay
 		player_inventory.ItemAdded += OnInventoryItemAdded;
 		player_inventory.ItemQuantityChanged += OnInventoryItemQuantityChanged;
+		player_inventory.ItemRemoved += OnItemRemoved;
 	}
 
     public override void _Input(InputEvent input)
@@ -66,6 +67,8 @@ public partial class PlayerUi : CanvasLayer
 	{
 		Item item = player_inventory.items[item_index];
 		ItemListing listing = GD.Load<PackedScene>("uid://bwlsjc6ii5si5").Instantiate<ItemListing>();
+		listing.DropOnePressed += OnDropOneRequested;
+		listing.DropAllPressed += OnDropAllRequested;
 		inv_container.AddChild(listing);
 		listing.SetItem(item);
 		GD.Print($"PlayerUi.cs: ItemAdded {player_inventory.items[item_index].type} (x{item.quantity})");
@@ -75,5 +78,21 @@ public partial class PlayerUi : CanvasLayer
 		ItemListing listing = inv_container.GetChild<ItemListing>(index);
 		listing.SetItem(player_inventory.items[index]);
 		GD.Print($"PlayerUi.cs: ItemQuantityChanged {player_inventory.items[index].type} -> {quantity}");
+	}
+
+	void OnDropOneRequested(int at)
+	{
+		player_inventory.DecrementItemAt(at);
+		// TODO: Spawn WorldItem somehow. Maybe global signal?
+	}
+
+	void OnDropAllRequested(int at)
+	{
+		
+	}
+
+	void OnItemRemoved(int at)
+	{
+		inv_container.GetChild(at).QueueFree();
 	}
 }

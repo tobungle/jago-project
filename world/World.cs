@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -76,10 +77,13 @@ public partial class World : Node3D
 		inst.server_id = id;
 		AddChild(inst, true);
 		spawned_players[id] = inst;
+		inst.InvItemDropped += (int index) => {
+			OnPlayerItemDropped(index, inst);
+		};
 		GD.Print($"World.cs: Spawned player {inst.Name}");
 	}
 
-	void RemovePlayer(int id)
+    void RemovePlayer(int id)
 	{
 		if (!spawned_players.Keys.Contains(id))
 		{
@@ -152,5 +156,17 @@ public partial class World : Node3D
 			id);
 		}
 		GD.Print($"World.cs: Got spawned items list from host:\n{spawned_items_list}");
+	}
+
+	void OnPlayerItemDropped(int inv_index, Player player)
+	{
+		// TODO: Actually carry over serialised item later
+		Item item = player.inventory.items[inv_index];
+		SpawnItemServer(
+			new ()
+			{
+				{"global_position", player.GlobalPosition}
+			}
+		);
 	}
 }

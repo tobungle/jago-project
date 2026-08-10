@@ -11,6 +11,7 @@ public partial class Inventory : Node
 {
     [Signal] public delegate void ItemAddedEventHandler(int item_index);
     [Signal] public delegate void ItemRemovedEventHandler(int item_index);
+    [Signal] public delegate void SpawnWorldItemEventHandler(int at);
     [Signal] public delegate void ItemQuantityChangedEventHandler(int index, int quantity);
 
     public readonly List<Item> items = new();
@@ -57,8 +58,12 @@ public partial class Inventory : Node
         EmitSignal(SignalName.ItemAdded, items.Count - 1);
     }
 
-    public void DecrementItemAt(int index)
+    public void DecrementItemAt(int index, bool spawn = true)
     {
+        if (spawn)
+        {
+            EmitSignal(SignalName.SpawnWorldItem, index);
+        }
         Item item = items[index];
         if (item.quantity - 1 <= 0)
         {

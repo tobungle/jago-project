@@ -3,6 +3,7 @@ using Godot;
 
 public partial class Player : CharacterBody3D, Syncable
 {
+	[Signal] public delegate void InvItemDroppedEventHandler(int item_index);
 	public enum PlayerAnimation
 	{
 		Idle = 0,
@@ -32,6 +33,7 @@ public partial class Player : CharacterBody3D, Syncable
 	}
 
 	// Local player vars
+	[Export] public Inventory inventory;
 	[Export] InteractionManager interaction;
 	[Export] PlayerUi player_ui;
 	[Export] Label3D name_label;
@@ -57,6 +59,13 @@ public partial class Player : CharacterBody3D, Syncable
 		DetermineOwnership();
 		UpdateOwnership();
 		ChangeAnimation("Idle");
+
+		// TODO: This signel needs to spawn item on the server
+		inventory.SpawnWorldItem += (int index) =>
+		{
+			EmitSignal(SignalName.InvItemDropped, index);
+		};
+
 		// QUICK FIX TO GET FUCKING SHITTY STATE MACHINE WORKING FUCK YOU
 		// clean this UP TOMORROW IS MY CAPS LOCK EVEN FUCKING ON RAAGGGHH
 		anim_tree.AnimationFinished += (StringName anim) =>
@@ -274,5 +283,4 @@ public partial class Player : CharacterBody3D, Syncable
 		state_machine.Travel(new_anim);
 		animation = new_anim;
 	}
-
 }

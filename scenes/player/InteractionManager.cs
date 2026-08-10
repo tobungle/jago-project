@@ -6,8 +6,6 @@ public partial class InteractionManager : Node3D
 	[Export] Camera3D camera;	// Needed for camera raycast
 	Globals globals;
 	const float ray_length = 300f;
-	bool get_item_held = false;
-	double get_item_held_time;
 	const double pickup_time = 0.1;
 	public override void _Ready()
 	{
@@ -18,34 +16,13 @@ public partial class InteractionManager : Node3D
 	{
 		if (input.IsActionPressed("get_item"))
 		{
-			get_item_held = true;
-		}
-		if (input.IsActionReleased("get_item"))
-		{
-			get_item_held = false;
-			ItemHeldReleased();
+			OnGetItemPressed();
 		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (get_item_held)
-		{
-			get_item_held_time += delta;
-		}
-		else
-		{
-			get_item_held_time = 0.0;
-		}
 		RaycastFromCamera();
-	}
-
-	void ItemHeldReleased()
-	{
-		if (get_item_held_time <= pickup_time)
-		{
-			OnGetItemPressed();
-		}
 	}
 
 	void OnGetItemPressed()
