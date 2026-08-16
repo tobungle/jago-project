@@ -143,54 +143,6 @@ theme_override_constants/outline_size = 4
 text = "Interact"
 horizontal_alignment = 1
 
-[node name="HandsContainer" type="CenterContainer" parent="PlayerUi/Control" unique_id=52669028]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -88.0
-offset_right = 128.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUi/Control/HandsContainer" unique_id=951864628]
-layout_mode = 2
-
-[node name="LeftHand" type="Panel" parent="PlayerUi/Control/HandsContainer/HBoxContainer" unique_id=1061859879]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PlayerUi/Control/HandsContainer/HBoxContainer/LeftHand" unique_id=703406938]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 10
-text = "Left Hand"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RightHand" type="Panel" parent="PlayerUi/Control/HandsContainer/HBoxContainer" unique_id=35054753]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PlayerUi/Control/HandsContainer/HBoxContainer/RightHand" unique_id=131926029]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 10
-text = "Right Hand"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CrossHair" type="CenterContainer" parent="PlayerUi/Control" unique_id=208413479]
 layout_mode = 1
 anchors_preset = 15
@@ -217,9 +169,9 @@ offset_left = 8.0
 offset_top = 688.0
 offset_right = 208.0
 offset_bottom = 714.0
-value = 20.0
+value = 100.0
 
-[node name="Label" type="Label" parent="PlayerUi/Control" unique_id=1269054604]
+[node name="Health" type="Label" parent="PlayerUi/Control" unique_id=1269054604]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 616.0
@@ -229,7 +181,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "Health"
 
-[node name="Label2" type="Label" parent="PlayerUi/Control" unique_id=285181677]
+[node name="StaminaLabel" type="Label" parent="PlayerUi/Control" unique_id=285181677]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 664.0
@@ -305,12 +257,12 @@ transform = Transform3D(-1.2, 0, -1.8119498e-07, 0, 1.2, 0, 1.8119498e-07, 0, -1
 
 [node name="Skeleton3D" parent="GraphicsBase/Humanoid/Humanoid Armature" parent_id_path=PackedInt32Array(2121805294, 1194160616) index="0" unique_id=1554437886]
 bones/0/rotation = Quaternion(6.717942e-08, -3.3881318e-21, -3.3881318e-21, 1)
-bones/1/rotation = Quaternion(6.619339e-05, 1.6090154e-07, -0.0029741845, 0.9999956)
+bones/1/rotation = Quaternion(0.0068555437, 2.0353762e-05, -0.002974116, 0.99997216)
 bones/2/rotation = Quaternion(0.12204768, 0.0003631482, 0.0029519605, 0.9925198)
-bones/3/rotation = Quaternion(-0.12213543, -1.1859832e-07, -1.4837397e-08, 0.9925135)
+bones/3/rotation = Quaternion(-0.13108318, -1.1840873e-07, -1.5542545e-08, 0.9913714)
 bones/4/rotation = Quaternion(0.020197166, -0.022577485, -0.8355086, 0.54864174)
-bones/5/rotation = Quaternion(0.031209417, 0.3617873, -0.3731063, 0.8537726)
-bones/6/rotation = Quaternion(0.26231354, 9.964275e-05, 0.0001157316, 0.9649827)
+bones/5/rotation = Quaternion(0.034502015, 0.3539724, -0.37000942, 0.85825765)
+bones/6/rotation = Quaternion(0.26838365, 9.9491095e-05, 0.00011841689, 0.96331215)
 bones/8/rotation = Quaternion(0.14695846, 0.002353999, -0.1599065, 0.97612894)
 bones/9/rotation = Quaternion(-0.043179296, -0.009910829, -0.147676, 0.98804307)
 bones/10/rotation = Quaternion(0.003154939, 0.00415783, -0.14811295, 0.98895675)
@@ -328,8 +280,8 @@ bones/21/rotation = Quaternion(-0.103927456, -0.00810461, -0.08182132, 0.9911805
 bones/22/rotation = Quaternion(-0.0044417493, -0.0079652965, -0.06409915, 0.99790186)
 bones/23/position = Vector3(-0.003960381, 0.33287668, -6.2070843e-10)
 bones/23/rotation = Quaternion(0.020062575, 0.02269726, 0.83875734, 0.5436621)
-bones/24/rotation = Quaternion(0.031209636, -0.3617873, 0.37310624, 0.8537727)
-bones/25/rotation = Quaternion(0.26231304, -9.964656e-05, -0.00011570325, 0.9649829)
+bones/24/rotation = Quaternion(0.034501802, -0.3539671, 0.3700053, 0.85826164)
+bones/25/rotation = Quaternion(0.26838276, -9.947982e-05, -0.00011834086, 0.9633124)
 bones/26/rotation = Quaternion(-0.021664767, 0.0006505729, 0.017602794, 0.9996101)
 bones/27/rotation = Quaternion(0.14695846, -0.0023540037, 0.15990655, 0.97612894)
 bones/28/rotation = Quaternion(-0.04317927, 0.0099107865, 0.14767602, 0.9880431)
@@ -354,7 +306,7 @@ bones/46/rotation = Quaternion(-4.347262e-05, 0.0014867327, -0.045571897, 0.9989
 bones/47/rotation = Quaternion(-0.0001575583, -0.00021558016, 0.58962375, 0.80767804)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="1" unique_id=944047517]
-transform = Transform3D(1, -1.5091928e-10, -1.5066348e-10, 3.0083314e-10, 1, 4.324317e-05, 7.8571816e-11, -4.322827e-05, 1, 0.0019802044, 1.5861672, -0.011827009)
+transform = Transform3D(1, 1.0728485e-10, -2.7209524e-10, -7.767511e-10, 0.99998987, 0.0045051277, 7.985079e-11, -0.004505098, 0.99998987, 0.001980205, 1.5858707, -0.0062749106)
 bone_name = "Head"
 bone_idx = 3
 
@@ -362,7 +314,7 @@ bone_idx = 3
 transform = Transform3D(1.1874999, 5.6998745e-10, -7.589303e-08, -7.03198e-10, 1.1875, 1.2386592e-07, 7.591377e-08, -1.4156105e-07, 1.1875, -0.0019802046, 0.18134499, 0.011881132)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="GraphicsBase/Humanoid/Humanoid Armature/Skeleton3D" index="2" unique_id=266827295]
-transform = Transform3D(-0.71183586, -0.061845914, 0.6996174, 0.14919642, -0.9866963, 0.064578466, 0.6863161, 0.15034968, 0.7115933, -0.28738737, 0.8944458, -0.012686998)
+transform = Transform3D(-0.71506256, -0.05860868, 0.69659907, 0.1559903, -0.9847311, 0.077273965, 0.6814341, 0.16391854, 0.71328706, -0.28739512, 0.89538336, -0.0045229197)
 bone_name = "Hand.R"
 bone_idx = 26
 
