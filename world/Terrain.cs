@@ -15,6 +15,7 @@ public partial class Terrain : Node3D
 	public override void _Ready()
 	{
 		Generate(1);
+		SpawnTrees(1);
 	}
 
 	void Generate(int seed)
@@ -56,12 +57,35 @@ public partial class Terrain : Node3D
 		terrainmesh.Mesh = arrmesh;
 		terrainmesh.MaterialOverride = GD.Load<StandardMaterial3D>("res://assets/temp_materials/terrain_material.tres");
 		terrainmesh.CreateTrimeshCollision();
-
 	}
 
 	float GetY(float x, float z)
 	{
 		return Mathf.Pow(noise.GetNoise2D(x, z) * terrain_height, terrain_height_exponent);
+	}
+
+	void SpawnTrees(int seed)
+	{
+		RandomNumberGenerator rng = new();
+		rng.Seed = (ulong) seed;
+		for (int i = 0; i < 300; i ++)
+		{
+			Node3D inst = GD.Load<PackedScene>("res://scenes/tree/tree.tscn").Instantiate<Node3D>();
+			AddChild(inst);
+			
+
+
+			float x = rng.RandfRange(-500f, 500f);
+			float z = rng.RandfRange(-500f, 500f);
+			float y = GetY(x, z);
+
+			Vector3 pos = new Vector3(
+				x,
+				y,
+				z
+			);
+			inst.GlobalPosition = pos;
+		}
 	}
 
 }
