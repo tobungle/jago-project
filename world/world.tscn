@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://b8hxg6fmwgv2t" path="res://world/World.cs" id="1_tcf2h"]
 [ext_resource type="Shader" uid="uid://dlcml05ctjvda" path="res://world/world.gdshader" id="3_ai45w"]
 [ext_resource type="Material" uid="uid://c1voe0sdln40f" path="res://assets/temp_materials/brick.tres" id="3_fn3g3"]
-[ext_resource type="PackedScene" uid="uid://didf7rkg2ovxf" path="res://scenes/zombie/zombie.tscn" id="4_h5o24"]
-[ext_resource type="PackedScene" uid="uid://blu1r2rpb4gce" path="res://assets/glb/Hosse/Hosse.glb" id="5_mmdvd"]
-[ext_resource type="PackedScene" uid="uid://caulaak8man6v" path="res://assets/glb/items/accessories/Cowboy Hat/CowboyHat.glb" id="6_fn3g3"]
 [ext_resource type="Script" uid="uid://cppordraufcp2" path="res://world/Terrain.cs" id="7_sc4t8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4papg"]
@@ -52,6 +49,11 @@ tonemap_mode = 4
 ssao_enabled = true
 ssil_enabled = true
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 1.0
+fog_sky_affect = 0.0
 
 [node name="World" type="Node3D" unique_id=1850297244]
 script = ExtResource("1_tcf2h")
@@ -192,15 +194,6 @@ size = Vector3(3.7871094, 2.6820831, 1)
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.2754035, 2.4076538, 9)
 use_collision = true
 size = Vector3(3.7871094, 5.4471436, 1)
-
-[node name="Zombie" parent="." unique_id=1036142538 instance=ExtResource("4_h5o24")]
-transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, 8.8112, 0.98728645, 0.64873505)
-
-[node name="Hosse2" parent="." unique_id=567623475 instance=ExtResource("5_mmdvd")]
-transform = Transform3D(-326.4149, 0, 378.75232, 0, 500, 0, -378.75232, 0, -326.4149, 3.388, 700, 2000)
-
-[node name="CowboyHat" parent="Hosse2" unique_id=1288923392 instance=ExtResource("6_fn3g3")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.2564622, 1.7711754)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=297618284]
 transform = Transform3D(0.8287526, 0, -0.5596152, 0, 1, 0, 0.5596152, 0, 0.8287526, 28.199928, 5.133728, 3.780737)

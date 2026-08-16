@@ -1,30 +1,8 @@
 [gd_scene format=3 uid="uid://ddugo7bn13cv7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqjyy"]
-albedo_color = Color(0, 1, 0.20000005, 1)
+[ext_resource type="PackedScene" uid="uid://63x0wyyj2nh8" path="res://assets/glb/tobungle_tree/pine_tree.glb" id="1_cuvwl"]
 
 [node name="Tree" type="Node3D" unique_id=1262203187]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=2060935083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.235931, 0)
-material_override = SubResource("StandardMaterial3D_pqjyy")
-radius = 0.7348633
-height = 16.471863
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1928533937]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3763123, 0)
-material_override = SubResource("StandardMaterial3D_pqjyy")
-radius = 4.7094727
-height = 3.2416992
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=152984678]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.550631, 0)
-material_override = SubResource("StandardMaterial3D_pqjyy")
-radius = 2.8188477
-height = 3.6586914
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="." unique_id=589305466]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.111, 0)
-material_override = SubResource("StandardMaterial3D_pqjyy")
-radius = 1.8374023
-height = 3.0986328
+[node name="pine_tree" parent="." unique_id=1743356222 instance=ExtResource("1_cuvwl")]
+transform = Transform3D(6.78, 0, 0, 0, 6.78, 0, 0, 0, 6.78, 0, 1.4099722, 0)

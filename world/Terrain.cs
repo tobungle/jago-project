@@ -68,7 +68,7 @@ public partial class Terrain : Node3D
 	{
 		RandomNumberGenerator rng = new();
 		rng.Seed = (ulong) seed;
-		for (int i = 0; i < 800; i ++)
+		for (int i = 0; i < 1500; i ++)
 		{
 			Node3D inst = GD.Load<PackedScene>("res://scenes/tree/tree.tscn").Instantiate<Node3D>();
 			AddChild(inst);
