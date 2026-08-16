@@ -1,0 +1,44 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://b2njopvei6d2e"]
+
+[ext_resource type="Texture2D" uid="uid://k22txuwcx7li" path="res://assets/glb/foliage_0_bush_0.png" id="1_nildt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfej1"]
+resource_name = "bush_0"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_nildt")
+texture_filter = 2
+texture_repeat = false
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pemrc"]
+_surfaces = [{
+"aabb": AABB(-0.948937, -0.010350317, -0.94893706, 1.897874, 1.4975412, 1.8978741),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "bush_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AAD//////38AAP//AAD/fwAAAAD///9/AAD/fwAA/v8AAP9///8AAAAA/38AAAAAAAD/f/////8AAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "foliage_0_bush_0"
+_surfaces = [{
+"aabb": AABB(-0.948937, -0.010350317, -0.94893706, 1.897874, 1.4975412, 1.8978741),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAAAA/////wAA/////wAAAAA="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_nfej1"),
+"name": "bush_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AID//////38AgP//AAD/fwCAAAD///9/AID/fwAA/v//v/9///8AAP+//38AAAAA/7//f///////v/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pemrc")

@@ -16,6 +16,7 @@ public partial class Terrain : Node3D
 	{
 		Generate(1);
 		SpawnTrees(1);
+		SpawnFoliage(1);
 	}
 
 	void Generate(int seed)
@@ -72,9 +73,6 @@ public partial class Terrain : Node3D
 		{
 			Node3D inst = GD.Load<PackedScene>("res://scenes/tree/tree.tscn").Instantiate<Node3D>();
 			AddChild(inst);
-			
-
-
 			float x = rng.RandfRange(-500f, 500f);
 			float z = rng.RandfRange(-500f, 500f);
 			float y = GetY(x, z);
@@ -86,6 +84,40 @@ public partial class Terrain : Node3D
 			);
 			inst.GlobalPosition = pos;
 		}
+	}
+
+	void SpawnFoliage(int seed)
+	{
+		MultiMeshInstance3D mmi = new();
+		MultiMesh mm = new();
+		mm.TransformFormat = MultiMesh.TransformFormatEnum.Transform3D;
+		mm.InstanceCount = 10_000;
+		mm.Mesh = GD.Load<Mesh>("res://assets/glb/tobungle_tree/foliage_mesh.tres");
+
+		RandomNumberGenerator rng = new();
+		rng.Seed = (ulong) seed;
+
+		for (int i = 0; i < 10_000; i ++)
+		{
+			
+			float x = rng.RandfRange(-500f, 500f);
+			float z = rng.RandfRange(-500f, 500f);
+			float y = GetY(x, z);
+
+			Vector3 pos = new Vector3(
+				x,
+				y,
+				z
+			);
+			mm.SetInstanceTransform(i,
+			new Transform3D()
+			{
+				Basis = Basis.Identity,
+				Origin = pos
+			});
+		}
+
+		AddChild(mmi);
 	}
 
 }

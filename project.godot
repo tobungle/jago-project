@@ -40,6 +40,10 @@ project/assembly_name="jago-project"
 
 enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 left={

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ddugo7bn13cv7"]
 
-[ext_resource type="PackedScene" uid="uid://63x0wyyj2nh8" path="res://assets/glb/tobungle_tree/pine_tree.glb" id="1_cuvwl"]
+[ext_resource type="PackedScene" uid="uid://cvgf3be7quw87" path="res://assets/glb/tobungle_tree/DeadTree1.glb" id="2_mbf7r"]
 
 [node name="Tree" type="Node3D" unique_id=1262203187]
 
-[node name="pine_tree" parent="." unique_id=1743356222 instance=ExtResource("1_cuvwl")]
-transform = Transform3D(6.78, 0, 0, 0, 6.78, 0, 0, 0, 6.78, 0, 1.4099722, 0)
+[node name="DeadTree1" parent="." unique_id=65557954 instance=ExtResource("2_mbf7r")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.29599428, 0)
