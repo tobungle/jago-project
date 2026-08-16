@@ -6,7 +6,25 @@ albedo_color = Color(0, 1, 0.20000005, 1)
 [node name="Tree" type="Node3D" unique_id=1262203187]
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=2060935083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.637878, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.235931, 0)
 material_override = SubResource("StandardMaterial3D_pqjyy")
-radius = 1.1416016
-height = 27.275757
+radius = 0.7348633
+height = 16.471863
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1928533937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.3763123, 0)
+material_override = SubResource("StandardMaterial3D_pqjyy")
+radius = 4.7094727
+height = 3.2416992
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=152984678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.550631, 0)
+material_override = SubResource("StandardMaterial3D_pqjyy")
+radius = 2.8188477
+height = 3.6586914
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="." unique_id=589305466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.111, 0)
+material_override = SubResource("StandardMaterial3D_pqjyy")
+radius = 1.8374023
+height = 3.0986328
